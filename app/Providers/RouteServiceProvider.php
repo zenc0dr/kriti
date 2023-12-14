@@ -35,6 +35,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            #: kriti integration
+            Route::middleware('kriti')->group(base_path('app/Kriti/router.php'));
         });
     }
 }
