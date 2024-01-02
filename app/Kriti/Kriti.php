@@ -2,15 +2,16 @@
 
 namespace App\Kriti;
 
+use App\Kriti\Classes\Node;
 use App\Kriti\Traits\SingletonTrait;
 
 class Kriti
 {
     use SingletonTrait;
 
-    public function run()
+    public function node(): Node
     {
-        dd('Ты вызвал меня!');
+        return new Node();
     }
 
 }

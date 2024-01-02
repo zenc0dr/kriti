@@ -1,0 +1,30 @@
+{
+    "name": "Калькулятор",
+    "code": "Zen.Calculator",
+    "icon": "images/calculator-icon.svg",
+    "desc": "Это самый первый блок Kriti",
+    "version": "0.1.1",
+    "author": "Alex Blaze",
+    "input": {
+        "a": {
+            "name": "A",
+            "desc": "Одно целое число",
+            "type": "float|int"
+        },
+        "b": {
+            "name": "B",
+            "desc": "Второе целое число",
+            "type": "float|int"
+        },
+        "o": {
+            "name": "O",
+            "desc": "Операция",
+            "type": "string"
+        }
+    },
+    "output": {
+        "name": "Результат",
+        "desc": "Результат вычислений над A и B с оператором O",
+        "type": "float|int"
+    }
+}

@@ -7,6 +7,6 @@ class Debug
     # /kriti/Debug:test
     public function test()
     {
-        kriti()->run();
+        kriti()->node()->get('Zen.Calculator');
     }
 }
