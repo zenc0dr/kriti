@@ -8,6 +8,6 @@ class Node
 
     public function get(string $key)
     {
-
+        dd('lol kek');
     }
 }
