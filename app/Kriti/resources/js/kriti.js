@@ -15,4 +15,4 @@ import KritiApp from "../vue/KritiApp";
 const app = createApp(KritiApp)
 app.use(router)
 app.use(PrimeVue, {ripple: true})
-app.mount("#kriti")
+app.mount("#kriti-app")
