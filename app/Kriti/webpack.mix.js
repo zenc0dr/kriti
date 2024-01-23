@@ -1,4 +1,5 @@
 const mix = require('laravel-mix')
+const webpack = require('webpack')
 
 mix.setPublicPath('../../public/kriti')
 mix.setResourceRoot('/kriti/');
@@ -23,6 +24,13 @@ if (mix.inProduction()) {
             chunkFilename: 'js/[name].app.js',
             publicPath: '/kriti/'
         },
-        devtool: 'inline-source-map'
+        devtool: 'inline-source-map',
+        plugins:[
+            new webpack.DefinePlugin({
+                __VUE_OPTIONS_API__: JSON.stringify(true),
+                __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+                __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false)
+            })
+        ]
     })
 }

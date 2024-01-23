@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
     {
-        path: "/kriti",
+        path: "/kriti.console",
         name: "Kriti",
         component: () => import("../vue/components/pages/Board"),
     }

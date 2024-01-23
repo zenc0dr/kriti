@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
-Route::get('/kriti/{slug?}/{id?}', function () {
+Route::get('/kriti.{method?}.{opt?}', function () {
     return View::file(base_path('app/Kriti/resources/views/kriti.blade.php'));
 });
 

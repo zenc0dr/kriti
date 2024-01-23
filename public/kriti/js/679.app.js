@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkriti=self.webpackChunkkriti||[]).push([[679],{679:(e,r,n)=>{n.r(r),n.d(r,{default:()=>s});const t={name:"Board"};const s=(0,n(744).Z)(t,[["render",function(e,r,n,t,s,u){return" Board "}]])}}]);
