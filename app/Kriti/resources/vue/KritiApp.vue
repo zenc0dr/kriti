@@ -1,6 +1,6 @@
 <template>
     <div class="kriti">
-        Hallo kriti
+        <router-view />
     </div>
 </template>
 
