@@ -16,8 +16,12 @@ export default {
 
 <style lang="scss">
 .board {
-    padding: 10px;
-    margin: 10px;
-    background: red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: #80db80;
 }
 </style>
