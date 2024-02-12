@@ -3,7 +3,9 @@
      class="workspace"
      :style="`width:${workspace_width}px;height:${workspace_height}px`"
 >
-    test
+    <div class="workspace__plato">
+
+    </div>
 </div>
 </template>
 
@@ -51,5 +53,9 @@ export default {
     padding: 10px;
     background: green;
     color: #000;
+
+    &__plato {
+        
+    }
 }
 </style>
