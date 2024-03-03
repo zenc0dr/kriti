@@ -12,16 +12,19 @@
              @click.ctrl="createLink(object)"
              @contextmenu.prevent.self="loadObject(object)"
         >
-            <Block :object="object"/>
-            <Connector :object="object"/>
+            <Point :object="object"/>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import Point from "./Point";
 export default {
     name: "Workspace",
+    components: {
+        Point
+    },
     props: {
 
     },
@@ -32,7 +35,19 @@ export default {
             workspace_size_is_defined: false,
             plato_x: 0,
             plato_y: 0,
-            objects: [],
+            objects: [
+                {
+                    type: 'Module',
+                    point: {
+                        height: 100,
+                        width: 100,
+                        left: 0,
+                        right: 0,
+                        background_color: '#50ff15'
+                    }
+                }
+            ],
+            active_object: null, // Выделенный объект
         }
     },
     created() {
@@ -69,7 +84,7 @@ export default {
 <style lang="scss">
 .workspace {
     padding: 10px;
-    background: green;
+    background: #5794a9;
     color: #000;
 
     &__plato {
