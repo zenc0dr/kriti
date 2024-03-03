@@ -8,14 +8,14 @@
 export default {
     name: "Module",
     props: {
-        object: Object
+        node: Object
     },
     computed: {
         moduleStyle() {
             return {
-                width: `${this.object.style.width}px`,
-                height: `${this.object.style.height}px`,
-                'background-color': `${this.object.style.background_color}`,
+                width: `${this.node.style.width}px`,
+                height: `${this.node.style.height}px`,
+                'background-color': `${this.node.style['background-color']}`,
             }
         }
     },

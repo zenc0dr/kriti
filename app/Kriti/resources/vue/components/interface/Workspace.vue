@@ -4,30 +4,28 @@
      :style="`width:${workspace_width}px;height:${workspace_height}px`"
 >
     <div class="workspace__preloader">
-
     </div>
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
-        <div v-for="object in objects"
-             :ref="object.id" class="object" :class="{ focus:object === active_object }"
-             :style="`left:${ object.x }px;top:${ object.y }px`"
-             @mousedown.self="holdObject(object, $event)"
-             @mouseup.self="dropObject"
-             @click.ctrl="createLink(object)"
-             @contextmenu.prevent.self="loadObject(object)"
+        <div v-for="node in nodes"
+             :ref="node.id" class="node" :class="{ focus:node === active_node }"
+             @mousedown.self="nodeHold(node, $event)"
+             @mouseup.self="nodeDrop"
+             @click.ctrl="createLink(node)"
+             @contextmenu.prevent.self="nodeLoad(node)"
         >
-            <Point :object="object"/>
+            <Node :node="node"/>
         </div>
     </div>
 </div>
 </template>
 
 <script>
-import Point from "./Point";
+import Node from "./Node";
 import PopUp from "./PopUp";
 export default {
     name: "Workspace",
     components: {
-        Point
+        Node
     },
     props: {
 
@@ -39,22 +37,8 @@ export default {
             workspace_size_is_defined: false,
             plato_x: 0,
             plato_y: 0,
-            objects: [
-                {
-                    type: 'Module',
-                    point: {
-                        x: 0,
-                        y: 0,
-
-                    },
-                    style: {
-                        height: 100,
-                        width: 300,
-                        background_color: '#50ff15'
-                    }
-                }
-            ],
-            active_object: null, // Выделенный объект
+            nodes: null,
+            active_node: null, // Выделенный объект
         }
     },
     created() {
@@ -62,17 +46,12 @@ export default {
     mounted() {
         this.defineWorkspaceSize()
         window.addEventListener('resize', this.defineWorkspaceSize)
+        this.loadNodes()
     },
     beforeUnmount() {
         window.removeEventListener('resize', this.defineWorkspaceSize)
     },
     methods: {
-
-        subscribePreloader()
-        {
-
-        },
-
         // Определить размер рабочей области
         defineWorkspaceSize()
         {
@@ -86,10 +65,19 @@ export default {
             });
         },
 
-        holdObject(){},
-        dropObject(){},
+        loadNodes() {
+            Kriti.api({
+                url: 'kriti.api.Nodes:getNodes',
+                then: response => {
+                    this.nodes = response.nodes
+                }
+            })
+        },
+
+        nodeHold(){},
+        nodeDrop(){},
         createLink(){},
-        loadObject(){}
+        nodeLoad(){}
     }
 }
 </script>
