@@ -13,9 +13,9 @@ export default {
     computed: {
         moduleStyle() {
             return {
-                width: `${this.object.point.width}px`,
-                height: `${this.object.point.height}px`,
-                'background-color': `${this.object.point.background_color}`,
+                width: `${this.object.style.width}px`,
+                height: `${this.object.style.height}px`,
+                'background-color': `${this.object.style.background_color}`,
             }
         }
     },

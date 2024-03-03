@@ -3,6 +3,9 @@
      class="workspace"
      :style="`width:${workspace_width}px;height:${workspace_height}px`"
 >
+    <div class="workspace__preloader">
+
+    </div>
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
         <div v-for="object in objects"
              :ref="object.id" class="object" :class="{ focus:object === active_object }"
@@ -20,6 +23,7 @@
 
 <script>
 import Point from "./Point";
+import PopUp from "./PopUp";
 export default {
     name: "Workspace",
     components: {
@@ -39,10 +43,13 @@ export default {
                 {
                     type: 'Module',
                     point: {
+                        x: 0,
+                        y: 0,
+
+                    },
+                    style: {
                         height: 100,
-                        width: 100,
-                        left: 0,
-                        right: 0,
+                        width: 300,
                         background_color: '#50ff15'
                     }
                 }
@@ -60,6 +67,12 @@ export default {
         window.removeEventListener('resize', this.defineWorkspaceSize)
     },
     methods: {
+
+        subscribePreloader()
+        {
+
+        },
+
         // Определить размер рабочей области
         defineWorkspaceSize()
         {
@@ -89,6 +102,20 @@ export default {
 
     &__plato {
 
+    }
+    .kriti-preloader {
+        position: fixed;
+        display: flex;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ffffff75;
+        transition: 300ms;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        z-index: 100001;
     }
 }
 </style>

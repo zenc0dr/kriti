@@ -21,6 +21,8 @@ export default {
     computed: {
         moduleStyle() {
             return {
+                left: `${this.object.point.x}px`,
+                top: `${this.object.point.y}px`,
             }
         }
     }
