@@ -2,6 +2,10 @@
 <div v-if="workspace_size_is_defined"
      class="workspace"
      :style="`width:${workspace_width}px;height:${workspace_height}px`"
+     @mousedown.ctrl.self="movePlato"
+     @mouseup.self="dropPlato"
+     @mousemove="mousemove"
+     @dblclick.self="contextMenu"
 >
     <div class="workspace__preloader">
     </div>
@@ -34,6 +38,8 @@ export default {
         return {
             workspace_width: null,
             workspace_height: null,
+            hold_x_factor: null, // Поправка объекта по x
+            hold_y_factor: null, // Поправка объекта по y
             workspace_size_is_defined: false,
             plato_x: 0,
             plato_y: 0,
@@ -53,8 +59,7 @@ export default {
     },
     methods: {
         // Определить размер рабочей области
-        defineWorkspaceSize()
-        {
+        defineWorkspaceSize() {
             this.$nextTick(() => {
                 let parentElement = this.$el.parentNode;
                 this.workspace_width = parentElement.offsetWidth
@@ -65,6 +70,7 @@ export default {
             });
         },
 
+        // Загрузить карту нодов
         loadNodes() {
             Kriti.api({
                 url: 'kriti.api.Nodes:getNodes',
@@ -73,6 +79,49 @@ export default {
                 }
             })
         },
+
+        // Двигать карту
+        movePlato() {
+            console.log()
+
+            this.hold_x_factor = this.mouse_x - this.plato_x
+            this.hold_y_factor = this.mouse_y - this.plato_y
+            this.hold_plato = true
+        },
+
+        // Оставить карту
+        dropPlato() {
+            this.hold_plato = false
+            //this.saveWorkspace() // Сохранить состояние
+        },
+
+        // Фиксировать движение мыши
+        mousemove(event) {
+            this.mouse_x = event.pageX
+            this.mouse_y = event.pageY
+            this.moveObject() // Двигать объект если он активен
+        },
+
+        moveObject() {
+            if (this.active_object) {
+                this.active_object.x = this.mouse_x - this.hold_x_factor
+                this.active_object.y = this.mouse_y - this.hold_y_factor
+                //this.correctLines()
+            }
+
+            // Если двигается карта
+            if (this.hold_plato) {
+                this.plato_x = this.mouse_x - this.hold_x_factor
+                this.plato_y = this.mouse_y - this.hold_y_factor
+                $('body').css({
+                    marginLeft: this.plato_x + this.body_x_factor,
+                    marginTop: this.plato_y + this.body_y_factor
+                })
+            }
+            //this.quantizeObjects()
+        },
+
+        contextMenu(){},
 
         nodeHold(){},
         nodeDrop(){},
@@ -89,8 +138,11 @@ export default {
     color: #000;
 
     &__plato {
-
+        width: 0;
+        height: 0;
+        position: relative;
     }
+
     .kriti-preloader {
         position: fixed;
         display: flex;
