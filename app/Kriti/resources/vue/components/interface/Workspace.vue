@@ -11,7 +11,7 @@
     </div>
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
         <Node v-for="node in nodes" :node="node"
-             :ref="node.id" class="node" :class="{ focus:node === active_node }"
+             :ref="node.id" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
              @mouseup="nodeDrop"
              @click.ctrl="createLink(node)"
@@ -97,15 +97,13 @@ export default {
         mousemove(event) {
             this.mouse_x = event.pageX
             this.mouse_y = event.pageY
-            this.moveObject() // Двигать объект если он активен
+            this.moveNode() // Двигать объект если он активен
         },
 
-        moveObject() {
+        moveNode() {
             if (this.active_node) {
-                console.log('move node')
                 this.active_node.point.x = this.mouse_x - this.hold_x_factor
                 this.active_node.point.y = this.mouse_y - this.hold_y_factor
-                //this.correctLines()
             }
 
             // Если двигается карта
@@ -124,9 +122,6 @@ export default {
 
         // Захват нода
         nodeHold(node, event) {
-
-            console.log('click node', event, event.button)
-
             if (event.button !== 0) {
                 return
             }
