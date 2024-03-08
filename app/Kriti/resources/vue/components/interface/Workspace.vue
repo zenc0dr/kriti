@@ -15,7 +15,7 @@
              @mousedown="nodeHold(node, $event)"
              @mouseup="nodeDrop"
              @click.ctrl="createLink(node)"
-             @contextmenu.prevent.self="nodeLoad(node)"
+             @contextmenu.prevent="nodeLoad(node)"
         />
     </div>
 </div>
@@ -140,6 +140,9 @@ export default {
 
         // Установить нод
         nodeDrop() {
+            if (event.button !== 0) {
+                return
+            }
             console.log('drop node')
             this.nodes.map(function (node) {
                 node.focus = false
@@ -154,7 +157,9 @@ export default {
             }
         },
 
-        nodeLoad(){},
+        nodeLoad(node) {
+            console.log('load node', node)
+        },
 
         createLink(){},
     }
