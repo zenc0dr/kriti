@@ -13,7 +13,7 @@ class Nodes
                     'type' => 'Module',
                     'point' => [
                         'x' => 150,
-                        'y' => -300
+                        'y' => 300
                     ],
                     'style' => [
                         'height' => 100,

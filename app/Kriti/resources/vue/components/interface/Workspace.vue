@@ -10,15 +10,13 @@
     <div class="workspace__preloader">
     </div>
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
-        <div v-for="node in nodes"
+        <Node v-for="node in nodes" :node="node"
              :ref="node.id" class="node" :class="{ focus:node === active_node }"
-             @mousedown.self="nodeHold(node, $event)"
-             @mouseup.self="nodeDrop"
+             @mousedown="nodeHold(node, $event)"
+             @mouseup="nodeDrop"
              @click.ctrl="createLink(node)"
              @contextmenu.prevent.self="nodeLoad(node)"
-        >
-            <Node :node="node"/>
-        </div>
+        />
     </div>
 </div>
 </template>
@@ -36,15 +34,17 @@ export default {
     },
     data() {
         return {
-            workspace_width: null,
-            workspace_height: null,
+            workspace_width: null, // Ширина рабочей области
+            workspace_height: null, // Высота рабочей области
             hold_x_factor: null, // Поправка объекта по x
             hold_y_factor: null, // Поправка объекта по y
-            workspace_size_is_defined: false,
-            plato_x: 0,
-            plato_y: 0,
-            nodes: null,
-            active_node: null, // Выделенный объект
+            workspace_size_is_defined: false, // Размер рабочей области определён
+            plato_x: 0, // Смещение карты по оси Х
+            plato_y: 0, // Смещение карты по оси Y
+            nodes: null, // Загруженные ноды
+            active_node: null, // Выделенный нод
+            last_hold_x: 0, // Позиция нода перед перемещением по X
+            last_hold_y: 0, // Позиция нода перед перемещением по Y
         }
     },
     created() {
@@ -82,8 +82,6 @@ export default {
 
         // Двигать карту
         movePlato() {
-            console.log()
-
             this.hold_x_factor = this.mouse_x - this.plato_x
             this.hold_y_factor = this.mouse_y - this.plato_y
             this.hold_plato = true
@@ -103,9 +101,10 @@ export default {
         },
 
         moveObject() {
-            if (this.active_object) {
-                this.active_object.x = this.mouse_x - this.hold_x_factor
-                this.active_object.y = this.mouse_y - this.hold_y_factor
+            if (this.active_node) {
+                console.log('move node')
+                this.active_node.point.x = this.mouse_x - this.hold_x_factor
+                this.active_node.point.y = this.mouse_y - this.hold_y_factor
                 //this.correctLines()
             }
 
@@ -123,10 +122,46 @@ export default {
 
         contextMenu(){},
 
-        nodeHold(){},
-        nodeDrop(){},
+        // Захват нода
+        nodeHold(node, event) {
+
+            console.log('click node', event, event.button)
+
+            if (event.button !== 0) {
+                return
+            }
+            this.saveHoldPosition()
+            node.focus = true
+            this.hold_x_factor = this.mouse_x - node.point.x
+            this.hold_y_factor = this.mouse_y - node.point.y
+            this.active_node = node
+        },
+
+        // Зафиксировать позицию нода
+        saveHoldPosition() {
+            this.last_hold_x = this.mouse_x
+            this.last_hold_y = this.mouse_y
+        },
+
+        // Установить нод
+        nodeDrop() {
+            console.log('drop node')
+            this.nodes.map(function (node) {
+                node.focus = false
+            })
+
+            this.active_node = null
+
+            // Сохранять только если был сдвинут объект
+            if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
+                //this.saveWorkspace()
+                console.log('saveWorkspace')
+            }
+        },
+
+        nodeLoad(){},
+
         createLink(){},
-        nodeLoad(){}
     }
 }
 </script>

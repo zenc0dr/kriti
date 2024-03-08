@@ -1,5 +1,5 @@
 <template>
-    <div class="node" :style="moduleStyle">
+    <div class="node"  :style="moduleStyle">
         <Module v-if="node.type === 'Module'" :node="node" />
     </div>
 </template>
@@ -31,7 +31,8 @@ export default {
 
 <style lang="scss">
 .node {
-    width: 0;
-    height: 0;
+    display: inline-block;
+    user-select: none;
+    position: absolute;
 }
 </style>
