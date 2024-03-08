@@ -9,6 +9,7 @@
 >
     <div class="workspace__preloader">
     </div>
+
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
         <Node v-for="node in nodes" :node="node"
              :ref="node.id" :class="{ focus:node === active_node }"
@@ -18,16 +19,18 @@
              @contextmenu.prevent="nodeLoad(node)"
         />
     </div>
+    <NodeModal :node="node"/>
 </div>
 </template>
 
 <script>
 import Node from "./Node";
-import PopUp from "./PopUp";
+import NodeModal from "./NodeModal";
+
 export default {
     name: "Workspace",
     components: {
-        Node
+        Node, NodeModal
     },
     props: {
 
@@ -42,6 +45,7 @@ export default {
             plato_x: 0, // Смещение карты по оси Х
             plato_y: 0, // Смещение карты по оси Y
             nodes: null, // Загруженные ноды
+            node: null, // Данные нода
             active_node: null, // Выделенный нод
             last_hold_x: 0, // Позиция нода перед перемещением по X
             last_hold_y: 0, // Позиция нода перед перемещением по Y
@@ -158,7 +162,7 @@ export default {
         },
 
         nodeLoad(node) {
-            console.log('load node', node)
+            this.node = node
         },
 
         createLink(){},

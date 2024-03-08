@@ -1,7 +1,7 @@
 <template>
-    <div class="kriti-popup">
+    <div v-if="show" class="kriti-popup">
         <div class="kriti-popup kriti-popup__title">
-
+            Контекстное меню
         </div>
         <slot></slot>
     </div>
