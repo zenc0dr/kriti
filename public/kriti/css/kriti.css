@@ -1,3 +1,49 @@
+/* roboto-serif-cyrillic-ext-400-normal */
+@font-face {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-cyrillic-ext-400-normal.woff2?5e6755060132d8348f1c8dfe333b9991) format("woff2"), url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-cyrillic-ext-400-normal.woff?f829ba6766e224306e9f1f2f5eecacff) format("woff");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* roboto-serif-cyrillic-400-normal */
+@font-face {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-cyrillic-400-normal.woff2?16c859bb60697310490144c08d166b75) format("woff2"), url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-cyrillic-400-normal.woff?db30ed64d1a46be0600d673083ca1870) format("woff");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* roboto-serif-vietnamese-400-normal */
+@font-face {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-vietnamese-400-normal.woff2?9b9d959b6b79ad850624b336835eaf99) format("woff2"), url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-vietnamese-400-normal.woff?81e586fea318661c680cb5c61f0a78ba) format("woff");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* roboto-serif-latin-ext-400-normal */
+@font-face {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-latin-ext-400-normal.woff2?35071d10494bf77e4ea96e7f03ab8cd1) format("woff2"), url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-latin-ext-400-normal.woff?b63826c4709611e7e248957bc9202afb) format("woff");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* roboto-serif-latin-400-normal */
+@font-face {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-latin-400-normal.woff2?33aa51b604882d4bcc8a7dd70670ed5f) format("woff2"), url(/kriti/fonts/vendor/@fontsource/roboto-serif/files/roboto-serif-latin-400-normal.woff?a1b958ce791ca679e4220235cad5dbdb) format("woff");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 body {
   background: #777;
+  font-family: "Roboto", sans-serif;
 }
