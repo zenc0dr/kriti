@@ -74,12 +74,33 @@ export default {
             });
         },
 
-        // Загрузить карту нодов
+        // Загрузить ноды
         loadNodes() {
             Kriti.api({
                 url: 'kriti.api.Nodes:getNodes',
                 then: response => {
                     this.nodes = response.nodes
+                }
+            })
+        },
+
+        sanitizeNodes() {
+            let nodes = _.cloneDeep(this.nodes)
+            nodes.map(function (node) {
+                delete node.focus
+            })
+            return nodes
+        },
+
+        // Сохранить ноды
+        saveNodes() {
+            Kriti.api({
+                url: 'kriti.api.Nodes:setNodes',
+                data: {
+                    nodes: this.sanitizeNodes()
+                },
+                then: response => {
+                    console.log('nodes save')
                 }
             })
         },
@@ -94,7 +115,7 @@ export default {
         // Оставить карту
         dropPlato() {
             this.hold_plato = false
-            //this.saveWorkspace() // Сохранить состояние
+            this.saveNodes() // Сохранить состояние
         },
 
         // Фиксировать движение мыши
@@ -147,7 +168,7 @@ export default {
             if (event.button !== 0) {
                 return
             }
-            console.log('drop node')
+
             this.nodes.map(function (node) {
                 node.focus = false
             })
@@ -156,11 +177,11 @@ export default {
 
             // Сохранять только если был сдвинут объект
             if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
-                //this.saveWorkspace()
-                console.log('saveWorkspace')
+                this.saveNodes()
             }
         },
 
+        // Загрузить данные нода
         nodeLoad(node) {
             this.node = node
         },
