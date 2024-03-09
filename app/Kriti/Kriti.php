@@ -3,7 +3,7 @@
 namespace App\Kriti;
 
 use App\Kriti\Traits\SingletonTrait;
-use App\Kriti\Classes\Module;
+use App\Kriti\Classes\Node;
 
 /*
  * Особенность этого класса в том что он является точкой вхождения в внутренний интерфейс kriti
@@ -14,10 +14,10 @@ class Kriti
 {
     use SingletonTrait;
 
-    # Класс управления модулями kriti
-    public function module(): Module
+    # Класс управления нодами
+    public function node(): Node
     {
-        return new Module();
+        return new Node();
     }
 
     #### Хелперы ####
@@ -90,5 +90,11 @@ class Kriti
             return [];
         }
         return $this->fromJson(file_get_contents($file_path));
+    }
+
+    # Генерировать uuid
+    public function createUUID(): string
+    {
+        return \Str::uuid()->toString();
     }
 }

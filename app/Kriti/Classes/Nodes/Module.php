@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Kriti\Classes;
+namespace App\Kriti\Classes\Nodes;
 
 class Module
 {

@@ -10,7 +10,12 @@
                 </div>
             </div>
             <div class="node-modal__content">
+                <div class="node-modal__menu">
 
+                </div>
+                <div class="node-modal__form">
+
+                </div>
             </div>
         </div>
     </div>
@@ -34,11 +39,18 @@ export default {
                 this.node_data = null
                 return
             }
-            this.node_data = node.type
+            this.loadNodeData()
         }
     },
     methods: {
-
+        loadNodeData() {
+            Kriti.api({
+                url: 'kriti.api.Nodes:getNodes',
+                then: response => {
+                    this.nodes = response.nodes
+                }
+            })
+        }
     }
 }
 </script>
@@ -62,11 +74,13 @@ export default {
         margin-top: 30px;
         padding: 15px;
         border-radius: 10px;
+        padding-top: 10px;
     }
 
     &__header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 
     &__title {
@@ -78,6 +92,8 @@ export default {
             color: #a0a0a0;
             cursor: pointer;
             transition: 200ms;
+            font-size: 25px;
+
             &:hover {
                 color: #ff4f4f;
             }
