@@ -19,7 +19,7 @@
              @contextmenu.prevent="nodeLoad(node)"
         />
     </div>
-    <NodeModal :node="node"/>
+    <NodeModal :node="node" @close="node = null"/>
 </div>
 </template>
 

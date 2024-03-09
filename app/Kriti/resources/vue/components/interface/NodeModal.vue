@@ -6,7 +6,7 @@
                     Тут заголовок модуля {{ node_data }}
                 </div>
                 <div class="node-modal__close">
-                    <i class="bi bi-x-square-fill"></i>
+                    <i class="bi bi-x-square-fill" @click="$emit('close')"></i>
                 </div>
             </div>
             <div class="node-modal__content">
@@ -19,6 +19,7 @@
 <script>
 export default {
     name: "NodeModal",
+    emits: ['close'],
     props: {
         node: Object
     },
@@ -29,6 +30,10 @@ export default {
     },
     watch: {
         node(node) {
+            if (!node) {
+                this.node_data = null
+                return
+            }
             this.node_data = node.type
         }
     },
@@ -61,6 +66,7 @@ export default {
 
     &__header {
         display: flex;
+        justify-content: space-between;
     }
 
     &__title {
@@ -69,7 +75,12 @@ export default {
 
     &__close {
         i {
-            
+            color: #a0a0a0;
+            cursor: pointer;
+            transition: 200ms;
+            &:hover {
+                color: #ff4f4f;
+            }
         }
     }
 
