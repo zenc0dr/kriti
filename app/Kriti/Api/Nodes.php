@@ -21,11 +21,4 @@ class Nodes
             'success' => true
         ]);
     }
-
-    public function getNodeData() {
-        kriti()->node()->getNodeData(
-            request('uuid'),
-            request('chapter')
-        );
-    }
 }

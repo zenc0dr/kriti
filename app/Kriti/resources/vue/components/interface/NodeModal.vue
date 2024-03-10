@@ -1,9 +1,9 @@
 <template>
-    <div v-if="node_data" class="node-modal">
+    <div v-if="node_menu" class="node-modal">
         <div class="node-modal__body">
             <div class="node-modal__header">
                 <div class="node-modal__title">
-                    Тут заголовок модуля {{ node_data }}
+                    Тут заголовок модуля
                 </div>
                 <div class="node-modal__close">
                     <i class="bi bi-x-square-fill" @click="$emit('close')"></i>
@@ -11,7 +11,9 @@
             </div>
             <div class="node-modal__content">
                 <div class="node-modal__menu">
-
+                    <div v-for="item in node_menu" class="node-modal__menu__item">
+                        {{ item.title }}
+                    </div>
                 </div>
                 <div class="node-modal__form">
 
@@ -30,27 +32,32 @@ export default {
     },
     data() {
         return {
-            node_data: null
+            node_menu: null,
+            active_method: 'style',
         }
     },
     watch: {
         node(node) {
             if (!node) {
-                this.node_data = null
+                this.node_menu = null
                 return
             }
-            this.loadNodeData()
+            this.getData('menu', 'node_menu')
         }
     },
     methods: {
-        loadNodeData() {
+        getData(method, variable) {
             Kriti.api({
-                url: 'kriti.api.Nodes:getNodes',
+                url: 'kriti.api.Node:getData',
+                data: {
+                    uuid: this.node.uuid,
+                    method: method
+                },
                 then: response => {
-                    this.nodes = response.nodes
+                    this[variable] = response.data
                 }
             })
-        }
+        },
     }
 }
 </script>
@@ -102,6 +109,25 @@ export default {
 
     &__content {
 
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        background: #f6f6f6;
+        border-radius: 5px;
+        padding: 10px;
+
+        &__item {
+            background: #7aa4d0;
+            padding: 3px 8px;
+            margin: 3px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 15px;
+        }
     }
 }
 </style>

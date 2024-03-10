@@ -12,11 +12,7 @@ export default {
     },
     computed: {
         moduleStyle() {
-            return {
-                width: `${this.node.style.width}px`,
-                height: `${this.node.style.height}px`,
-                'background-color': `${this.node.style['background-color']}`,
-            }
+            return this.node.style
         }
     },
 }
