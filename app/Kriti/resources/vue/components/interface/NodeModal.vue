@@ -11,7 +11,10 @@
             </div>
             <div class="node-modal__content">
                 <div class="node-modal__menu">
-                    <div v-for="item in node_menu" class="node-modal__menu__item">
+                    <div v-for="item in node_menu"
+                         class="node-modal__menu__item"
+                         :class="{active:item.method === active_method}"
+                    >
                         {{ item.title }}
                     </div>
                 </div>
@@ -34,6 +37,7 @@ export default {
         return {
             node_menu: null,
             active_method: 'style',
+            data: null
         }
     },
     watch: {
@@ -42,19 +46,34 @@ export default {
                 this.node_menu = null
                 return
             }
-            this.getData('menu', 'node_menu')
+
+            this.getData({
+                method: 'menu',
+                variable:'node_menu',
+                then: () => {
+                    this.getData({
+                        method: this.active_method,
+                    })
+                }
+            })
         }
     },
     methods: {
-        getData(method, variable) {
+        getData(props) {
+            if (!props.variable) {
+                props.variable = 'data'
+            }
             Kriti.api({
                 url: 'kriti.api.Node:getData',
                 data: {
                     uuid: this.node.uuid,
-                    method: method
+                    method: props.method
                 },
                 then: response => {
-                    this[variable] = response.data
+                    this[props.variable] = response.data
+                    if (props.then) {
+                        props.then()
+                    }
                 }
             })
         },
