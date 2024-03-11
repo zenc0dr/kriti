@@ -19,7 +19,11 @@
                     </div>
                 </div>
                 <div class="node-modal__form">
-
+                    <template v-if="active_method === 'style' && data !== null">
+                        <Form :scheme="data.scheme" :modelValue="data.form"
+                              @update:modelValue="data.form = $event"
+                        />
+                    </template>
                 </div>
             </div>
         </div>
@@ -27,8 +31,10 @@
 </template>
 
 <script>
+import Form from "./Form";
 export default {
     name: "NodeModal",
+    components: { Form },
     emits: ['close'],
     props: {
         node: Object
@@ -127,7 +133,7 @@ export default {
     }
 
     &__content {
-
+        display: flex;
     }
 
     &__menu {

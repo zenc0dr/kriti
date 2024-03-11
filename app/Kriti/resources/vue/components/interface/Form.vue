@@ -1,16 +1,21 @@
 <template>
     <div class="form">
-        <template v-for="element in scheme">
-            <template v-if="element.slot">
-                <slot :name="element.slot"></slot>
-            </template>
+        <template v-if="modelValue" v-for="element in scheme">
+            <StringInput
+                v-if="element.type === 'string'"
+                :modelValue="modelValue[element.field]"
+                @update:modelValue="modelValue[element.field] = $event"
+                :style="element.style"
+            />
         </template>
     </div>
 </template>
 
 <script>
+import StringInput from "./controls/StringInput";
 export default {
     name: "Form",
+    components: { StringInput },
     emits: ['update:modelValue'],
     props: {
         scheme: {
@@ -35,6 +40,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>
