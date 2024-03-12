@@ -149,7 +149,12 @@ window.Kriti = {
 
 Kriti.bootstrap()
 
+import FormFitter from "../vue/components/interface/Dwarf/forms/FormFitter";
+import FormSection from "../vue/components/interface/Dwarf/forms/FormSection";
+
 const app = createApp(KritiApp)
 app.use(router)
 app.use(PrimeVue, {ripple: true})
+app.component('FormFitter', FormFitter)
+app.component('FormSection', FormSection)
 app.mount("#kriti-app")
