@@ -19,18 +19,28 @@
                     </div>
                 </div>
                 <div class="node-modal__form">
+                    <FormFitter v-if="data !== null" :scheme="data.scheme" v-model="data.values">
+                        <template v-for="(_, name) in $slots" v-slot:[name]>
+                            <slot :name="name"/>
+                        </template>
+                    </FormFitter>
                 </div>
+            </div>
+            <div class="node-modal__control">
+                <ControlPanel :buttons="buttons" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-
+import ControlPanel from "./Dwarf/forms/ControlPanel";
 export default {
     name: "NodeModal",
-    components: {},
-    emits: ['close'],
+    components: {
+        ControlPanel
+    },
+    emits: ['close', 'update'],
     props: {
         node: Object
     },
@@ -38,7 +48,16 @@ export default {
         return {
             node_menu: null,
             active_method: 'style',
-            data: null
+            data: null,
+            buttons: [
+                {
+                    name: 'Сохранить',
+                    icon: 'bi bi-cloud-upload',
+                    click: () => {
+                        this.setData()
+                    }
+                }
+            ]
         }
     },
     watch: {
@@ -47,7 +66,6 @@ export default {
                 this.node_menu = null
                 return
             }
-
             this.getData({
                 method: 'menu',
                 variable:'node_menu',
@@ -60,6 +78,7 @@ export default {
         }
     },
     methods: {
+        // Чтение из нода
         getData(props) {
             if (!props.variable) {
                 props.variable = 'data'
@@ -68,7 +87,7 @@ export default {
                 url: 'kriti.api.Node:getData',
                 data: {
                     uuid: this.node.uuid,
-                    method: props.method
+                    method: this.transformMethod('get', props.method)
                 },
                 then: response => {
                     this[props.variable] = response.data
@@ -78,6 +97,24 @@ export default {
                 }
             })
         },
+        // Запись в нод
+        setData() {
+            Kriti.api({
+                url: 'kriti.api.Node:setData',
+                data: {
+                    uuid: this.node.uuid,
+                    method: this.transformMethod('set', this.active_method),
+                    values: this.data.values
+                },
+                then: response => {
+                    this.$emit('update', response)
+                }
+            })
+        },
+        // Преобразует "prefix, method" в "prefixMethod"
+        transformMethod(prefix, method) {
+            return prefix + method.charAt(0).toUpperCase() + method.slice(1)
+        }
     }
 }
 </script>
@@ -93,6 +130,7 @@ export default {
     right: 0;
     bottom: 0;
     background: #0000009c;
+    overflow-y: auto;
 
     &__body {
         background: #fff;
@@ -102,6 +140,7 @@ export default {
         padding: 15px;
         border-radius: 10px;
         padding-top: 10px;
+        margin-bottom: 100px;
     }
 
     &__header {
@@ -129,6 +168,7 @@ export default {
 
     &__content {
         display: flex;
+        justify-content: space-between;
     }
 
     &__menu {
@@ -148,6 +188,10 @@ export default {
             color: #fff;
             font-size: 15px;
         }
+    }
+
+    &__form {
+        flex: 1 0 0;
     }
 }
 </style>

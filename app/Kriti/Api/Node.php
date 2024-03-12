@@ -7,10 +7,19 @@ class Node
     public function getData(): ?string
     {
         return kriti()->response([
-            'data' => kriti()->node()->getNodeData(
+            'data' => kriti()->node()->callNodeMethod(
                 request('uuid'),
-                request('method')
+                request('method'),
             )
         ]);
+    }
+
+    public function setData()
+    {
+        kriti()->node()->callNodeMethod(
+            request('uuid'),
+            request('method'),
+            request('values')
+        );
     }
 }

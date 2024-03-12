@@ -40,9 +40,21 @@ class Node
         return null;
     }
 
+    public function saveNode(array $node)
+    {
+        $nodes = $this->getNodes();
+        foreach ($nodes as &$original_node) {
+            if ($original_node['uuid'] === $node['uuid']) {
+                $original_node = $node;
+                break;
+            }
+        }
+        $this->setNodes($nodes);
+    }
+
     # Получить данные с нода из файлов нода через слой нода
     # Если uuid = null то придут данные по умолчанию и для заполнения
-    public function getNodeData(
+    public function callNodeMethod(
         string $uuid,
         string $method,
         mixed $input_data = null
@@ -58,10 +70,5 @@ class Node
                     'uuid' => $uuid,
                 ]
             )->{$method}($input_data);
-    }
-
-    public function setNodeData(string $uuid, string $chapter)
-    {
-
     }
 }
