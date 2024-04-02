@@ -113,12 +113,128 @@ class Module
 
     public function getSettings()
     {
+        $inputs = $this->node['inputs'] ?? [];
+        $output = $this->node['output'] ?? [];
+        $call = $this->node['call'] ?? '';
+        $events = $this->node['events'] ?? '';
 
+        $scheme = [
+            [
+                'type' => 'tabs',
+                'scheme' => [
+                    [
+                        'label' => 'Вызов',
+                        'scheme' => [
+                            [
+                                'label' => 'Адрес вызова',
+                                'type' => 'string',
+                                'size' => 'full',
+                                'field' => 'call'
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'Ввод',
+                        'scheme' => [
+                            [
+                                'label' => 'Набор переменных',
+                                'field' => 'inputs',
+                                'type' => 'repeater',
+                                'size' => 'full',
+                                'empty_object' => [
+                                    'var_key' => null,
+                                    'var_title' => null,
+                                    'var_desc' => null,
+                                    'var_type' => null,
+                                    'var_require' => true,
+                                    'var_default' => null
+                                ],
+                                'scheme' => [
+                                    [
+                                        'label' => 'Ключ переменной',
+                                        'field' => 'var_key',
+                                        'type' => 'string',
+                                        'size' => 'half',
+                                    ],
+                                    [
+                                        'label' => 'Название переменной',
+                                        'field' => 'var_title',
+                                        'type' => 'string',
+                                        'size' => 'half',
+                                    ],
+                                    [
+                                        'label' => 'Описание переменной',
+                                        'field' => 'var_desc',
+                                        'type' => 'textEditor',
+                                        'size' => 'full',
+                                    ],
+                                    [
+                                        'label' => 'Тип переменной',
+                                        'field' => 'var_type',
+                                        'type' => 'string',
+                                        'size' => 'full',
+                                    ],
+                                    [
+                                        'label' => 'Обязательна для ввода',
+                                        'field' => 'var_require',
+                                        'type' => 'switcher',
+                                        'size' => 'full',
+                                    ],
+                                    [
+                                        'label' => 'Значение по умолчанию (можно json)',
+                                        'field' => 'var_default',
+                                        'type' => 'textarea',
+                                        'size' => 'full',
+                                    ],
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        'label' => 'Вывод',
+                        'scheme' => [
+                            [
+                                'type' => 'section',
+                                'field' => 'output',
+                                'size' => 'full',
+                                'scheme' => [
+                                    [
+                                        'label' => 'Описание вывода',
+                                        'field' => 'var_desc',
+                                        'type' => 'textEditor',
+                                        'size' => 'full',
+                                    ],
+                                    [
+                                        'label' => 'Тип переменной',
+                                        'field' => 'var_type',
+                                        'type' => 'string',
+                                        'size' => 'full',
+                                    ],
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return [
+            'scheme' => $scheme,
+            'values' => [
+                'call' => '',
+                'inputs' => [],
+                'output' => [
+                    'var_desc' => '',
+                    'var_type' => ''
+                ],
+                'events' => []
+            ]
+        ];
     }
 
-    public function setSettings()
+    public function setSettings($data)
     {
-
+        kriti()->arrayToFile($data, storage_path('settings.json'));
     }
 
 

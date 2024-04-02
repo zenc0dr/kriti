@@ -4,6 +4,7 @@ namespace App\Kriti\Api;
 
 class Node
 {
+    # Получить данные метода нода (ключ method отсутствует)
     public function getData(): ?string
     {
         return kriti()->response([
@@ -14,6 +15,7 @@ class Node
         ]);
     }
 
+    # Записать данные метода нода
     public function setData()
     {
         kriti()->node()->callNodeMethod(

@@ -1,6 +1,6 @@
 <template>
     <div class="form-section" :class="size" :style="style">
-        <div class="form-section__label">
+        <div v-if="inner_label !== null" class="form-section__label">
             {{ inner_label }}
         </div>
         <div class="form-section__body">
@@ -28,7 +28,7 @@ export default {
         },
         label: {
             type: [String, Function],
-            default: 'Строка'
+            default: null
         },
         style: {
             type: String,
@@ -47,6 +47,9 @@ export default {
     },
     computed: {
         inner_label() {
+            if (this.label === null) {
+                return null
+            }
             if (typeof this.label === 'string') {
                 return this.label
             }
