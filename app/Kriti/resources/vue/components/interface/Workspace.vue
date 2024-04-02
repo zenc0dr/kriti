@@ -194,7 +194,7 @@ export default {
 <style lang="scss">
 .workspace {
     padding: 10px;
-    background: #5794a9;
+    background: #3e684e;
     color: #000;
 
     &__plato {

@@ -10,7 +10,53 @@ class Module
         $this->node = $node;
     }
 
-    # Стили нода
+    # Сформировать меню модуля
+    public function getMenu(): array
+    {
+        return [
+            [
+                'title' => 'Стиль',
+                'method' => 'style'
+            ],
+            [
+                'title' => 'Настройки',
+                'method' => 'settings',
+            ],
+            [
+                'title' => 'Документация',
+                'method' => 'doc',
+            ],
+            [
+                'title' => 'Отладка',
+                'method' => 'debug',
+            ],
+        ];
+    }
+
+    # Трансформировать из простого массива в сложный
+    private function nodeStyleTransformFrom(array $array): array
+    {
+        $output = [];
+        foreach ($array as $key => $value) {
+            $output[] = [
+                'key' => $key,
+                'value' => $value
+            ];
+        }
+        return $output;
+    }
+
+    # Трансформировать из сложного массива в простой
+    private function nodeStyleTransformTo(array $array): array
+    {
+        $output = [];
+        foreach ($array as $item) {
+            $output[$item['key']] = $item['value'];
+        }
+        return $output;
+    }
+
+    # Получить стили нода модуля
     public function getStyle(): array
     {
         $scheme = [
@@ -56,6 +102,7 @@ class Module
         ];
     }
 
+    # Сохранить стили нода модуля
     public function setStyle(array $data)
     {
         $this->node['style'] = $this->nodeStyleTransformTo($data['node_style']);
@@ -64,50 +111,17 @@ class Module
         );
     }
 
-    # Трансформировать из простого массива в сложный
-    private function nodeStyleTransformFrom(array $array): array
+    public function getSettings()
     {
-        $output = [];
-        foreach ($array as $key => $value) {
-            $output[] = [
-                'key' => $key,
-                'value' => $value
-            ];
-        }
-        return $output;
+
     }
 
-    # Трансформировать из сложного массива в простой
-    private function nodeStyleTransformTo(array $array): array
+    public function setSettings()
     {
-        $output = [];
-        foreach ($array as $item) {
-            $output[$item['key']] = $item['value'];
-        }
-        return $output;
+
     }
 
-    public function getMenu(): array
-    {
-        return [
-            [
-                'title' => 'Стиль',
-                'method' => 'style'
-            ],
-            [
-                'title' => 'Настройки',
-                'method' => 'props',
-            ],
-            [
-                'title' => 'Документация',
-                'method' => 'doc',
-            ],
-            [
-                'title' => 'Отладка',
-                'method' => 'debug',
-            ],
-        ];
-    }
+
 
 
     //        $layer_data = kriti()->arrayFromFile(

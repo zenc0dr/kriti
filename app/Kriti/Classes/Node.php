@@ -40,6 +40,7 @@ class Node
         return null;
     }
 
+    # Сохранить изменившийся нод
     public function saveNode(array $node)
     {
         $nodes = $this->getNodes();

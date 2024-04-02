@@ -14,6 +14,7 @@
                     <div v-for="item in node_menu"
                          class="node-modal__menu__item"
                          :class="{active:item.method === active_method}"
+                         @click="getContent(item.method)"
                     >
                         {{ item.title }}
                     </div>
@@ -111,6 +112,14 @@ export default {
                 }
             })
         },
+
+        getContent(method) {
+            this.active_method = method
+            this.getData({
+                method: this.active_method,
+            })
+        },
+
         // Преобразует "prefix, method" в "prefixMethod"
         transformMethod(prefix, method) {
             return prefix + method.charAt(0).toUpperCase() + method.slice(1)
@@ -147,6 +156,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 15px;
     }
 
     &__title {
@@ -178,15 +188,20 @@ export default {
         background: #f6f6f6;
         border-radius: 5px;
         padding: 10px;
+        margin-right: 15px;
 
         &__item {
-            background: #7aa4d0;
+            background: #a5b0bd;
             padding: 3px 8px;
             margin: 3px;
             cursor: pointer;
             border-radius: 5px;
             color: #fff;
             font-size: 15px;
+
+            &.active {
+                background: #7aa4d0;
+            }
         }
     }
 
