@@ -2,6 +2,8 @@
 
 namespace App\Kriti\Classes\Nodes;
 
+use JetBrains\PhpStorm\ArrayShape;
+
 class Module
 {
     private ?array $node;
@@ -111,20 +113,31 @@ class Module
         );
     }
 
-    public function getSettings()
+    /**
+     * Получить настройки модуля
+     * @return array
+     */
+    #[ArrayShape(['scheme' => "array[]", 'values' => "array"])]
+    public function getSettings(): array
     {
-        $inputs = $this->node['inputs'] ?? [];
-        $output = $this->node['output'] ?? [];
-        $call = $this->node['call'] ?? '';
-        $events = $this->node['events'] ?? '';
+        $uuid = $this->node['uuid'];
+        $node_settings = kriti()->arrayFromFile(
+            kriti()->statesPath("settings/$uuid.json")
+        );
 
         $scheme = [
             [
                 'type' => 'tabs',
                 'scheme' => [
                     [
-                        'label' => 'Вызов',
+                        'label' => 'Основные настройки',
                         'scheme' => [
+                            [
+                                'label' => 'Название модуля',
+                                'type' => 'string',
+                                'size' => 'full',
+                                'field' => 'name'
+                            ],
                             [
                                 'label' => 'Адрес вызова',
                                 'type' => 'string',
@@ -191,6 +204,42 @@ class Module
                         ]
                     ],
                     [
+                        'label' => 'События',
+                        'scheme' => [
+                            [
+                                'label' => 'События',
+                                'field' => 'events',
+                                'type' => 'repeater',
+                                'size' => 'full',
+                                'empty_object' => [
+                                    'event_name' => null,
+                                    'event_code' => null,
+                                    'event_type' => null
+                                ],
+                                'scheme' => [
+                                    [
+                                        'label' => 'Название события',
+                                        'field' => 'event_name',
+                                        'type' => 'string',
+                                        'size' => 'full',
+                                    ],
+                                    [
+                                        'label' => 'Код события',
+                                        'field' => 'event_code',
+                                        'type' => 'string',
+                                        'size' => 'half',
+                                    ],
+                                    [
+                                        'label' => 'Тип данных события',
+                                        'field' => 'event_type',
+                                        'type' => 'string',
+                                        'size' => 'half',
+                                    ],
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
                         'label' => 'Вывод',
                         'scheme' => [
                             [
@@ -220,27 +269,17 @@ class Module
 
         return [
             'scheme' => $scheme,
-            'values' => [
-                'call' => '',
-                'inputs' => [],
-                'output' => [
-                    'var_desc' => '',
-                    'var_type' => ''
-                ],
-                'events' => []
-            ]
+            'values' => $node_settings
         ];
     }
 
+    # Сохранить настройка нода
     public function setSettings($data)
     {
-        kriti()->arrayToFile($data, storage_path('settings.json'));
+        $uuid = $this->node['uuid'];
+        kriti()->arrayToFile(
+            $data,
+            kriti()->statesPath("settings/$uuid.json")
+        );
     }
-
-
-
-
-    //        $layer_data = kriti()->arrayFromFile(
-//            $this->nodes_path . "nodes_data/$uuid/$layer_code.json"
-//        );
 }

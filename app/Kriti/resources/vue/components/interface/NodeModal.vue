@@ -108,7 +108,7 @@ export default {
                     values: this.data.values
                 },
                 then: response => {
-                    this.$emit('update', response)
+                    this.$emit('update', response) // Посылается для обновления схемы
                 }
             })
         },

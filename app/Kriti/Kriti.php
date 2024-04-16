@@ -97,4 +97,10 @@ class Kriti
     {
         return \Str::uuid()->toString();
     }
+
+    # Папка с состояниями
+    public function statesPath(string $path)
+    {
+        return base_path('app/Kriti/States/' . $path);
+    }
 }

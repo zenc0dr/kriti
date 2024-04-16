@@ -18,7 +18,7 @@ window.Kriti = {
 
     bootstrap() {
         this.checkAuth()
-        this.loadBootstrapData()
+        //this.loadBootstrapData()
     },
 
     checkAuth() {
