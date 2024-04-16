@@ -1,9 +1,9 @@
 {
-    "call": null,
+    "call": "adasdas",
     "inputs": [],
     "output": {
-        "var_desc": "<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<\/p>",
-        "var_type": "yyyyyyyyyyyyyyyyyyyyyyyyyy"
+        "var_desc": null,
+        "var_type": null
     },
     "events": []
 }
