@@ -1,0 +1,21 @@
+{
+    "name": "Схема калькулятора",
+    "nodes": [
+        {
+            "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
+            "type": "Module",
+            "point": {
+                "x": 355,
+                "y": 338
+            },
+            "style": {
+                "height": "100px",
+                "width": "200px",
+                "background-color": "#66ceac",
+                "border-radius": "5px",
+                "padding": "15px",
+                "color": "#666"
+            }
+        }
+    ]
+}

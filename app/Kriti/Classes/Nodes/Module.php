@@ -121,8 +121,8 @@ class Module
     public function getSettings(): array
     {
         $uuid = $this->node['uuid'];
-        $node_settings = kriti()->arrayFromFile(
-            kriti()->statesPath("settings/$uuid.json")
+        $node_settings = kriti()->files()->arrayFromFile(
+            kriti()->schemesPath("settings/$uuid.json")
         );
 
         $scheme = [
@@ -277,9 +277,9 @@ class Module
     public function setSettings($data)
     {
         $uuid = $this->node['uuid'];
-        kriti()->arrayToFile(
+        kriti()->files()->arrayToFile(
             $data,
-            kriti()->statesPath("settings/$uuid.json")
+            kriti()->schemesPath("settings/$uuid.json")
         );
     }
 }

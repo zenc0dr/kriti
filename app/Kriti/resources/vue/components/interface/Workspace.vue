@@ -19,7 +19,7 @@
              @contextmenu.prevent="nodeLoad(node)"
         />
     </div>
-    <NodeModal :node="node" @close="node = null" @update="loadNodes"/>
+    <NodeModal :node="node" @close="node = null" @update="loadScheme"/>
 </div>
 </template>
 
@@ -37,6 +37,9 @@ export default {
     },
     data() {
         return {
+            active_scheme_name: 'calculator',
+            schemes: [],
+
             workspace_width: null, // Ширина рабочей области
             workspace_height: null, // Высота рабочей области
             hold_x_factor: null, // Поправка объекта по x
@@ -56,7 +59,7 @@ export default {
     mounted() {
         this.defineWorkspaceSize()
         window.addEventListener('resize', this.defineWorkspaceSize)
-        this.loadNodes()
+        this.loadScheme()
     },
     beforeUnmount() {
         window.removeEventListener('resize', this.defineWorkspaceSize)
@@ -75,15 +78,19 @@ export default {
         },
 
         // Загрузить ноды
-        loadNodes() {
+        loadScheme() {
             Kriti.api({
-                url: 'kriti.api.Nodes:getNodes',
+                url: 'kriti.api.Scheme:getScheme',
+                data: {
+                    'scheme_name': this.active_scheme
+                },
                 then: response => {
-                    this.nodes = response.nodes
+                    this.nodes = response.scheme.nodes
                 }
             })
         },
 
+        // Очистить ноды от лишних данных
         sanitizeNodes() {
             let nodes = _.cloneDeep(this.nodes)
             nodes.map(function (node) {
@@ -93,9 +100,9 @@ export default {
         },
 
         // Сохранить ноды
-        saveNodes() {
+        saveScheme() {
             Kriti.api({
-                url: 'kriti.api.Nodes:setNodes',
+                url: 'kriti.api.Scheme:setScheme',
                 data: {
                     nodes: this.sanitizeNodes()
                 },
@@ -115,7 +122,7 @@ export default {
         // Оставить карту
         dropPlato() {
             this.hold_plato = false
-            this.saveNodes() // Сохранить состояние
+            this.saveScheme() // Сохранить состояние
         },
 
         // Фиксировать движение мыши
@@ -177,7 +184,7 @@ export default {
 
             // Сохранять только если был сдвинут объект
             if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
-                this.saveNodes()
+                this.saveScheme()
             }
         },
 

@@ -4,6 +4,8 @@ namespace App\Kriti;
 
 use App\Kriti\Traits\SingletonTrait;
 use App\Kriti\Classes\Node;
+use App\Kriti\Classes\Scheme;
+use App\Kriti\Classes\Services\Files;
 
 /*
  * Особенность этого класса в том что он является точкой вхождения в внутренний интерфейс kriti
@@ -18,6 +20,17 @@ class Kriti
     public function node(): Node
     {
         return new Node();
+    }
+
+    # Класс управления схемами
+    public function scheme(): Scheme
+    {
+        return new Scheme();
+    }
+
+    public function files(): Files
+    {
+        return Files::getInstance();
     }
 
     #### Хелперы ####
@@ -59,39 +72,6 @@ class Kriti
         return json_decode($string, $assoc);
     }
 
-    # Проверить путь файла и создать дериктории если надо
-    public function chekDir(string $dir_path): string
-    {
-        $dirname = dirname($dir_path);
-        if (!file_exists($dirname)) {
-            mkdir($dirname, 0777, true);
-        }
-        return $dir_path;
-    }
-
-    # Сохранить массив в файл (json)
-    public function arrayToFile(array $array, string $file_path): bool
-    {
-        $this->chekDir($file_path);
-        file_put_contents(
-            $file_path,
-            $this->toJson($array, true)
-        );
-        if (file_exists($file_path)) {
-            return true;
-        }
-        return false;
-    }
-
-    # Прочитать массив из файла
-    public function arrayFromFile(string $file_path): array
-    {
-        if (!file_exists($file_path)) {
-            return [];
-        }
-        return $this->fromJson(file_get_contents($file_path));
-    }
-
     # Генерировать uuid
     public function createUUID(): string
     {
@@ -99,8 +79,12 @@ class Kriti
     }
 
     # Папка с состояниями
-    public function statesPath(string $path)
+    public function schemesPath(string $path = null)
     {
-        return base_path('app/Kriti/States/' . $path);
+        $schemes_path = 'app/Kriti/schemes';
+        if ($path) {
+            return base_path("$schemes_path/$path");
+        }
+        return base_path($schemes_path);
     }
 }

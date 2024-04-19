@@ -6,28 +6,6 @@ use App\Kriti\Classes\Nodes\Module;
 
 class Node
 {
-    private string $nodes_path;
-
-    public function __construct()
-    {
-        $this->nodes_path = base_path('app/Kriti/States/');
-    }
-
-    # Получить ноды
-    public function getNodes(): ?array
-    {
-        return kriti()->arrayFromFile($this->nodes_path . 'nodes.json');
-    }
-
-    # Сохранить ноды
-    public function setNodes(array $nodes)
-    {
-        kriti()->arrayToFile(
-            $nodes,
-            $this->nodes_path . 'nodes.json',
-        );
-    }
-
     # Получить чистый нод с карты по uuid
     public function getNodeByUUID(string $uuid): ?array
     {
