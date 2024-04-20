@@ -9,8 +9,9 @@ class Node
     {
         return kriti()->response([
             'data' => kriti()->node()->callNodeMethod(
+                request('scheme_name'),
                 request('uuid'),
-                request('method'),
+                request('method')
             )
         ]);
     }
@@ -19,6 +20,7 @@ class Node
     public function setData()
     {
         kriti()->node()->callNodeMethod(
+            request('scheme_name'),
             request('uuid'),
             request('method'),
             request('values')

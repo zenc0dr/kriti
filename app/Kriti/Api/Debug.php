@@ -7,9 +7,12 @@ class Debug
     # http://kriti.mog/kriti.api.Debug:test
     public function test()
     {
-        kriti()->node()->callNodeMethod(
-            '067ddc29-8596-4a82-b816-8359b4f9b633',
-            'getSettings'
+        dd(
+            kriti()->context()->getContext(
+                'calculator',
+                'node',
+                '067ddc29-8596-4a82-b816-8359b4f9b633'
+            )
         );
     }
 }

@@ -16,14 +16,13 @@ export default {
     name: "ContextMenu",
     emits: ['close'],
     props: {
-        context: Object
+        context: Object,
+        contextType: String,
     },
     watch: {
         context(context) {
             if (context) {
-                this.items.push('Одын')
-                this.items.push('Два')
-                this.items.push('Три')
+                this.getMenuItems()
             }
         }
     },
@@ -36,6 +35,18 @@ export default {
         close() {
             this.items = []
             this.$emit('close')
+        },
+        getMenuItems() {
+            Kriti.api({
+                url: 'kriti.api.Context:getContextItems',
+                data: {
+                    type: this.contextType,
+                    uuid: this.context.uuid
+                },
+                then: response => {
+                    this.items = response.items
+                }
+            })
         }
     }
 }

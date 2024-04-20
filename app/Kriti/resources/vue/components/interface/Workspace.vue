@@ -20,7 +20,7 @@
         />
     </div>
     <NodeModal :node="node" @close="node = null" @update="getScheme"/>
-    <ContextMenu :context="context_menu_object" @close="closeContextMenu"/>
+    <ContextMenu :context="context_menu_object" context-type="node" @close="closeContextMenu"/>
 
 </div>
 </template>

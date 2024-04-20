@@ -35,6 +35,16 @@ class Module
         ];
     }
 
+    # Сформировать контекстное меню модуля
+    public function context(): array
+    {
+        return [
+            'Раз',
+            'Два',
+            'Сто миллионов'
+        ];
+    }
+
     # Трансформировать из простого массива в сложный
     private function nodeStyleTransformFrom(array $array): array
     {
