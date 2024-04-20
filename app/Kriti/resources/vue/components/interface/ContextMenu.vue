@@ -1,8 +1,5 @@
 <template>
-    <div v-if="items.length" class="kriti-context">
-        <div class="kriti-context__title" v-click-outside-element="close">
-            Контекстное меню
-        </div>
+    <div v-if="items.length" class="kriti-context" :style="moduleStyle" v-click-outside-element="close">
         <div class="kriti-context__items">
             <div v-for="item in items" class="kriti-context__item">
                 {{ item }}
@@ -16,19 +13,34 @@ export default {
     name: "ContextMenu",
     emits: ['close'],
     props: {
+        scheme_name: String,
         context: Object,
-        contextType: String,
+        context_type: String,
+        mouse_x: Number,
+        mouse_y: Number,
+    },
+    data() {
+        return {
+            items: [],
+            x: 0,
+            y: 0
+        }
     },
     watch: {
         context(context) {
             if (context) {
                 this.getMenuItems()
+                this.x = this.mouse_x
+                this.y = this.mouse_y
             }
         }
     },
-    data() {
-        return {
-            items: []
+    computed: {
+        moduleStyle() {
+            return {
+                left: `${this.x}px`,
+                top: `${this.y}px`,
+            }
         }
     },
     methods: {
@@ -40,7 +52,8 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Context:getContextItems',
                 data: {
-                    type: this.contextType,
+                    scheme_name: this.scheme_name,
+                    type: this.context_type,
                     uuid: this.context.uuid
                 },
                 then: response => {
@@ -54,7 +67,25 @@ export default {
 
 <style lang="scss">
 .kriti-context {
-    overflow-y: auto;
+    position: absolute;
+    background: #ffffff29;
+    padding: 18px 16px;
+    border-radius: 4px;
+    &__items {
+
+    }
+    &__item {
+        background: #d2ffc8;
+        color: #26551b;
+        border-radius: 4px;
+        margin: 5px 5px;
+        padding: 10px 21px;
+        cursor: pointer;
+        transition: 200ms;
+        &:hover {
+            background: #90ce82;
+        }
+    }
 }
 
 </style>

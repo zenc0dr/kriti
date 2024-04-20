@@ -5,7 +5,7 @@
      @mousedown.ctrl.self="movePlato"
      @mouseup.self="dropPlato"
      @mousemove="mousemove"
-     @dblclick.self="contextMenu"
+     @dblclick.self="workspaceContextMenu"
 >
     <div class="workspace__preloader">
     </div>
@@ -20,7 +20,13 @@
         />
     </div>
     <NodeModal :node="node" @close="node = null" @update="getScheme"/>
-    <ContextMenu :context="context_menu_object" context-type="node" @close="closeContextMenu"/>
+    <ContextMenu
+        :context="context_menu_object"
+        context_type="node"
+        :scheme_name="active_scheme_name"
+        :mouse_x="mouse_x"
+        :mouse_y="mouse_y"
+        @close="closeContextMenu"/>
 
 </div>
 </template>
@@ -46,6 +52,8 @@ export default {
             scheme: {}, // Активная схема
             context_menu_object: null, // Объект контекстного меню
 
+            mouse_x: 0,
+            mouse_y: 0,
             workspace_width: null, // Ширина рабочей области
             workspace_height: null, // Высота рабочей области
             hold_x_factor: null, // Поправка объекта по x
@@ -200,6 +208,10 @@ export default {
             if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
                 this.saveScheme()
             }
+        },
+
+        workspaceContextMenu() {
+            console.log('Контекстное меню рабочей области')
         },
 
         openContextMenu(node) {

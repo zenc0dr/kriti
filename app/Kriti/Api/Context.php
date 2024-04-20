@@ -8,11 +8,13 @@ class Context
     public function getContextItems()
     {
         return kriti()->response(
-            kriti()->context()->getContext(
-                request('scheme_name'),
-                request('type'),
-                request('uuid')
-            )
+            [
+                'items' => kriti()->context()->getContext(
+                    request('scheme_name'),
+                    request('type'),
+                    request('uuid')
+                )
+            ]
         );
     }
 }
