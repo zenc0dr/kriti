@@ -87,6 +87,9 @@ export default {
         padding: 10px 21px;
         cursor: pointer;
         transition: 200ms;
+        i {
+            margin-right: 10px;
+        }
         &:hover {
             background: #90ce82;
         }

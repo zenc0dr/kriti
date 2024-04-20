@@ -212,23 +212,44 @@ export default {
             }
         },
 
+        // Открыть меню рабочей области
         workspaceContextMenu() {
             console.log('Контекстное меню рабочей области')
         },
 
+        // Открыть контекстное меню
         openContextMenu(node) {
             this.context_menu_object = node
         },
+
+        // Закрыть контекстное меню
         closeContextMenu()
         {
             this.context_menu_object = null
         },
 
-        /* Открыть контекстное меню нода */
+        // Открыть контекстное меню нода
         clickContextMenuItem(code, context) {
             if (code === 'openNodeSettings') {
                 this.node = context
             }
+            if (code === 'cloneModule') {
+                this.createUUID((uuid) => {
+                    context.uuid = uuid
+                    context.point.x += 100
+                    context.point.y += 100
+                    this.scheme.nodes.push(context)
+                })
+            }
+        },
+
+        createUUID(fn) {
+            Kriti.api({
+                url: 'kriti.api.Node:createUUID',
+                then: response => {
+                    fn(response.uuid)
+                }
+            })
         },
 
         createLink(){},

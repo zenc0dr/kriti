@@ -45,7 +45,12 @@ class Module
                 'text' => 'Настройки модуля',
                 'icon' => 'bi bi-sliders',
                 'code' => 'openNodeSettings'
-            ]
+            ],
+            [
+                'text' => 'Клонировать модуль',
+                'icon' => 'bi bi-copy',
+                'code' => 'cloneModule'
+            ],
         ];
     }
 

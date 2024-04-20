@@ -31,4 +31,12 @@ class Node
             request('values')
         );
     }
+
+    # Создать uuid
+    public function createUUID(): string
+    {
+        return kriti()->response([
+            'uuid' => kriti()->createUUID()
+        ]);
+    }
 }
