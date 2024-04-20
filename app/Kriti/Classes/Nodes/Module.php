@@ -39,9 +39,11 @@ class Module
     public function context(): array
     {
         return [
-            'Раз',
-            'Два',
-            'Сто миллионов'
+            [
+                'text' => 'Настройки модуля',
+                'icon' => 'bi bi-sliders',
+                'code' => 'openNodeSettings'
+            ]
         ];
     }
 

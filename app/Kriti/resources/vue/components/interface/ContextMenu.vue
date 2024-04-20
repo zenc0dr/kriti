@@ -1,8 +1,9 @@
 <template>
     <div v-if="items.length" class="kriti-context" :style="moduleStyle" v-click-outside-element="close">
         <div class="kriti-context__items">
-            <div v-for="item in items" class="kriti-context__item">
-                {{ item }}
+            <div v-for="item in items" class="kriti-context__item" @click="clickItem(item)">
+                <i v-if="item.icon" :class="item.icon"></i>
+                {{ item.text }}
             </div>
         </div>
     </div>
@@ -11,7 +12,7 @@
 <script>
 export default {
     name: "ContextMenu",
-    emits: ['close'],
+    emits: ['close', 'click_item'],
     props: {
         scheme_name: String,
         context: Object,
@@ -60,6 +61,10 @@ export default {
                     this.items = response.items
                 }
             })
+        },
+        clickItem(item) {
+            this.$emit('click_item', item.code, _.cloneDeep(this.context))
+            this.close()
         }
     }
 }

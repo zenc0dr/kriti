@@ -19,14 +19,16 @@
              @contextmenu.prevent="openContextMenu(node)"
         />
     </div>
-    <NodeModal :node="node" @close="node = null" @update="getScheme"/>
+    <NodeModal :scheme_name="active_scheme_name" :node="node" @close="node = null" @update="getScheme"/>
     <ContextMenu
         :context="context_menu_object"
         context_type="node"
         :scheme_name="active_scheme_name"
         :mouse_x="mouse_x"
         :mouse_y="mouse_y"
-        @close="closeContextMenu"/>
+        @close="closeContextMenu"
+        @click_item="clickContextMenuItem"
+    />
 
 </div>
 </template>
@@ -222,9 +224,11 @@ export default {
             this.context_menu_object = null
         },
 
-        // Загрузить данные нода
-        nodeLoad(node) {
-            this.node = node
+        /* Открыть контекстное меню нода */
+        clickContextMenuItem(code, context) {
+            if (code === 'openNodeSettings') {
+                this.node = context
+            }
         },
 
         createLink(){},
