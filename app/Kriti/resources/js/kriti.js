@@ -16,6 +16,11 @@ window.Kriti = {
     requests_register: {}, // Объект фиксации запросов
     events: [], // Массив событий
 
+    global: {
+        workspace_width: null,
+        workspace_height: null
+    }, // Глобальные данные
+
     bootstrap() {
         this.checkAuth()
         //this.loadBootstrapData()

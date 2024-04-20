@@ -14,7 +14,7 @@ class Scheme
     # Получить ноды
     public function getScheme(string $scheme_name): ?array
     {
-        return kriti()->arrayFromFile("$this->schemes_path/$scheme_name.scheme.json");
+        return kriti()->files()->arrayFromFile("$this->schemes_path/$scheme_name.scheme.json");
     }
 
     # Сохранить ноды

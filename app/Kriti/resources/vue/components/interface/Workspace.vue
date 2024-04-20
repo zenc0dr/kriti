@@ -1,7 +1,7 @@
 <template>
 <div v-if="workspace_size_is_defined"
      class="workspace"
-     :style="`width:${workspace_width}px;height:${workspace_height}px`"
+     :style="`width:${width}px;height:${height}px`"
      @mousedown.ctrl.self="movePlato"
      @mouseup.self="dropPlato"
      @mousemove="mousemove"
@@ -19,7 +19,7 @@
              @contextmenu.prevent="nodeLoad(node)"
         />
     </div>
-    <NodeModal :node="node" @close="node = null" @update="loadScheme"/>
+    <NodeModal :node="node" @close="node = null" @update="getScheme"/>
 </div>
 </template>
 
@@ -30,15 +30,16 @@ import NodeModal from "./NodeModal";
 export default {
     name: "Workspace",
     components: {
-        Node, NodeModal
+        Node, // Компонент реализующий ноду
+        NodeModal // Компонент рабочее окно нода
     },
     props: {
 
     },
     data() {
         return {
-            active_scheme_name: 'calculator',
-            schemes: [],
+            active_scheme_name: 'calculator', // Имя активной темы
+            scheme: {}, // Активная схема
 
             workspace_width: null, // Ширина рабочей области
             workspace_height: null, // Высота рабочей области
@@ -47,19 +48,29 @@ export default {
             workspace_size_is_defined: false, // Размер рабочей области определён
             plato_x: 0, // Смещение карты по оси Х
             plato_y: 0, // Смещение карты по оси Y
-            nodes: null, // Загруженные ноды
             node: null, // Данные нода
             active_node: null, // Выделенный нод
             last_hold_x: 0, // Позиция нода перед перемещением по X
             last_hold_y: 0, // Позиция нода перед перемещением по Y
         }
     },
+    computed: {
+        width() { // Ширина рабочего пространства
+            return Kriti?.global.workspace_width ?? 0
+        },
+        height() { // Высота рабочего пространства
+            return Kriti?.global.workspace_height ?? 0
+        },
+        nodes() { // Ноды схемы
+            return this.scheme?.nodes
+        }
+    },
     created() {
     },
     mounted() {
-        this.defineWorkspaceSize()
+        this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
-        this.loadScheme()
+        this.getScheme()
     },
     beforeUnmount() {
         window.removeEventListener('resize', this.defineWorkspaceSize)
@@ -69,30 +80,30 @@ export default {
         defineWorkspaceSize() {
             this.$nextTick(() => {
                 let parentElement = this.$el.parentNode;
-                this.workspace_width = parentElement.offsetWidth
-                this.workspace_height = parentElement.offsetHeight
-                if (this.workspace_width && this.workspace_height) {
+                Kriti.global.workspace_width = parentElement.offsetWidth
+                Kriti.global.workspace_height = parentElement.offsetHeight
+                if (Kriti.global.workspace_width && Kriti.global.workspace_height) {
                     this.workspace_size_is_defined = true
                 }
             });
         },
 
-        // Загрузить ноды
-        loadScheme() {
+        // Загрузить схему
+        getScheme() {
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
-                    'scheme_name': this.active_scheme
+                    'scheme_name': this.active_scheme_name
                 },
                 then: response => {
-                    this.nodes = response.scheme.nodes
+                    this.scheme = response.scheme
                 }
             })
         },
 
         // Очистить ноды от лишних данных
         sanitizeNodes() {
-            let nodes = _.cloneDeep(this.nodes)
+            let nodes = _.cloneDeep(this.scheme.nodes)
             nodes.map(function (node) {
                 delete node.focus
             })
@@ -104,7 +115,11 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Scheme:setScheme',
                 data: {
-                    nodes: this.sanitizeNodes()
+                    scheme_name: this.active_scheme_name,
+                    scheme_data: {
+                        name: this.scheme.name,
+                        nodes: this.sanitizeNodes()
+                    }
                 },
                 then: response => {
                     console.log('nodes save')

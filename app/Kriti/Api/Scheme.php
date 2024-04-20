@@ -10,7 +10,7 @@ class Scheme
         return kriti()->response(
             [
                 'scheme' => kriti()->scheme()->getScheme(
-                    request('scheme_code')
+                    request('scheme_name')
                 )
             ]
         );
@@ -19,9 +19,8 @@ class Scheme
     # http://kriti.mog/kriti.api.Scheme:setScheme
     public function setScheme(): ?string
     {
-//        kriti()->node()->setNodes(request('nodes'));
         kriti()->scheme()->setScheme(
-            request('scheme_code'),
+            request('scheme_name'),
             request('scheme_data'),
         );
         return kriti()->response([
