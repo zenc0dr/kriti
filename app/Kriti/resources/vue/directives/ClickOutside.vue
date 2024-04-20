@@ -1,11 +1,11 @@
 <script>
     /* Клик вне элемента */
-    export default { // https://jsfiddle.net/Linusborg/Lx49LaL8/
+    export default {
         bind: function(el, binding, vNode) {
             if (typeof binding.value !== 'function') {
                 const compName = vNode.context.name
-                let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`
-                if (compName) { warn += `Found in component '${compName}'` }
+                let warn = [Vue-click-outside:] provided expression '${binding.expression}' is not a function, but has to be
+                if (compName) { warn += Found in component '${compName}' }
 
                 console.warn(warn)
             }
@@ -16,11 +16,18 @@
                 }
             }
             el.__vueClickOutside__ = handler
-            document.addEventListener('click', handler)
+
+            // Изменение на 'mousedown'
+            document.addEventListener('mousedown', handler)
         },
-        unbind: function(el, binding) {
-            document.removeEventListener('click', el.__vueClickOutside__)
-            el.__vueClickOutside__ = null
+
+        unbind: function(el) {
+            // Проверка существования обработчика перед его удалением
+            if(el.__vueClickOutside__) {
+                document.removeEventListener('mousedown', el.__vueClickOutside__)
+                el.__vueClickOutside__ = null
+            }
         }
     }
+
 </script>

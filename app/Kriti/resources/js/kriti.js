@@ -11,6 +11,7 @@ import PrimeVue from 'primevue/config';
 import router from './routes';
 
 import KritiApp from "../vue/KritiApp";
+import vueClickOutsideElement from 'vue-click-outside-element'
 
 window.Kriti = {
     requests_register: {}, // Объект фиксации запросов
@@ -160,6 +161,7 @@ import FormSection from "../vue/components/interface/Dwarf/forms/FormSection";
 const app = createApp(KritiApp)
 app.use(router)
 app.use(PrimeVue, {ripple: true})
+app.use(vueClickOutsideElement)
 app.component('FormFitter', FormFitter)
 app.component('FormSection', FormSection)
 app.mount("#kriti-app")

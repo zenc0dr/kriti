@@ -1,7 +1,7 @@
 <template>
 <div v-if="workspace_size_is_defined"
      class="workspace"
-     :style="`width:${width}px;height:${height}px`"
+     :style="`width:${workspace_width}px;height:${workspace_height}px`"
      @mousedown.ctrl.self="movePlato"
      @mouseup.self="dropPlato"
      @mousemove="mousemove"
@@ -16,22 +16,26 @@
              @mousedown="nodeHold(node, $event)"
              @mouseup="nodeDrop"
              @click.ctrl="createLink(node)"
-             @contextmenu.prevent="nodeLoad(node)"
+             @contextmenu.prevent="openContextMenu(node)"
         />
     </div>
     <NodeModal :node="node" @close="node = null" @update="getScheme"/>
+    <ContextMenu :context="context_menu_object" @close="closeContextMenu"/>
+
 </div>
 </template>
 
 <script>
 import Node from "./Node";
 import NodeModal from "./NodeModal";
+import ContextMenu from "./ContextMenu";
 
 export default {
     name: "Workspace",
     components: {
         Node, // Компонент реализующий ноду
-        NodeModal // Компонент рабочее окно нода
+        NodeModal, // Компонент рабочее окно нода
+        ContextMenu
     },
     props: {
 
@@ -40,6 +44,7 @@ export default {
         return {
             active_scheme_name: 'calculator', // Имя активной темы
             scheme: {}, // Активная схема
+            context_menu_object: null, // Объект контекстного меню
 
             workspace_width: null, // Ширина рабочей области
             workspace_height: null, // Высота рабочей области
@@ -55,12 +60,6 @@ export default {
         }
     },
     computed: {
-        width() { // Ширина рабочего пространства
-            return Kriti?.global.workspace_width ?? 0
-        },
-        height() { // Высота рабочего пространства
-            return Kriti?.global.workspace_height ?? 0
-        },
         nodes() { // Ноды схемы
             return this.scheme?.nodes
         }
@@ -72,17 +71,18 @@ export default {
         window.addEventListener('resize', this.defineWorkspaceSize)
         this.getScheme()
     },
-    beforeUnmount() {
+    beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
         window.removeEventListener('resize', this.defineWorkspaceSize)
     },
     methods: {
         // Определить размер рабочей области
         defineWorkspaceSize() {
             this.$nextTick(() => {
-                let parentElement = this.$el.parentNode;
-                Kriti.global.workspace_width = parentElement.offsetWidth
-                Kriti.global.workspace_height = parentElement.offsetHeight
-                if (Kriti.global.workspace_width && Kriti.global.workspace_height) {
+                let parentElement = this.$el.parentNode
+                // Записываем эти данные в глобальные переменные Kriti
+                Kriti.global.workspace_width = this.workspace_width = parentElement.offsetWidth
+                Kriti.global.workspace_height = this.workspace_height = parentElement.offsetHeight
+                if (this.workspace_width && this.workspace_height) {
                     this.workspace_size_is_defined = true
                 }
             });
@@ -147,6 +147,7 @@ export default {
             this.moveNode() // Двигать объект если он активен
         },
 
+        // Перемещение нода
         moveNode() {
             if (this.active_node) {
                 this.active_node.point.x = this.mouse_x - this.hold_x_factor
@@ -164,8 +165,6 @@ export default {
             }
             //this.quantizeObjects()
         },
-
-        contextMenu(){},
 
         // Захват нода
         nodeHold(node, event) {
@@ -201,6 +200,14 @@ export default {
             if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
                 this.saveScheme()
             }
+        },
+
+        openContextMenu(node) {
+            this.context_menu_object = node
+        },
+        closeContextMenu()
+        {
+            this.context_menu_object = null
         },
 
         // Загрузить данные нода

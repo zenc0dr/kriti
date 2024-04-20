@@ -59,6 +59,7 @@ class Module
     }
 
     # Получить стили нода модуля
+    #[ArrayShape(['scheme' => "array[]", 'values' => "array[]"])]
     public function getStyle(): array
     {
         $scheme = [
@@ -105,7 +106,7 @@ class Module
     }
 
     # Сохранить стили нода модуля
-    public function setStyle(array $data)
+    public function setStyle(array $data): void
     {
         $this->node['style'] = $this->nodeStyleTransformTo($data['node_style']);
         kriti()->node()->saveNode(
@@ -274,7 +275,7 @@ class Module
     }
 
     # Сохранить настройка нода
-    public function setSettings($data)
+    public function setSettings($data): void
     {
         $uuid = $this->node['uuid'];
         kriti()->files()->arrayToFile(
