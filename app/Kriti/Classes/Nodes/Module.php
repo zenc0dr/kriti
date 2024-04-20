@@ -7,9 +7,11 @@ use JetBrains\PhpStorm\ArrayShape;
 class Module
 {
     private ?array $node;
+    private ?string $scheme_name;
 
-    public function __construct(array $node) {
+    public function __construct(array $node, string $scheme_name) {
         $this->node = $node;
+        $this->scheme_name = $scheme_name;
     }
 
     # Сформировать меню модуля
@@ -120,8 +122,10 @@ class Module
     # Сохранить стили нода модуля
     public function setStyle(array $data): void
     {
+        //dd($this->node, $data);
         $this->node['style'] = $this->nodeStyleTransformTo($data['node_style']);
         kriti()->node()->saveNode(
+            $this->scheme_name,
             $this->node
         );
     }

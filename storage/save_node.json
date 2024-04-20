@@ -1,0 +1,33 @@
+{
+    "scheme_name": "calculator",
+    "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
+    "method": "setStyle",
+    "values": {
+        "node_style": [
+            {
+                "key": "height",
+                "value": "100px"
+            },
+            {
+                "key": "width",
+                "value": "200px"
+            },
+            {
+                "key": "background-color",
+                "value": "#777"
+            },
+            {
+                "key": "border-radius",
+                "value": "5px"
+            },
+            {
+                "key": "padding",
+                "value": "15px"
+            },
+            {
+                "key": "color",
+                "value": "#666"
+            }
+        ]
+    }
+}

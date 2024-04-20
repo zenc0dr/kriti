@@ -19,6 +19,11 @@ class Node
     # Записать данные метода нода
     public function setData()
     {
+//        kriti()->files()->arrayToFile(
+//            request()->all(),
+//            storage_path('save_node.json')
+//        );
+
         kriti()->node()->callNodeMethod(
             request('scheme_name'),
             request('uuid'),

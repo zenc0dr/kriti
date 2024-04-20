@@ -40,10 +40,13 @@ class Node
         string $method,
         mixed $input_data = null
     ) {
+
+        //dd($scheme_name, $uuid, $method, $input_data);
+
         $node = $this->getNodeByUUID($scheme_name, $uuid);
         $node_type = $node['type'];
         return app()
-            ->make("App\Kriti\Classes\Nodes\\$node_type", ['node' => $node,]
+            ->make("App\Kriti\Classes\Nodes\\$node_type", ['node' => $node, 'scheme_name' => $scheme_name]
             )->{$method}($input_data);
     }
 }
