@@ -6,12 +6,22 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class Module
 {
-    private ?array $node;
-    private ?string $scheme_name;
+    public string $uuid; // Для некоторых методов uuid не нужен, но они не статические
 
-    public function __construct(array $node, string $scheme_name) {
-        $this->node = $node;
-        $this->scheme_name = $scheme_name;
+    public function __construct(string $uuid = null) {
+        $this->uuid = $uuid;
+    }
+
+    # Обязательная функция которая наполняет нод метаданными для карты
+    public static function saturateStatic(array $node): array
+    {
+        $data_path = kriti()->schemes_path('data/' . $node['uuid']);
+
+        $node['static']['icon'] = 'bi bi-box';
+        # Добавляем стили
+        $node['static']['style'] = kriti()->files()->arrayFromFile("$data_path/style.json");
+        //$settings = kriti()->files()->arrayFromFile("$data_path/settings.json");
+        return $node;
     }
 
     # Сформировать меню модуля
@@ -79,7 +89,7 @@ class Module
         ];
     }
 
-    # Трансформировать из простого массива в сложный
+    # Трансформировать из простого массива в сложный (Для стилей)
     private function nodeStyleTransformFrom(array $array): array
     {
         $output = [];
@@ -92,7 +102,7 @@ class Module
         return $output;
     }
 
-    # Трансформировать из сложного массива в простой
+    # Трансформировать из сложного массива в простой (Для стилей)
     private function nodeStyleTransformTo(array $array): array
     {
         $output = [];
@@ -132,15 +142,8 @@ class Module
                 ]
             ]
         ];
-        $node_style = isset($this->node['uuid'])
-            ? $this->node['style']
-            : [
-                'height' => '100px',
-                'width' => '300px',
-                'background-color' => '#50ff15',
-                'border-radius' => '5px',
-            ];
 
+        $node_style = kriti()->node($this->uuid)->getDataBatch('style');
         return [
             'scheme' => $scheme,
             'values' => [
@@ -167,10 +170,7 @@ class Module
     #[ArrayShape(['scheme' => "array[]", 'values' => "array"])]
     public function getSettings(): array
     {
-        $uuid = $this->node['uuid'];
-        $node_settings = kriti()->files()->arrayFromFile(
-            kriti()->schemesPath("settings/$uuid.json")
-        );
+        $node_settings = kriti()->node($this->uuid)->getDataBatch('settings');
 
         $scheme = [
             [

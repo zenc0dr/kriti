@@ -9,7 +9,7 @@ class Node
     {
         return kriti()->response([
             'data' => kriti()->node()->callNodeMethod(
-                request('scheme_name'),
+                request('scheme_code'),
                 request('uuid'),
                 request('method')
             )

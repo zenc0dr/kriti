@@ -6,7 +6,7 @@ use App\Kriti\Traits\SingletonTrait;
 use App\Kriti\Classes\Node;
 use App\Kriti\Classes\Scheme;
 use App\Kriti\Classes\Services\Files;
-use App\Kriti\Classes\Context;
+//use Spatie\FlareClient\Context;
 
 /*
  * Особенность этого класса в том что он является точкой вхождения в внутренний интерфейс kriti
@@ -18,9 +18,9 @@ class Kriti
     use SingletonTrait;
 
     # Класс управления нодами
-    public function node(): Node
+    public function node(string $uuid = null): Node
     {
-        return new Node();
+        return new Node($uuid);
     }
 
     # Класс управления схемами
@@ -34,12 +34,24 @@ class Kriti
         return Files::getInstance();
     }
 
-    public function context(): Context
+//    public function context(): Context
+//    {
+//        return Context::getInstance();
+//    }
+
+    ### Хелперы
+
+    ## Пути
+    public function schemes_path(string $path = null): string
     {
-        return Context::getInstance();
+        $schemes_path = 'app/Kriti/schemes';
+        if ($path) {
+            return base_path("$schemes_path/$path");
+        }
+        return base_path($schemes_path);
     }
 
-    #### Хелперы ####
+    # Обработка ответа
     public function response(string|array $response): ?string
     {
         if (is_string($response)) {
@@ -84,13 +96,4 @@ class Kriti
         return \Str::uuid()->toString();
     }
 
-    # Папка с состояниями
-    public function schemesPath(string $path = null)
-    {
-        $schemes_path = 'app/Kriti/schemes';
-        if ($path) {
-            return base_path("$schemes_path/$path");
-        }
-        return base_path($schemes_path);
-    }
 }

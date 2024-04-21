@@ -1,10 +1,8 @@
 {
-    "call": "App.Kriti.Nodes.Zen.Calculator.V1.Calculator.calculate",
-    "type": "Module",
-    "version": 1,
+    "call": "App.Kriti.Nodes.Zen.Calculator.Calculator.calculate",
     "inputs": [
         {
-            "var_key": "$a",
+            "var_key": "a",
             "var_title": "A",
             "var_desc": null,
             "var_type": "int",
@@ -12,7 +10,7 @@
             "var_default": "0"
         },
         {
-            "var_key": "$b",
+            "var_key": "b",
             "var_title": "B",
             "var_desc": null,
             "var_type": "int",

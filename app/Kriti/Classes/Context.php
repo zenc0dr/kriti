@@ -8,6 +8,7 @@ class Context
 {
     use SingletonTrait;
 
+    /*
     # Получить контекст элемента
     public function getContext(string $scheme_name, string $element_type, string $uuid): array
     {
@@ -20,4 +21,5 @@ class Context
         }
         return [];
     }
+    */
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Kriti\Nodes\Zen\Calculator;
+namespace App\Kriti\Nodes\Zen\Calculator\V1;
 
 class Calculator
 {
