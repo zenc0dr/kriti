@@ -1,6 +1,6 @@
 <template>
-    <div class="module" :style="module">
-        <div class="module__title" :style="module_title">
+    <div class="module" :style="style_module">
+        <div class="module__title" :style="style_module_title">
             Модуль
         </div>
     </div>
@@ -13,10 +13,10 @@ export default {
         node: Object
     },
     computed: {
-        module() {
+        style_module() {
             return this.node.static.style.module
         },
-        module_title() {
+        style_module_title() {
             return this.node.static.style.module_title
         }
     },

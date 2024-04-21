@@ -14,7 +14,7 @@ export default {
     name: "ContextMenu",
     emits: ['close', 'click_item'],
     props: {
-        scheme_name: String,
+        scheme_code: String,
         context: Object,
         context_type: String,
         mouse_x: Number,
@@ -53,7 +53,7 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Context:getContextItems',
                 data: {
-                    scheme_name: this.scheme_name,
+                    scheme_code: this.scheme_code,
                     type: this.context_type,
                     uuid: this.context.uuid
                 },

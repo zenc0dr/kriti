@@ -19,11 +19,11 @@
              @contextmenu.prevent="openContextMenu(node)"
         />
     </div>
-    <NodeModal :scheme_name="active_scheme_name" :node="node" @close="node = null" @update="getScheme"/>
+    <NodeModal :scheme_name="active_scheme_code" :node="node" @close="node = null" @update="getScheme"/>
     <ContextMenu
         :context="context_menu_object"
         context_type="node"
-        :scheme_name="active_scheme_name"
+        :scheme_code="active_scheme_code"
         :mouse_x="mouse_x"
         :mouse_y="mouse_y"
         @close="closeContextMenu"
@@ -50,7 +50,7 @@ export default {
     },
     data() {
         return {
-            active_scheme_name: 'calculator', // Имя активной темы
+            active_scheme_code: 'calculator', // Имя активной темы
             scheme: {}, // Активная схема
             context_menu_object: null, // Объект контекстного меню
 
@@ -101,7 +101,7 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
-                    'scheme_code': this.active_scheme_name
+                    'scheme_code': this.active_scheme_code
                 },
                 then: response => {
                     this.scheme = response.scheme
@@ -123,9 +123,10 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Scheme:setScheme',
                 data: {
-                    scheme_name: this.active_scheme_name,
+                    scheme_code: this.active_scheme_code,
                     scheme_data: {
                         name: this.scheme.name,
+                        description: this.scheme.description,
                         nodes: this.sanitizeNodes()
                     }
                 },

@@ -16,11 +16,9 @@ class Module
     public static function saturateStatic(array $node): array
     {
         $data_path = kriti()->schemes_path('data/' . $node['uuid']);
-
         $node['static']['icon'] = 'bi bi-box';
-        # Добавляем стили
         $node['static']['style'] = kriti()->files()->arrayFromFile("$data_path/style.json");
-        //$settings = kriti()->files()->arrayFromFile("$data_path/settings.json");
+        $node['static']['settings'] = kriti()->files()->arrayFromFile("$data_path/settings.json");
         return $node;
     }
 
