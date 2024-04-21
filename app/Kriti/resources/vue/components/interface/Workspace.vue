@@ -74,8 +74,6 @@ export default {
             return this.scheme?.nodes
         }
     },
-    created() {
-    },
     mounted() {
         this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
@@ -103,7 +101,7 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
-                    'scheme_name': this.active_scheme_name
+                    'scheme_code': this.active_scheme_name
                 },
                 then: response => {
                     this.scheme = response.scheme

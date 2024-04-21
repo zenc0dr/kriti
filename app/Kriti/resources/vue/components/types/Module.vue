@@ -14,10 +14,10 @@ export default {
     },
     computed: {
         module() {
-            return this.node.style.module
+            return this.node.static.style.module
         },
         module_title() {
-            return this.node.style.module_title
+            return this.node.static.style.module_title
         }
     },
 }

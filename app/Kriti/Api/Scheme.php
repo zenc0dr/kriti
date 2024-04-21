@@ -5,7 +5,7 @@ namespace App\Kriti\Api;
 class Scheme
 {
     # Получить схему для карты
-    # http://kriti.mog/kriti.api.Scheme:getScheme
+    # http://kriti.mog/kriti.api.Scheme:getScheme?scheme_code=calculator
     public function getScheme(): ?string
     {
         return kriti()->response(

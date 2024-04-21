@@ -62,7 +62,7 @@ class Debug
         dd(
             //kriti()->node($uuid)->callNodeMethod('getMenu'),
             //kriti()->node($uuid)->callNodeMethod('getStyle'),
-            kriti()->node($uuid)->callNodeMethod('getSettings'),
+            //kriti()->node($uuid)->callNodeMethod('getSettings'),
         );
     }
 }
