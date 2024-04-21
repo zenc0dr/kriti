@@ -24,7 +24,7 @@
     },
     "events": [
         {
-            "event_name": "Перед умнжением",
+            "event_name": "Перед умножением",
             "event_code": "beforeCalculate",
             "event_type": "string"
         },

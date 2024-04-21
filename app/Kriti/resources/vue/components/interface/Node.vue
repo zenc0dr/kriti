@@ -34,7 +34,6 @@ export default {
     display: inline-block;
     user-select: none;
     position: absolute;
-
     &.focus {
         cursor: grabbing;
     }

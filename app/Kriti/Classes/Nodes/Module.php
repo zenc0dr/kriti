@@ -42,6 +42,11 @@ class Module
     {
         return [
             [
+                'text' => 'Создать сцепку',
+                'icon' => 'bi bi-link',
+                'code' => 'createLink'
+            ],
+            [
                 'text' => 'Настройки модуля',
                 'icon' => 'bi bi-sliders',
                 'code' => 'openNodeSettings'
@@ -50,6 +55,26 @@ class Module
                 'text' => 'Клонировать модуль',
                 'icon' => 'bi bi-copy',
                 'code' => 'cloneModule'
+            ],
+            [
+                'text' => 'На передний план',
+                'icon' => 'bi bi-chevron-double-up',
+                'code' => 'moveNodeFullUp'
+            ],
+            [
+                'text' => 'На уровень вверх',
+                'icon' => 'bi bi-chevron-up',
+                'code' => 'moveNodeUp'
+            ],
+            [
+                'text' => 'На уровень вниз',
+                'icon' => 'bi bi-chevron-down',
+                'code' => 'moveNodeDown'
+            ],
+            [
+                'text' => 'На задний план',
+                'icon' => 'bi bi-chevron-double-down',
+                'code' => 'moveNodeFullDown'
             ],
         ];
     }

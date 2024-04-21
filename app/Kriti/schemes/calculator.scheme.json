@@ -5,80 +5,8 @@
             "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 348,
-                "y": 227
-            },
-            "style": {
-                "height": "100px",
-                "width": "200px",
-                "background-color": "#94ff95",
-                "border-radius": "5px",
-                "padding": "15px",
-                "color": "#666"
-            }
-        },
-        {
-            "uuid": "375f4a29-9e2d-4ca0-ae53-bdbfd011f77a",
-            "type": "Module",
-            "point": {
-                "x": 354,
-                "y": 437
-            },
-            "style": {
-                "height": "100px",
-                "width": "200px",
-                "background-color": "red",
-                "border-radius": "5px",
-                "padding": "15px",
-                "color": "#fff"
-            }
-        },
-        {
-            "uuid": "037a840c-706e-44d3-94b0-12c571bccb79",
-            "type": "Module",
-            "point": {
-                "x": 780,
-                "y": 145
-            },
-            "style": {
-                "height": "100px",
-                "width": "200px",
-                "background-color": "blue",
-                "border-radius": "5px",
-                "padding": "15px",
-                "color": "#fff"
-            }
-        },
-        {
-            "uuid": "9c7881d9-da03-44c7-a6de-a5e033943318",
-            "type": "Module",
-            "point": {
-                "x": 852,
-                "y": 395
-            },
-            "style": {
-                "height": "100px",
-                "width": "200px",
-                "background-color": "gray",
-                "border-radius": "5px",
-                "padding": "15px",
-                "color": "#fff"
-            }
-        },
-        {
-            "uuid": "51356341-a092-42c8-a25a-fc38eccf15fa",
-            "type": "Module",
-            "point": {
-                "x": 1232,
-                "y": 261
-            },
-            "style": {
-                "height": "100px",
-                "width": "200px",
-                "background-color": "yellow",
-                "border-radius": "5px",
-                "padding": "15px",
-                "color": "#fff"
+                "x": 668,
+                "y": 236
             }
         }
     ]

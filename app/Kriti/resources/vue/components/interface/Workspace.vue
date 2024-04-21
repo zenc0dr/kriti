@@ -115,7 +115,7 @@ export default {
         sanitizeNodes() {
             let nodes = _.cloneDeep(this.scheme.nodes)
             nodes.map(function (node) {
-                delete node.focus
+                delete node.static
             })
             return nodes
         },
@@ -182,7 +182,7 @@ export default {
                 return
             }
             this.saveHoldPosition()
-            node.focus = true
+            node.static.focus = true
             this.hold_x_factor = this.mouse_x - node.point.x
             this.hold_y_factor = this.mouse_y - node.point.y
             this.active_node = node
@@ -201,7 +201,7 @@ export default {
             }
 
             this.nodes.map(function (node) {
-                node.focus = false
+                node.static.focus = false
             })
 
             this.active_node = null
@@ -243,6 +243,7 @@ export default {
             }
         },
 
+        // Запросить генерацию uuid
         createUUID(fn) {
             Kriti.api({
                 url: 'kriti.api.Node:createUUID',
