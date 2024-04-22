@@ -61,7 +61,7 @@ class Debug
         $uuid = '067ddc29-8596-4a82-b816-8359b4f9b633';
         dd(
             //kriti()->node($uuid)->callNodeMethod('getMenu'),
-            //kriti()->node($uuid)->callNodeMethod('getStyle'),
+            kriti()->node($uuid)->callNodeMethod('getStyle'),
             //kriti()->node($uuid)->callNodeMethod('getSettings'),
         );
     }

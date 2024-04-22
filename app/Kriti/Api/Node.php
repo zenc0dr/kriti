@@ -19,6 +19,7 @@ class Node
     {
         kriti()->node(request('uuid'))->callNodeMethod(
             request('method'),
+            request('values')
         );
     }
 

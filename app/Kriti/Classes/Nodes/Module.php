@@ -19,6 +19,17 @@ class Module
         $node['static']['icon'] = 'bi bi-box';
         $node['static']['style'] = kriti()->files()->arrayFromFile("$data_path/style.json");
         $node['static']['settings'] = kriti()->files()->arrayFromFile("$data_path/settings.json");
+
+        # Удаление описания, слишком большое для карты
+        foreach ($node['static']['settings']['inputs'] as &$input) {
+            unset($input['var_desc']);
+        }
+
+        # Удаление описания вывода
+        if (isset($node['static']['settings']['output']['var_desc'])) {
+            unset($node['static']['settings']['output']['var_desc']);
+        }
+
         return $node;
     }
 
@@ -110,55 +121,70 @@ class Module
         return $output;
     }
 
+    private function cssRepeaterScheme(string $title, string $field_name): array
+    {
+        return [
+            'label' => $title,
+            'field' => $field_name,
+            'type' => 'repeater',
+            'size' => 'full',
+            'empty_object' => [
+                'key' => '',
+                'value' => ''
+            ],
+            'scheme' => [
+                [
+                    'label' => 'Правило CSS',
+                    'field' => 'key',
+                    'type' => 'string',
+                    'size' => 'half',
+                ],
+                [
+                    'label' => 'Значение',
+                    'field' => 'value',
+                    'type' => 'string',
+                    'size' => 'half',
+                ],
+            ]
+        ];
+    }
+
     # Получить стили нода модуля
     #[ArrayShape(['scheme' => "array[]", 'values' => "array[]"])]
     public function getStyle(): array
     {
         $scheme = [
             [
-                'label' => 'Стиль нода',
-                'field' => 'node_style',
-                'type' => 'repeater',
-                'size' => 'full',
-                'empty_object' => [
-                    'key' => '',
-                    'value' => ''
-                ],
+                'type' => 'tabs',
                 'scheme' => [
                     [
-                        'label' => 'Правило CSS',
-                        'field' => 'key',
-                        'type' => 'string',
-                        'size' => 'half',
+                        'label' => 'Базовый блок',
+                        'scheme' => [$this->cssRepeaterScheme('Базовый блок', 'module')],
                     ],
                     [
-                        'label' => 'Значение',
-                        'field' => 'value',
-                        'type' => 'string',
-                        'size' => 'half',
+                        'label' => 'Заголовок нода',
+                        'scheme' => [$this->cssRepeaterScheme('Заголовок нода','module_title')],
                     ],
                 ]
             ]
         ];
 
-        $node_style = kriti()->node($this->uuid)->getDataBatch('style');
+        $values = kriti()->node($this->uuid)->getDataBatch('style');
+        $values['module'] = $this->nodeStyleTransformFrom($values['module']);
+        $values['module_title'] = $this->nodeStyleTransformFrom($values['module_title']);
+
         return [
             'scheme' => $scheme,
-            'values' => [
-                'node_style' => $this->nodeStyleTransformFrom($node_style)
-            ]
+            'values' => $values
         ];
     }
 
     # Сохранить стили нода модуля
     public function setStyle(array $data): void
     {
-        //dd($this->node, $data);
-        $this->node['style'] = $this->nodeStyleTransformTo($data['node_style']);
-        kriti()->node()->saveNode(
-            $this->scheme_name,
-            $this->node
-        );
+        $data['module'] = $this->nodeStyleTransformTo($data['module']);
+        $data['module_title'] = $this->nodeStyleTransformTo($data['module_title']);
+        kriti()->node($this->uuid)->setDataBatch('style', $data);
     }
 
     /**
@@ -321,10 +347,6 @@ class Module
     # Сохранить настройка нода
     public function setSettings($data): void
     {
-        $uuid = $this->node['uuid'];
-        kriti()->files()->arrayToFile(
-            $data,
-            kriti()->schemesPath("settings/$uuid.json")
-        );
+        kriti()->node()->setDataBatch('settings', $data);
     }
 }

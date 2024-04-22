@@ -5,7 +5,6 @@
                  @click="tabSetActive(tab)"
                  class="tab"
                  :class="{active:tabIsActive(tab)}">
-                <div class="tab__dot"></div>
                 {{ label(tab) }}
             </div>
         </div>
@@ -34,11 +33,7 @@ export default {
             if (!this.element.options) {
                 return false
             }
-            if (this.element.options.direction && this.element.options.direction === 'vertical') {
-                return true
-            } else {
-                return false
-            }
+            return this.element.options.direction && this.element.options.direction === 'vertical';
         }
     },
     data() {
@@ -82,10 +77,8 @@ export default {
         display: flex;
         flex-direction: row;
         width: 100%;
-        margin-bottom: 30px;
-        background: #e2e4e8;
-        border-radius: 5px;
-        padding: 0 2px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #f1f1f1;
 
         &__content {
             width: 100%;
@@ -93,37 +86,19 @@ export default {
 
         .tab {
             display: flex;
-            padding: 7px 13px;
-            background: #fafbff;
-            font-weight: bold;
-            color: #696969;
-            font-size: 14px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 2px 9px;
+            color: #9d9d9d;
+            font-size: 15px;
             flex-direction: row;
             align-items: center;
             transition: 200ms;
             cursor: pointer;
 
-            &__dot {
-                height: 10px;
-                width: 10px;
-                background: #bebebe;
-                border-radius: 50%;
-                margin-right: 10px;
-                transition: 400ms;
-            }
-
-            &:not(.active) {
-
-            }
-
             &.active {
                 background: #fff;
-                //color: #696969;
-                .tab__dot {
-                    background: green;
-                }
+                color: #7284d6;
+                border-bottom: 1px solid #7284d6;
+                margin-bottom: -1px;
             }
         }
     }

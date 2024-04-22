@@ -184,23 +184,18 @@ export default {
     &__menu {
         display: flex;
         flex-direction: column;
-        width: 150px;
-        background: #f6f6f6;
         border-radius: 5px;
-        padding: 10px;
         margin-right: 15px;
 
         &__item {
-            background: #a5b0bd;
-            padding: 3px 8px;
-            margin: 3px;
+            padding: 0px 11px;
             cursor: pointer;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 15px;
+            color: #9d9d9d;
+            font-size: 17px;
+            margin-bottom: 4px;
 
             &.active {
-                background: #7aa4d0;
+                color: #7284d6;
             }
         }
     }
