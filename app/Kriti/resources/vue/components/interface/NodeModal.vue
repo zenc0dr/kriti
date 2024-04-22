@@ -44,7 +44,6 @@ export default {
     emits: ['close', 'update'],
     props: {
         node: Object,
-        scheme_name: String
     },
     data() {
         return {
@@ -88,7 +87,6 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Node:getData',
                 data: {
-                    scheme_name: this.scheme_name,
                     uuid: this.node.uuid,
                     method: this.transformMethod('get', props.method)
                 },
@@ -105,7 +103,6 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Node:setData',
                 data: {
-                    scheme_name: this.scheme_name,
                     uuid: this.node.uuid,
                     method: this.transformMethod('set', this.active_method),
                     values: this.data.values

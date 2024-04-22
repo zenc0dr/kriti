@@ -10,7 +10,6 @@ class Context
         return kriti()->response(
             [
                 'items' => kriti()->context()->getContext(
-                    request('scheme_name'),
                     request('type'),
                     request('uuid')
                 )

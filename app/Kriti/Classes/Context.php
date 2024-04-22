@@ -8,18 +8,14 @@ class Context
 {
     use SingletonTrait;
 
-    /*
     # Получить контекст элемента
-    public function getContext(string $scheme_name, string $element_type, string $uuid): array
+    public function getContext(string $type, string $uuid): array
     {
-        if ($element_type === 'node') {
-            return kriti()->node()->callNodeMethod(
-                $scheme_name,
-                $uuid,
+        if ($type === 'node') {
+            return kriti()->node($uuid)->callNodeMethod(
                 'context'
             );
         }
         return [];
     }
-    */
 }

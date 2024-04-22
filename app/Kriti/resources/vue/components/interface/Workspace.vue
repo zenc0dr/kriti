@@ -19,7 +19,7 @@
              @contextmenu.prevent="openContextMenu(node)"
         />
     </div>
-    <NodeModal :scheme_name="active_scheme_code" :node="node" @close="node = null" @update="getScheme"/>
+    <NodeModal :node="node" @close="node = null" @update="getScheme"/>
     <ContextMenu
         :context="context_menu_object"
         context_type="node"

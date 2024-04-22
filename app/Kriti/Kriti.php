@@ -6,7 +6,7 @@ use App\Kriti\Traits\SingletonTrait;
 use App\Kriti\Classes\Node;
 use App\Kriti\Classes\Scheme;
 use App\Kriti\Classes\Services\Files;
-//use Spatie\FlareClient\Context;
+use App\Kriti\Classes\Context;
 
 /*
  * Особенность этого класса в том что он является точкой вхождения в внутренний интерфейс kriti
@@ -34,10 +34,10 @@ class Kriti
         return Files::getInstance();
     }
 
-//    public function context(): Context
-//    {
-//        return Context::getInstance();
-//    }
+    public function context(): Context
+    {
+        return Context::getInstance();
+    }
 
     ### Хелперы
 

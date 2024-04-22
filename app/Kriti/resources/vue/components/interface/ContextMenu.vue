@@ -53,7 +53,6 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Context:getContextItems',
                 data: {
-                    scheme_code: this.scheme_code,
                     type: this.context_type,
                     uuid: this.context.uuid
                 },

@@ -8,9 +8,7 @@ class Node
     public function getData(): ?string
     {
         return kriti()->response([
-            'data' => kriti()->node()->callNodeMethod(
-                request('scheme_code'),
-                request('uuid'),
+            'data' => kriti()->node(request('uuid'))->callNodeMethod(
                 request('method')
             )
         ]);
@@ -19,16 +17,8 @@ class Node
     # Записать данные метода нода
     public function setData()
     {
-//        kriti()->files()->arrayToFile(
-//            request()->all(),
-//            storage_path('save_node.json')
-//        );
-
-        kriti()->node()->callNodeMethod(
-            request('scheme_name'),
-            request('uuid'),
+        kriti()->node(request('uuid'))->callNodeMethod(
             request('method'),
-            request('values')
         );
     }
 
