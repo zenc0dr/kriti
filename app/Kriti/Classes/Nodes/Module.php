@@ -347,6 +347,6 @@ class Module
     # Сохранить настройка нода
     public function setSettings($data): void
     {
-        kriti()->node()->setDataBatch('settings', $data);
+        kriti()->node($this->uuid)->setDataBatch('settings', $data);
     }
 }

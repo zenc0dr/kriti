@@ -8,12 +8,8 @@ class Debug
     # http://kriti.mog/kriti.api.Debug:test
     public function test()
     {
-//        dd(
-//            kriti()->scheme()->getSaturatedScheme('calculator')
-//        );
-        $node = new Calculator();
-        $result = $node->calculate(2, 3);
-        dd($result);
+        $node = new Node();
+        $node->setData();
     }
 
     # Получить схему по коду схемы
