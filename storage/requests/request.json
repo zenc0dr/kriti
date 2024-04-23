@@ -1,0 +1,24 @@
+{
+    "colors": [
+        {
+            "name": "$color-100",
+            "code": "#172601"
+        },
+        {
+            "name": "$color-200",
+            "code": "#274001"
+        },
+        {
+            "name": "$color-300",
+            "code": "#4D7314"
+        },
+        {
+            "name": "$color-400",
+            "code": "#7AA638"
+        },
+        {
+            "name": "$color-500",
+            "code": "#334911"
+        }
+    ]
+}

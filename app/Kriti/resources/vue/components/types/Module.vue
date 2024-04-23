@@ -1,7 +1,8 @@
 <template>
-    <div class="module" :style="style_module">
+    <div v-if="node" class="module" :style="style_module">
         <div class="module__title" :style="style_module_title">
-            Модуль
+            <i :class="node.static.icon"></i>
+            {{ node.static.settings.name }}
         </div>
     </div>
 </template>
@@ -22,3 +23,18 @@ export default {
     },
 }
 </script>
+<style lang="scss">
+.module {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    i {
+        margin-right: 3px;
+    }
+}
+
+.module .module__title i {
+    font-weight: bold;
+    font-size: 20px;
+}
+</style>

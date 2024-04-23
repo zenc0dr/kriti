@@ -96,4 +96,20 @@ class Kriti
         return \Str::uuid()->toString();
     }
 
+    public function saveRequest(string $name = 'request')
+    {
+        $requests_path = storage_path("requests/$name.json");
+        kriti()->files()->chekDir($requests_path);
+        kriti()->files()->arrayToFile(
+            request()->all(),
+            $requests_path
+        );
+    }
+
+    public function loadRequest(string $name = 'request')
+    {
+        $request = kriti()->files()->arrayFromFile(storage_path("requests/$name.json"));
+        request()->merge($request);
+    }
+
 }

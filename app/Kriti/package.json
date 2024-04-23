@@ -16,6 +16,7 @@
     "author": "Alex Blaze",
     "license": "ISC",
     "dependencies": {
+        "@cyhnkckali/vue3-color-picker": "^1.1.9",
         "@fontsource/exo-2": "^5.0.15",
         "@fontsource/roboto-serif": "^5.0.12",
         "@popperjs/core": "^2.11.0",

@@ -10,6 +10,8 @@ import {createApp} from 'vue';
 import PrimeVue from 'primevue/config';
 import router from './routes';
 
+import '@cyhnkckali/vue3-color-picker/dist/style.css';
+
 import KritiApp from "../vue/KritiApp";
 import vueClickOutsideElement from 'vue-click-outside-element'
 
