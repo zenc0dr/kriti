@@ -56,11 +56,11 @@ class Node
             )->{$method}($input_data);
     }
 
+    # Клонировать модуль
     public function cloneNode(array $node): array
     {
         $old_uuid = $node['uuid'];
         $new_uuid = kriti()->createUUID();
-        unset($node['static']);
         $node['uuid'] = $new_uuid;
 
         $data_batches = kriti()->files()->filesList(kriti()->schemes_path("data/$old_uuid"));

@@ -6,8 +6,24 @@
             "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 493,
-                "y": 153
+                "x": 506,
+                "y": 330
+            }
+        },
+        {
+            "uuid": "036c837a-0bee-4310-89a7-c25725d66be9",
+            "type": "Module",
+            "point": {
+                "x": 779,
+                "y": 49
+            }
+        },
+        {
+            "uuid": "5aa1a78d-dbca-41bb-bb64-df565e910edd",
+            "type": "Module",
+            "point": {
+                "x": 1314,
+                "y": 193
             }
         }
     ]
