@@ -237,12 +237,24 @@ export default {
             if (code === 'openNodeSettings') {
                 this.node = context
             }
-            if (code === 'cloneModule') {
-                this.createUUID((uuid) => {
-                    context.uuid = uuid
-                    context.point.x += 100
-                    context.point.y += 100
-                    this.scheme.nodes.push(context)
+            if (code === 'cloneNode') {
+                // this.createUUID((uuid) => {
+                //     context.uuid = uuid
+                //     context.point.x += 100
+                //     context.point.y += 100
+                //     this.scheme.nodes.push(context)
+                // })
+                Kriti.api({
+                    data: {
+                        node: context
+                    },
+                    url: 'kriti.api.Node:cloneNode',
+                    then: (response) => {
+                        let node = response.node
+                        node.point.x += 100
+                        node.point.y += 100
+                        this.scheme.nodes.push(node)
+                    }
                 })
             }
         },

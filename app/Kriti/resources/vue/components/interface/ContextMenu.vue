@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../../scss/kriti.palette.scss';
 .kriti-context {
     position: absolute;
     background: #ffffff29;
@@ -79,8 +80,8 @@ export default {
 
     }
     &__item {
-        background: #d2ffc8;
-        color: #26551b;
+        background: $bg-light;
+        color: $f-def;
         border-radius: 4px;
         margin: 5px 5px;
         padding: 10px 21px;

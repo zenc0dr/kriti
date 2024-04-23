@@ -55,4 +55,20 @@ class Node
             ->make("App\Kriti\Classes\Nodes\\$node_type", ['uuid' => $this->uuid]
             )->{$method}($input_data);
     }
+
+    public function cloneNode(array $node): array
+    {
+        $old_uuid = $node['uuid'];
+        $new_uuid = kriti()->createUUID();
+        unset($node['static']);
+        $node['uuid'] = $new_uuid;
+
+        $data_batches = kriti()->files()->filesList(kriti()->schemes_path("data/$old_uuid"));
+        foreach ($data_batches as $data_batch) {
+            $batch_code = \Str::beforeLast($data_batch['name'], '.json');
+            $batch = kriti()->node($old_uuid)->getDataBatch($batch_code);
+            kriti()->node($new_uuid)->setDataBatch($batch_code, $batch);
+        }
+        return $node;
+    }
 }

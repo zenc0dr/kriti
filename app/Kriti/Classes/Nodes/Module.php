@@ -73,7 +73,7 @@ class Module
             [
                 'text' => 'Клонировать модуль',
                 'icon' => 'bi bi-copy',
-                'code' => 'cloneModule'
+                'code' => 'cloneNode'
             ],
             [
                 'text' => 'На передний план',
