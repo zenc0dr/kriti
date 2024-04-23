@@ -41,9 +41,6 @@ class Colors
     # http://kriti.mog/kriti.api.Colors:saveColors
     public function saveColors()
     {
-        #kriti()->saveRequest();
-        #kriti()->loadRequest();
-
         $colors = request('colors');
         $output = [];
         foreach ($colors as $color) {

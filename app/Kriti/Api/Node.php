@@ -37,9 +37,6 @@ class Node
     # http://kriti.mog/kriti.api.Node:cloneNode
     public function cloneNode()
     {
-        #kriti()->saveRequest();
-        #kriti()->loadRequest();
-        #exit;
         return kriti()->response([
             'node' => kriti()->node()->cloneNode(
                 request('node')

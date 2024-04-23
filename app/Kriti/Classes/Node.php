@@ -2,8 +2,6 @@
 
 namespace App\Kriti\Classes;
 
-use App\Kriti\Classes\Nodes\Module;
-
 class Node
 {
     public string $uuid;

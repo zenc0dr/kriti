@@ -10,7 +10,7 @@
     "module_title": {
         "font-weight": "bold",
         "font-size": "14px",
-        "color": "#174629",
+        "color": "red",
         "padding-bottom": "2px",
         "border-bottom": "1px solid #72bd8f"
     }
