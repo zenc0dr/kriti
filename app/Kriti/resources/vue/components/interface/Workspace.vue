@@ -7,13 +7,9 @@
      @mousemove="mousemove"
      @dblclick.self="workspaceContextMenu"
 >
-    <div class="workspace__preloader">
-    </div>
+    <div class="workspace__preloader"></div>
 
     <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
-
-        <ColorPalette/>
-
         <Node v-for="node in nodes" :node="node"
              :ref="node.id" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
@@ -40,7 +36,6 @@
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
-import ColorPalette from "./ColorPalette";
 
 export default {
     name: "Workspace",
@@ -48,7 +43,6 @@ export default {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
-        ColorPalette
     },
     props: {
 

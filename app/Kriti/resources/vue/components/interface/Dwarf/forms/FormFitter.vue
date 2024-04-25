@@ -156,6 +156,13 @@
                     :label="element.label"
                     :readonly="element.readonly"
                 />
+                <KritiJsonEditor
+                    v-if="element.type === 'json-editor'"
+                    :json="modelValue[element.field]"
+                    @update:json="modelValue[element.field] = $event"
+                    :label="element.label"
+                    :size="element.size"
+                />
 
                 <ControlPanel
                     v-if="element.type === 'ControlPanel'"
@@ -181,6 +188,7 @@ import DwarfDatetime from "../inputs/DwarfDatetime";
 import DwarfRepeater from "../inputs/DwarfRepeater";
 import DwarfUsers from "../inputs/DwarfUsers";
 import DwarfFiles from "../inputs/DwarfFiles";
+import KritiJsonEditor from "../inputs/KritiJsonEditor";
 
 export default {
     name: "FormFitter",
@@ -188,7 +196,7 @@ export default {
     components: {
         Tabs, DwarfString, ControlPanel, DwarfSwitcher, DwarfImageBox, DwarfNumber,
         DwarfTextEditor, DwarfTextArea, DwarfCheckboxList, DwarfDatetime, DwarfRepeater,
-        DwarfUsers, DwarfSelect, DwarfFiles
+        DwarfUsers, DwarfSelect, DwarfFiles, KritiJsonEditor
     },
     props: {
         scheme: {

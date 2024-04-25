@@ -98,93 +98,32 @@ class Module
         ];
     }
 
-    # Трансформировать из простого массива в сложный (Для стилей)
-    private function nodeStyleTransformFrom(array $array): array
-    {
-        $output = [];
-        foreach ($array as $key => $value) {
-            $output[] = [
-                'key' => $key,
-                'value' => $value
-            ];
-        }
-        return $output;
-    }
-
-    # Трансформировать из сложного массива в простой (Для стилей)
-    private function nodeStyleTransformTo(array $array): array
-    {
-        $output = [];
-        foreach ($array as $item) {
-            $output[$item['key']] = $item['value'];
-        }
-        return $output;
-    }
-
-    private function cssRepeaterScheme(string $title, string $field_name): array
-    {
-        return [
-            'label' => $title,
-            'field' => $field_name,
-            'type' => 'repeater',
-            'size' => 'full',
-            'empty_object' => [
-                'key' => '',
-                'value' => ''
-            ],
-            'scheme' => [
-                [
-                    'label' => 'Правило CSS',
-                    'field' => 'key',
-                    'type' => 'string',
-                    'size' => 'half',
-                ],
-                [
-                    'label' => 'Значение',
-                    'field' => 'value',
-                    'type' => 'string',
-                    'size' => 'half',
-                ],
-            ]
-        ];
-    }
-
     # Получить стили нода модуля
     #[ArrayShape(['scheme' => "array[]", 'values' => "array[]"])]
     public function getStyle(): array
     {
         $scheme = [
             [
-                'type' => 'tabs',
-                'scheme' => [
-                    [
-                        'label' => 'Базовый блок',
-                        'scheme' => [$this->cssRepeaterScheme('Базовый блок', 'module')],
-                    ],
-                    [
-                        'label' => 'Заголовок нода',
-                        'scheme' => [$this->cssRepeaterScheme('Заголовок нода','module_title')],
-                    ],
-                ]
+                'label' => 'Стили блока',
+                'field' => 'style',
+                'type' => 'json-editor',
+                'size' => 'half'
             ]
         ];
 
         $values = kriti()->node($this->uuid)->getDataBatch('style');
-        $values['module'] = $this->nodeStyleTransformFrom($values['module']);
-        $values['module_title'] = $this->nodeStyleTransformFrom($values['module_title']);
-
         return [
             'scheme' => $scheme,
-            'values' => $values
+            'values' => [
+                'style' => $values
+            ]
         ];
     }
 
     # Сохранить стили нода модуля
     public function setStyle(array $data): void
     {
-        $data['module'] = $this->nodeStyleTransformTo($data['module']);
-        $data['module_title'] = $this->nodeStyleTransformTo($data['module_title']);
-        kriti()->node($this->uuid)->setDataBatch('style', $data);
+        kriti()->node($this->uuid)->setDataBatch('style', $data['style']);
     }
 
     /**

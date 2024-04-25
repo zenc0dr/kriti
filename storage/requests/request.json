@@ -1,67 +1,22 @@
 {
-    "node": {
-        "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
-        "type": "Module",
-        "point": {
-            "x": 493,
-            "y": 153
-        },
-        "static": {
-            "icon": "bi bi-box",
-            "style": {
-                "module": {
-                    "height": "115px",
-                    "width": "252px",
-                    "background-color": "#caffca",
-                    "border-radius": "5px",
-                    "padding": "7px 10px",
-                    "color": "#666666"
-                },
-                "module_title": {
-                    "font-weight": "bold",
-                    "font-size": "14px",
-                    "color": "#174629",
-                    "padding-bottom": "2px",
-                    "border-bottom": "1px solid #72bd8f"
-                }
+    "uuid": "8c6def24-2cb1-49a2-b2f1-2d1be1a1e8ac",
+    "method": "setStyle",
+    "values": {
+        "style": {
+            "module": {
+                "height": "115px",
+                "width": "252px",
+                "background-color": "#000",
+                "border-radius": "5px",
+                "padding": "7px 10px",
+                "color": "#666666"
             },
-            "settings": {
-                "call": "App.Kriti.Nodes.Zen.Calculator.V1.Calculator.calculate",
-                "type": "Module",
-                "version": 1,
-                "inputs": [
-                    {
-                        "var_key": "$a",
-                        "var_title": "A",
-                        "var_type": "int",
-                        "var_require": true,
-                        "var_default": "0"
-                    },
-                    {
-                        "var_key": "$b",
-                        "var_title": "B",
-                        "var_type": "int",
-                        "var_require": true,
-                        "var_default": "0"
-                    }
-                ],
-                "output": {
-                    "var_desc": null,
-                    "var_type": "int"
-                },
-                "events": [
-                    {
-                        "event_name": "Перед умножением",
-                        "event_code": "beforeCalculate",
-                        "event_type": "string"
-                    },
-                    {
-                        "event_name": "После умножения",
-                        "event_code": "afterCalculate",
-                        "event_type": "string"
-                    }
-                ],
-                "name": "Умножение А на Б (тестирую)"
+            "module_title": {
+                "font-weight": "bold",
+                "font-size": "14px",
+                "color": "red",
+                "padding-bottom": "2px",
+                "border-bottom": "1px solid #72bd8f"
             }
         }
     }
