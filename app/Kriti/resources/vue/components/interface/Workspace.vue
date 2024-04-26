@@ -10,6 +10,7 @@
     <div class="workspace__preloader"></div>
 
     <div class="workspace__plato" ref="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
+        <button @click="testPlato">Сдвинуть стрелки</button>
         <Node v-for="node in nodes" :node="node"
              :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
@@ -37,7 +38,6 @@ import LeaderLine from "leader-line-vue" // https://github.com/anseki/leader-lin
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
-import LinkerLine from 'linkerline'
 
 export default {
     name: "Workspace",
@@ -62,8 +62,15 @@ export default {
             hold_x_factor: null, // Поправка объекта по x
             hold_y_factor: null, // Поправка объекта по y
             workspace_size_is_defined: false, // Размер рабочей области определён
+
             plato_x: 0, // Смещение карты по оси Х
             plato_y: 0, // Смещение карты по оси Y
+            plato_x_start: 0, // Фиксация начальных координат по оси Х
+            plato_y_start: 0, // Фиксация начальных координат по оси Y
+
+            body_x_factor: 0, // Коэффициент
+            body_y_factor: 0,
+
             node: null, // Данные нода
             active_node: null, // Выделенный нод
             last_hold_x: 0, // Позиция нода перед перемещением по X
@@ -82,6 +89,12 @@ export default {
         this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
         this.getScheme(() => {
+            jQuery('body').css({
+                marginLeft: this.plato_x,
+                marginTop: this.plato_y,
+            })
+            this.plato_x_start = this.plato_x
+            this.plato_y_start = this.plato_y
             this.addLinks()
         })
     },
@@ -170,13 +183,18 @@ export default {
             if (this.active_node) {
                 this.active_node.point.x = this.mouse_x - this.hold_x_factor
                 this.active_node.point.y = this.mouse_y - this.hold_y_factor
+                this.correctLines()
             }
 
             // Если двигается карта
             if (this.hold_plato) {
-                console.log('ok?')
                 this.plato_x = this.mouse_x - this.hold_x_factor
                 this.plato_y = this.mouse_y - this.hold_y_factor
+
+                jQuery('body').css({
+                    marginLeft: this.plato_x + this.body_x_factor,
+                    marginTop: this.plato_y + this.body_y_factor
+                })
             }
             //this.quantizeObjects()
         },
@@ -239,6 +257,12 @@ export default {
                 this.node = context
             }
             if (code === 'cloneNode') {
+                // this.createUUID((uuid) => {
+                //     context.uuid = uuid
+                //     context.point.x += 100
+                //     context.point.y += 100
+                //     this.scheme.nodes.push(context)
+                // })
                 Kriti.api({
                     data: {
                         node: context
@@ -252,6 +276,12 @@ export default {
                     }
                 })
             }
+        },
+
+        testPlato() {
+            console.log('Двигаю стрелки')
+            let el = this.$refs['plato']
+            el.style.marginLeft += 100
         },
 
         // Запросить генерацию uuid todo: Зачем???
@@ -273,29 +303,36 @@ export default {
             })
         },
 
-        // Добавить ссылку
+        // Добавить сцепку
         addLink(link, save) {
-            let plato = this.$refs['plato'] // Получить .workspace__plato DOM элемент
             let element_a = this.$refs[link[0]][0].$el
             let element_b = this.$refs[link[1]][0].$el
 
             let options = {
-                parent: plato,
-                start: element_a,
-                end: element_b,
                 startPlug: 'disc',
                 endPlug: 'arrow1'
             }
 
-            let line = new LinkerLine(options)
-
+            let line_object = LeaderLine.setLine(element_a, element_b, options)
             this.lines_objects.push({
                 link,
-                object: line
+                object: line_object
             })
         },
 
         correctLines() {
+            this.body_x_factor = this.plato_x_start - this.plato_x
+            this.body_y_factor = this.plato_y_start - this.plato_y
+
+            console.log('plato_x_start', this.plato_x_start)
+            console.log('plato_x', this.plato_x)
+            console.log('plato_x_start', this.plato_x_start)
+
+            jQuery('body').css({
+                marginLeft: this.plato_x + this.plato_x_start - this.plato_x,
+                marginTop: this.plato_y + this.plato_y_start - this.plato_y
+            })
+
             this.lines_objects.map(item => {
                 item.object.position()
             })
@@ -308,6 +345,10 @@ export default {
 
 <style lang="scss">
 @import '../../../scss/kriti.palette.scss';
+body {
+    position: absolute;
+}
+
 .workspace {
     padding: 10px;
     background: $bg-dark;

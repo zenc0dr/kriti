@@ -6,40 +6,40 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 60,
-                "y": 218
+                "x": 164,
+                "y": 386
             }
         },
         {
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 788,
-                "y": 413
+                "x": 682,
+                "y": 380
             }
         },
         {
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 1407,
-                "y": 315
+                "x": 1521,
+                "y": 262
             }
         },
         {
             "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 382,
-                "y": 303
+                "x": 822,
+                "y": 138
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 484,
-                "y": 29
+                "x": 345,
+                "y": 102
             }
         }
     ],
