@@ -3,23 +3,23 @@
     "description": "Всякие вызовы которые реализуют калькулятор",
     "nodes": [
         {
-            "uuid": "067ddc29-8596-4a82-b816-8359b4f9b633",
+            "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 76,
-                "y": 32
+                "x": 60,
+                "y": 218
             }
         },
         {
-            "uuid": "036c837a-0bee-4310-89a7-c25725d66be9",
+            "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 1024,
-                "y": 67
+                "x": 788,
+                "y": 413
             }
         },
         {
-            "uuid": "5aa1a78d-dbca-41bb-bb64-df565e910edd",
+            "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
                 "x": 1407,
@@ -27,12 +27,38 @@
             }
         },
         {
-            "uuid": "8c6def24-2cb1-49a2-b2f1-2d1be1a1e8ac",
+            "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 462,
-                "y": 142
+                "x": 382,
+                "y": 303
+            }
+        },
+        {
+            "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
+            "type": "Module",
+            "point": {
+                "x": 484,
+                "y": 29
             }
         }
+    ],
+    "links": [
+        [
+            "067ddc2985964a82b8168359b4f9b633",
+            "036c837a0bee431089a7c25725d66be9"
+        ],
+        [
+            "036c837a0bee431089a7c25725d66be9",
+            "5aa1a78ddbca41bbbb64df565e910edd"
+        ],
+        [
+            "5aa1a78ddbca41bbbb64df565e910edd",
+            "8c6def242cb149a2b2f12d1be1a1e8ac"
+        ],
+        [
+            "8c6def242cb149a2b2f12d1be1a1e8ac",
+            "063791eb5acd4c7b921f2d84ca4cedb0"
+        ]
     ]
 }

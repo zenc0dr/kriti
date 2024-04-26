@@ -9,9 +9,9 @@
 >
     <div class="workspace__preloader"></div>
 
-    <div class="workspace__plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
+    <div class="workspace__plato" ref="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
         <Node v-for="node in nodes" :node="node"
-             :ref="node.id" :class="{ focus:node === active_node }"
+             :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
              @mouseup="nodeDrop"
              @click.ctrl="createLink(node)"
@@ -33,16 +33,18 @@
 </template>
 
 <script>
+import LeaderLine from "leader-line-vue" // https://github.com/anseki/leader-line
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
+import LinkerLine from 'linkerline'
 
 export default {
     name: "Workspace",
     components: {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
-        ContextMenu, // Контекстное меню
+        ContextMenu // Контекстное меню
     },
     props: {
 
@@ -66,6 +68,9 @@ export default {
             active_node: null, // Выделенный нод
             last_hold_x: 0, // Позиция нода перед перемещением по X
             last_hold_y: 0, // Позиция нода перед перемещением по Y
+
+            lines: [], // Линии - связи
+            lines_objects: [],
         }
     },
     computed: {
@@ -76,7 +81,9 @@ export default {
     mounted() {
         this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
-        this.getScheme()
+        this.getScheme(() => {
+            this.addLinks()
+        })
     },
     beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
         window.removeEventListener('resize', this.defineWorkspaceSize)
@@ -96,7 +103,7 @@ export default {
         },
 
         // Загрузить схему
-        getScheme() {
+        getScheme(fn) {
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
@@ -104,6 +111,9 @@ export default {
                 },
                 then: response => {
                     this.scheme = response.scheme
+                    if (fn) {
+                        fn()
+                    }
                 }
             })
         },
@@ -118,16 +128,16 @@ export default {
         },
 
         // Сохранить ноды
-        saveScheme() {
+        setScheme() {
+
+            const scheme = _.cloneDeep(this.scheme)
+            scheme.nodes = this.sanitizeNodes()
+
             Kriti.api({
                 url: 'kriti.api.Scheme:setScheme',
                 data: {
                     scheme_code: this.active_scheme_code,
-                    scheme_data: {
-                        name: this.scheme.name,
-                        description: this.scheme.description,
-                        nodes: this.sanitizeNodes()
-                    }
+                    scheme_data: scheme
                 },
                 then: response => {
                     console.log('nodes save')
@@ -145,7 +155,7 @@ export default {
         // Оставить карту
         dropPlato() {
             this.hold_plato = false
-            this.saveScheme() // Сохранить состояние
+            this.setScheme() // Сохранить состояние
         },
 
         // Фиксировать движение мыши
@@ -164,12 +174,9 @@ export default {
 
             // Если двигается карта
             if (this.hold_plato) {
+                console.log('ok?')
                 this.plato_x = this.mouse_x - this.hold_x_factor
                 this.plato_y = this.mouse_y - this.hold_y_factor
-                $('body').css({
-                    marginLeft: this.plato_x + this.body_x_factor,
-                    marginTop: this.plato_y + this.body_y_factor
-                })
             }
             //this.quantizeObjects()
         },
@@ -206,7 +213,7 @@ export default {
 
             // Сохранять только если был сдвинут объект
             if (this.last_hold_x !== this.mouse_x || this.last_hold_y !== this.mouse_y) {
-                this.saveScheme()
+                this.setScheme()
             }
         },
 
@@ -232,12 +239,6 @@ export default {
                 this.node = context
             }
             if (code === 'cloneNode') {
-                // this.createUUID((uuid) => {
-                //     context.uuid = uuid
-                //     context.point.x += 100
-                //     context.point.y += 100
-                //     this.scheme.nodes.push(context)
-                // })
                 Kriti.api({
                     data: {
                         node: context
@@ -253,13 +254,50 @@ export default {
             }
         },
 
-        // Запросить генерацию uuid
+        // Запросить генерацию uuid todo: Зачем???
         createUUID(fn) {
             Kriti.api({
                 url: 'kriti.api.Node:createUUID',
                 then: response => {
                     fn(response.uuid)
                 }
+            })
+        },
+
+        // Отобразить сцепки
+        addLinks() {
+            this.$nextTick(() => {
+                this.scheme.links.map(link => {
+                    this.addLink(link)
+                })
+            })
+        },
+
+        // Добавить ссылку
+        addLink(link, save) {
+            let plato = this.$refs['plato'] // Получить .workspace__plato DOM элемент
+            let element_a = this.$refs[link[0]][0].$el
+            let element_b = this.$refs[link[1]][0].$el
+
+            let options = {
+                parent: plato,
+                start: element_a,
+                end: element_b,
+                startPlug: 'disc',
+                endPlug: 'arrow1'
+            }
+
+            let line = new LinkerLine(options)
+
+            this.lines_objects.push({
+                link,
+                object: line
+            })
+        },
+
+        correctLines() {
+            this.lines_objects.map(item => {
+                item.object.position()
             })
         },
 

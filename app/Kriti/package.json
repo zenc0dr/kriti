@@ -31,6 +31,7 @@
         "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "leader-line-vue": "^2.1.1",
+        "linkerline": "^1.2.1",
         "lodash": "^4.17.19",
         "luxon": "^2.2.0",
         "md5": "^2.3.0",

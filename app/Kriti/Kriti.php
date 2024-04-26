@@ -90,10 +90,14 @@ class Kriti
         return json_decode($string, $assoc);
     }
 
-    # Генерировать uuid
+    # Генерировать uuid (без чёрточек)
     public function createUUID(): string
     {
-        return \Str::uuid()->toString();
+        return str_replace(
+            '-',
+            '',
+            \Str::uuid()->toString()
+        );
     }
 
     public function saveRequest(string $name = 'request')
