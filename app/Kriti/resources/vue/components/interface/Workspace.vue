@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import LeaderLine from "leader-line-vue" // https://github.com/anseki/leader-line
+//import LeaderLine from "leader-line-vue" // https://github.com/anseki/leader-line
+import LinkerLine from 'linkerline' // https://github.com/AhmedAyachi/LinkerLine
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
@@ -67,8 +68,8 @@ export default {
             plato_x_start: 0, // Фиксация начальных координат по оси Х
             plato_y_start: 0, // Фиксация начальных координат по оси Y
 
-            body_x_factor: 0, // Коэффициент
-            body_y_factor: 0,
+            //body_x_factor: 0, // Коэффициент
+            //body_y_factor: 0,
 
             node: null, // Данные нода
             active_node: null, // Выделенный нод
@@ -190,10 +191,10 @@ export default {
                 this.plato_x = this.mouse_x - this.hold_x_factor
                 this.plato_y = this.mouse_y - this.hold_y_factor
 
-                jQuery('body').css({
-                    marginLeft: this.plato_x + this.body_x_factor,
-                    marginTop: this.plato_y + this.body_y_factor
-                })
+                // jQuery('body').css({
+                //     marginLeft: this.plato_x + this.body_x_factor,
+                //     marginTop: this.plato_y + this.body_y_factor
+                // })
             }
             //this.quantizeObjects()
         },
@@ -298,40 +299,47 @@ export default {
 
         // Добавить сцепку
         addLink(link) {
+            let plato = this.$refs['plato'] // Получить .workspace__plato DOM элемент
             let element_a = this.$refs[link[0]][0].$el
             let element_b = this.$refs[link[1]][0].$el
 
             let options = {
+                parent: plato,
+                start: element_a,
+                end: element_b,
                 startPlug: 'disc',
                 endPlug: 'arrow1',
                 size: 3,
                 path: 'straight',
-                middleLabel: '',
+                middleLabel: 'OK',
             }
 
-            let line_object = LeaderLine.setLine(element_a, element_b, options)
+            let line = new LinkerLine(options)
+
             this.lines_objects.push({
                 link,
-                object: line_object
+                line: line.element
             })
         },
 
         correctLines() {
-            this.body_x_factor = this.plato_x_start - this.plato_x
-            this.body_y_factor = this.plato_y_start - this.plato_y
+            // this.body_x_factor = this.plato_x_start - this.plato_x
+            // this.body_y_factor = this.plato_y_start - this.plato_y
 
             // console.log('plato_x_start', this.plato_x_start)
             // console.log('plato_x', this.plato_x)
             // console.log('plato_x_start', this.plato_x_start)
 
-            jQuery('body').css({
-                marginLeft: this.plato_x + this.plato_x_start - this.plato_x,
-                marginTop: this.plato_y + this.plato_y_start - this.plato_y
-            })
+            // jQuery('body').css({
+            //     marginLeft: this.plato_x + this.plato_x_start - this.plato_x,
+            //     marginTop: this.plato_y + this.plato_y_start - this.plato_y
+            // })
 
-            this.lines_objects.map(item => {
-                item.object.position()
-            })
+            LinkerLine.positionAll()
+
+            // this.lines_objects.map(item => {
+            //     item.object.position()
+            // })
         },
 
         createLink(){},
@@ -341,13 +349,6 @@ export default {
 
 <style lang="scss">
 @import '../../../scss/kriti.palette.scss';
-body {
-    position: absolute;
-
-    > svg {
-        z-index: 1;
-    }
-}
 
 .workspace {
     padding: 10px;
