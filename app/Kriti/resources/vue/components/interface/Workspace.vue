@@ -10,7 +10,6 @@
     <div class="workspace__preloader"></div>
 
     <div class="workspace__plato" ref="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
-        <button @click="testPlato">Сдвинуть стрелки</button>
         <Node v-for="node in nodes" :node="node"
              :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
@@ -278,12 +277,6 @@ export default {
             }
         },
 
-        testPlato() {
-            console.log('Двигаю стрелки')
-            let el = this.$refs['plato']
-            el.style.marginLeft += 100
-        },
-
         // Запросить генерацию uuid todo: Зачем???
         createUUID(fn) {
             Kriti.api({
@@ -304,13 +297,16 @@ export default {
         },
 
         // Добавить сцепку
-        addLink(link, save) {
+        addLink(link) {
             let element_a = this.$refs[link[0]][0].$el
             let element_b = this.$refs[link[1]][0].$el
 
             let options = {
                 startPlug: 'disc',
-                endPlug: 'arrow1'
+                endPlug: 'arrow1',
+                size: 3,
+                path: 'straight',
+                middleLabel: '',
             }
 
             let line_object = LeaderLine.setLine(element_a, element_b, options)
@@ -324,9 +320,9 @@ export default {
             this.body_x_factor = this.plato_x_start - this.plato_x
             this.body_y_factor = this.plato_y_start - this.plato_y
 
-            console.log('plato_x_start', this.plato_x_start)
-            console.log('plato_x', this.plato_x)
-            console.log('plato_x_start', this.plato_x_start)
+            // console.log('plato_x_start', this.plato_x_start)
+            // console.log('plato_x', this.plato_x)
+            // console.log('plato_x_start', this.plato_x_start)
 
             jQuery('body').css({
                 marginLeft: this.plato_x + this.plato_x_start - this.plato_x,
@@ -347,6 +343,10 @@ export default {
 @import '../../../scss/kriti.palette.scss';
 body {
     position: absolute;
+
+    > svg {
+        z-index: 1;
+    }
 }
 
 .workspace {

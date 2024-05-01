@@ -73,15 +73,16 @@ export default {
 @import '../../../scss/kriti.palette.scss';
 .kriti-context {
     position: absolute;
-    background: #ffffff29;
+    background: #ffffffe6;
     padding: 18px 16px;
     border-radius: 4px;
+
     &__items {
 
     }
     &__item {
-        background: $bg-light;
-        color: $f-def;
+        background: #009eff;
+        color: #fff;
         border-radius: 4px;
         margin: 5px 5px;
         padding: 10px 21px;
@@ -91,7 +92,7 @@ export default {
             margin-right: 10px;
         }
         &:hover {
-            background: #90ce82;
+            background: #00708e;
         }
     }
 }
