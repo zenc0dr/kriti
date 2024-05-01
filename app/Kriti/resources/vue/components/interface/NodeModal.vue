@@ -3,7 +3,9 @@
         <div class="node-modal__body">
             <div class="node-modal__header">
                 <div class="node-modal__title">
-                    Тут заголовок модуля
+                    Настройки нода uuid:<div class="node-modal__uuid">
+                    {{ node_uuid }}
+                </div>
                 </div>
                 <div class="node-modal__close">
                     <i class="bi bi-x-square-fill" @click="$emit('close')"></i>
@@ -59,6 +61,11 @@ export default {
                     }
                 }
             ]
+        }
+    },
+    computed: {
+        node_uuid() {
+            return this.node?.uuid
         }
     },
     watch: {
@@ -146,9 +153,9 @@ export default {
         width: 80%;
         min-height: 300px;
         margin-top: 30px;
-        padding: 15px;
+        padding: 30px;
         border-radius: 10px;
-        padding-top: 10px;
+        padding-top: 20px;
         margin-bottom: 100px;
     }
 
@@ -156,11 +163,16 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
     }
 
     &__title {
+        display: flex;
+    }
 
+    &__uuid {
+        color: #777;
+        margin-left: 5px;
     }
 
     &__close {
@@ -196,6 +208,8 @@ export default {
 
             &.active {
                 color: #7284d6;
+                border-left: 3px solid #7284d6;
+                margin-left: -3px;
             }
         }
     }
