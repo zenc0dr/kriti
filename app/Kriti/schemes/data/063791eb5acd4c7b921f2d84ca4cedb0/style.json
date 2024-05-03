@@ -1,7 +1,7 @@
 {
     "module": {
-        "height": "115px",
-        "width": "252px",
+        "min-height": "115px",
+        "min-width": "400px",
         "background-color": "blue",
         "border-radius": "5px",
         "padding": "7px 10px",

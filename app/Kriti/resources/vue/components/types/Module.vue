@@ -1,8 +1,25 @@
 <template>
-    <div v-if="node" class="module" :style="style_module">
-        <div class="module__title" :style="style_module_title">
+    <div v-if="node" class="module" :style="node.static.style.module">
+        <div class="module__title" :style="node.static.style.module_title">
             <i :class="node.static.icon"></i>
             {{ node.static.settings.name }}
+        </div>
+        <div class="module__vars">
+            <div v-if="node.static.settings.inputs instanceof Array" class="module__io">
+                <div v-for="item in node.static.settings.inputs" class="module__io__item">
+                    {{ item.var_type }} : <span class="module__io__item__name">{{ item.var_key }} [{{ item.var_title }}]</span>
+                </div>
+            </div>
+            <div v-if="node.static.settings.events instanceof Array" class="module__io">
+                <div v-for="item in node.static.settings.events" class="module__io__item" :title="item.event_name">
+                    {{ item.event_type }} : <span class="module__io__item__name">{{ item.event_code }}</span>
+                </div>
+            </div>
+            <div v-if="node.static.settings.output instanceof Object" class="module__io">
+                <div class="module__io__item">
+                    <span class="module__io__item__name">{{ node.static.settings.output.var_type }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -12,15 +29,7 @@ export default {
     name: "Module",
     props: {
         node: Object
-    },
-    computed: {
-        style_module() {
-            return this.node.static.style.module
-        },
-        style_module_title() {
-            return this.node.static.style.module_title
-        }
-    },
+    }
 }
 </script>
 <style lang="scss">
@@ -30,6 +39,32 @@ export default {
     justify-content: flex-start;
     i {
         margin-right: 3px;
+    }
+
+    &__vars {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    &__io {
+        &__item {
+            padding: 2px 8px;
+            padding-top: 4px;
+            background: #ffffff;
+            border-radius: 5px;
+            color: #265c78;
+            font-size: 11px;
+            margin-bottom: 5px;
+            cursor: pointer;
+
+            &__name {
+                font-weight: bold;
+                color: #777;
+            }
+        }
     }
 }
 
