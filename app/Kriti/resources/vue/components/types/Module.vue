@@ -6,12 +6,18 @@
         </div>
         <div class="module__vars">
             <div v-if="node.static.settings.inputs instanceof Array" class="module__io">
-                <div v-for="item in node.static.settings.inputs" class="module__io__item">
+                <div v-for="item in node.static.settings.inputs"
+                     v-if="item.var_key"
+                     :id="node.uuid + item.var_key"
+                     class="module__io__item">
                     {{ item.var_type }} : <span class="module__io__item__name">{{ item.var_key }} [{{ item.var_title }}]</span>
                 </div>
             </div>
             <div v-if="node.static.settings.events instanceof Array" class="module__io">
-                <div v-for="item in node.static.settings.events" class="module__io__item" :title="item.event_name">
+                <div v-for="item in node.static.settings.events"
+                     class="module__io__item"
+                     :title="item.event_name"
+                >
                     {{ item.event_type }} : <span class="module__io__item__name">{{ item.event_code }}</span>
                 </div>
             </div>

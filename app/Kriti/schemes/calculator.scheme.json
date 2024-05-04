@@ -6,10 +6,9 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "links": {
-                "036c837a0bee431089a7c25725d66be9": [
-                    "output$a",
-                    "output$b"
-                ]
+                "036c837a0bee431089a7c25725d66be9": {
+                    "output": ["$a", "$b"]
+                }
             },
             "point": {
                 "x": 229,
@@ -20,10 +19,9 @@
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "links": {
-                "5aa1a78ddbca41bbbb64df565e910edd": [
-                    "output$a",
-                    "output$b"
-                ]
+                "5aa1a78ddbca41bbbb64df565e910edd": {
+                    "output": ["$a", "$b"]
+                }
             },
             "point": {
                 "x": 707,
@@ -54,23 +52,5 @@
                 "y": 57
             }
         }
-    ],
-    "links": [
-        [
-            "067ddc2985964a82b8168359b4f9b633",
-            "036c837a0bee431089a7c25725d66be9"
-        ],
-        [
-            "036c837a0bee431089a7c25725d66be9",
-            "5aa1a78ddbca41bbbb64df565e910edd"
-        ],
-        [
-            "5aa1a78ddbca41bbbb64df565e910edd",
-            "8c6def242cb149a2b2f12d1be1a1e8ac"
-        ],
-        [
-            "8c6def242cb149a2b2f12d1be1a1e8ac",
-            "063791eb5acd4c7b921f2d84ca4cedb0"
-        ]
     ]
 }
