@@ -7,7 +7,10 @@
             "type": "Module",
             "links": {
                 "036c837a0bee431089a7c25725d66be9": {
-                    "output": ["$a", "$b"]
+                    "output": [
+                        "$a",
+                        "$b"
+                    ]
                 }
             },
             "point": {
@@ -20,7 +23,10 @@
             "type": "Module",
             "links": {
                 "5aa1a78ddbca41bbbb64df565e910edd": {
-                    "output": ["$a", "$b"]
+                    "output": [
+                        "$a",
+                        "$b"
+                    ]
                 }
             },
             "point": {
@@ -48,8 +54,8 @@
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 114,
-                "y": 57
+                "x": 126,
+                "y": 60
             }
         }
     ]

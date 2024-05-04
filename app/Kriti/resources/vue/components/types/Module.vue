@@ -6,24 +6,29 @@
         </div>
         <div class="module__vars">
             <div v-if="node.static.settings.inputs instanceof Array" class="module__io">
-                <div v-for="item in node.static.settings.inputs"
-                     v-if="item.var_key"
-                     :id="node.uuid + item.var_key"
-                     class="module__io__item">
-                    {{ item.var_type }} : <span class="module__io__item__name">{{ item.var_key }} [{{ item.var_title }}]</span>
-                </div>
+                <template v-for="item in node.static.settings.inputs">
+                    <div v-if="item.var_key" :id="node.uuid + ':input:' + item.var_key"
+                         class="module__io__item">
+                        {{ item.var_type }} : <span class="module__io__item__name">{{ item.var_key }} [{{ item.var_title }}]</span>
+                    </div>
+                </template>
             </div>
             <div v-if="node.static.settings.events instanceof Array" class="module__io">
-                <div v-for="item in node.static.settings.events"
-                     class="module__io__item"
-                     :title="item.event_name"
-                >
-                    {{ item.event_type }} : <span class="module__io__item__name">{{ item.event_code }}</span>
-                </div>
+                <template v-for="item in node.static.settings.events">
+                    <div v-if="item.event_code"
+                         :id="node.uuid + ':event:' + item.event_code"
+                         class="module__io__item"
+                         :title="item.event_name"
+                    >
+                        {{ item.event_type }} : <span class="module__io__item__name">{{ item.event_code }}</span>
+                    </div>
+                </template>
             </div>
             <div v-if="node.static.settings.output instanceof Object" class="module__io">
-                <div class="module__io__item">
-                    <span class="module__io__item__name">{{ node.static.settings.output.var_type }}</span>
+                <div class="module__io__item" :id="node.uuid + ':output'">
+                    <span class="module__io__item__name">
+                        {{ node.static.settings.output.var_type }}
+                    </span>
                 </div>
             </div>
         </div>

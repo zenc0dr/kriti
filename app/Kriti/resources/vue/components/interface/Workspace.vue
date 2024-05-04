@@ -95,7 +95,7 @@ export default {
             })
             this.plato_x_start = this.plato_x
             this.plato_y_start = this.plato_y
-            this.addLinks()
+            //this.addLinks()
         })
     },
     beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
