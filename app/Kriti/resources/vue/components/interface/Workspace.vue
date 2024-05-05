@@ -9,7 +9,7 @@
 >
     <div class="workspace__preloader"></div>
 
-    <div class="workspace__plato" ref="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
+    <div class="workspace__plato" id="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
         <Node v-for="node in nodes" :node="node"
              :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
@@ -76,7 +76,7 @@ export default {
             last_hold_x: 0, // Позиция нода перед перемещением по X
             last_hold_y: 0, // Позиция нода перед перемещением по Y
 
-            lines: [], // Линии - связи
+            links: [], // Сцепки
             lines_objects: [],
         }
     },
@@ -95,7 +95,7 @@ export default {
             })
             this.plato_x_start = this.plato_x
             this.plato_y_start = this.plato_y
-            //this.addLinks()
+            this.addLinks()
         })
     },
     beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
@@ -291,7 +291,27 @@ export default {
         // Отобразить сцепки
         addLinks() {
             this.$nextTick(() => {
-                this.scheme.links.map(link => {
+                // this.scheme.links.map(link => {
+                //     this.addLink(link)
+                // })
+
+                let links = []
+                this.scheme.nodes.forEach(node => {
+                    if (node.links) {
+                        for (let target_uuid in node.links) {
+                            let codes = node.links[target_uuid]
+                            codes.forEach(code => {
+                                code = code.split('@')
+                                links.push({
+                                    of: `${node.uuid}:${code[0]}`,
+                                    to: `${target_uuid}:${code[1]}`
+                                })
+                            })
+                        }
+                    }
+                })
+
+                links.map((link) => {
                     this.addLink(link)
                 })
             })
@@ -299,9 +319,15 @@ export default {
 
         // Добавить сцепку
         addLink(link) {
+            /*
             let plato = this.$refs['plato'] // Получить .workspace__plato DOM элемент
             let element_a = this.$refs[link[0]][0].$el
             let element_b = this.$refs[link[1]][0].$el
+            */
+
+            let plato = document.getElementById('plato')
+            let element_a = document.getElementById(link.of)
+            let element_b = document.getElementById(link.to)
 
             let options = {
                 parent: plato,
@@ -310,8 +336,12 @@ export default {
                 startPlug: 'disc',
                 endPlug: 'arrow1',
                 size: 3,
-                path: 'straight',
-                middleLabel: 'OK',
+                path: 'fluid',
+                dash: {
+                    animation: {
+                        duration: 200 // Указываем длительность анимации в миллисекундах
+                    },
+                }
             }
 
             let line = new LinkerLine(options)

@@ -6,56 +6,59 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "links": {
-                "036c837a0bee431089a7c25725d66be9": {
-                    "output": [
-                        "$a",
-                        "$b"
-                    ]
-                }
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:$a",
+                    "output@input:$b"
+                ],
+                "5aa1a78ddbca41bbbb64df565e910edd": [
+                    "event:beforeCalculate@input:$a"
+                ]
             },
             "point": {
-                "x": 229,
-                "y": 406
+                "x": 170,
+                "y": 237
             }
         },
         {
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "links": {
-                "5aa1a78ddbca41bbbb64df565e910edd": {
-                    "output": [
-                        "$a",
-                        "$b"
-                    ]
-                }
+                "8c6def242cb149a2b2f12d1be1a1e8ac": [
+                    "output@input:$a",
+                    "output@input:$b"
+                ],
+                "063791eb5acd4c7b921f2d84ca4cedb0": [
+                    "event:afterCalculate@input:$a",
+                    "event:beforeCalculate@input:$b"
+                ]
             },
             "point": {
-                "x": 707,
-                "y": 380
+                "x": 542,
+                "y": 287
             }
         },
         {
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 1471,
-                "y": 322
+                "x": 609,
+                "y": 10
             }
         },
         {
             "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 699,
-                "y": 50
+                "x": 1179,
+                "y": 163
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 126,
-                "y": 60
+                "x": 995,
+                "y": -3
             }
         }
     ]

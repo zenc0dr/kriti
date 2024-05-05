@@ -153,6 +153,10 @@ window.Kriti = {
     }, // Выполнить событие единожды
     /**** end: Kriti Event Bus ****/
 
+    createLink(link_code) {
+
+    }
+
 }
 
 Kriti.bootstrap()
