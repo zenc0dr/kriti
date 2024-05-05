@@ -15,8 +15,8 @@
                 ]
             },
             "point": {
-                "x": 170,
-                "y": 237
+                "x": 6,
+                "y": 46
             }
         },
         {
@@ -33,32 +33,32 @@
                 ]
             },
             "point": {
-                "x": 542,
-                "y": 287
+                "x": 402,
+                "y": 135
             }
         },
         {
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 609,
-                "y": 10
+                "x": 545,
+                "y": -39
             }
         },
         {
             "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 1179,
-                "y": 163
+                "x": 983,
+                "y": -54
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 995,
-                "y": -3
+                "x": 976,
+                "y": 283
             }
         }
     ]
