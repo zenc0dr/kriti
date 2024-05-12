@@ -7,7 +7,9 @@
         <div class="module__vars">
             <div v-if="node.static.settings.inputs instanceof Array" class="module__io">
                 <template v-for="item in node.static.settings.inputs">
-                    <div @click="makeLink(node.uuid + ':input:' + item.var_key)" v-if="item.var_key" :id="node.uuid + ':input:' + item.var_key"
+                    <div v-if="item.var_key"
+                         :id="node.uuid + ':input:' + item.var_key"
+                         @click="makeLink(node.uuid + ':input:' + item.var_key)"
                          class="module__io__item">
                         {{ item.var_type }} : <span class="module__io__item__name">{{ item.var_key }} [{{ item.var_title }}]</span>
                     </div>
@@ -26,8 +28,9 @@
                 </template>
             </div>
             <div v-if="node.static.settings.output instanceof Object" class="module__io">
-                <div class="module__io__item" :id="node.uuid + ':output'">
-                    <span @click="makeLink(node.uuid + ':output')" class="module__io__item__name">
+                <div @click.prevent="makeLink(node.uuid + ':output')"
+                     class="module__io__item" :id="node.uuid + ':output'">
+                    <span class="module__io__item__name">
                         {{ node.static.settings.output.var_type }}
                     </span>
                 </div>
@@ -45,6 +48,7 @@ export default {
     methods: {
         makeLink(link_code)
         {
+            console.log('Нажал')
             Kriti.makeLink(link_code)
         }
     }

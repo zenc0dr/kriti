@@ -65,6 +65,7 @@ class Node
         foreach ($data_batches as $data_batch) {
             $batch_code = \Str::beforeLast($data_batch['name'], '.json');
             $batch = kriti()->node($old_uuid)->getDataBatch($batch_code);
+            unset($batch['links']);
             kriti()->node($new_uuid)->setDataBatch($batch_code, $batch);
         }
         return $node;
@@ -83,6 +84,10 @@ class Node
         $uuid_b = $link_end[0];
         $io_b = $link_end[1];
         $var_b = $link_end[2] ?? null;
+
+        if ($uuid_a === $uuid_b) {
+            return;
+        }
 
         if ($var_a) {
             $io_a .= ":$var_a";

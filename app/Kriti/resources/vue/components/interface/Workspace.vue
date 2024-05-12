@@ -1,7 +1,7 @@
 <template>
 <div v-if="workspace_size_is_defined"
      class="workspace"
-     :style="`width:${workspace_width}px;height:${workspace_height}px`"
+     :style="workspaceStyle"
      @mousedown.ctrl.self="movePlato"
      @mouseup.self="dropPlato"
      @mousemove="mousemove"
@@ -9,7 +9,7 @@
 >
     <div class="workspace__preloader"></div>
 
-    <div class="workspace__plato" id="plato" :style="`margin-left:${ plato_x }px;margin-top:${ plato_y }px`">
+    <div id="plato" class="workspace__plato" :style="platoStyle">
         <Node v-for="node in nodes" :node="node"
              :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
              @mousedown="nodeHold(node, $event)"
@@ -83,6 +83,22 @@ export default {
     computed: {
         nodes() { // Ноды схемы
             return this.scheme?.nodes
+        },
+        platoStyle() {
+            return {
+                marginLeft: this.plato_x + 'px',
+                marginTop: this.plato_y + 'px'
+            }
+        },
+        workspaceStyle() {
+            if (this.workspace_size_is_defined) {
+                return {
+                    width: this.workspace_width + 'px',
+                    height: this.workspace_height + 'px',
+                    backgroundPositionX: this.plato_x + 'px',
+                    backgroundPositionY: this.plato_y + 'px'
+                }
+            }
         }
     },
     mounted() {
@@ -379,6 +395,8 @@ export default {
     padding: 10px;
     background: $bg-dark;
     color: $f-dark;
+    background-color: #D9D9D9;
+    background-image: url(/kriti/images/gridcube.png);
 
     &__plato {
         width: 0;

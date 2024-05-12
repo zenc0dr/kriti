@@ -5,44 +5,9 @@
         {
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
-            "links": {
-                "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$a",
-                    "output@input:$b"
-                ],
-                "5aa1a78ddbca41bbbb64df565e910edd": [
-                    "event:beforeCalculate@input:$a"
-                ]
-            },
             "point": {
-                "x": 62,
-                "y": 102
-            }
-        },
-        {
-            "uuid": "036c837a0bee431089a7c25725d66be9",
-            "type": "Module",
-            "links": {
-                "8c6def242cb149a2b2f12d1be1a1e8ac": [
-                    "output@input:$a",
-                    "output@input:$b"
-                ],
-                "063791eb5acd4c7b921f2d84ca4cedb0": [
-                    "event:afterCalculate@input:$a",
-                    "event:beforeCalculate@input:$b"
-                ]
-            },
-            "point": {
-                "x": 393,
-                "y": 179
-            }
-        },
-        {
-            "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
-            "type": "Module",
-            "point": {
-                "x": 535,
-                "y": 10
+                "x": 77,
+                "y": 79
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -51,27 +16,133 @@
             }
         },
         {
+            "uuid": "036c837a0bee431089a7c25725d66be9",
+            "type": "Module",
+            "point": {
+                "x": 1305,
+                "y": 269
+            }
+        },
+        {
+            "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
+            "type": "Module",
+            "point": {
+                "x": 81,
+                "y": 253
+            },
+            "links": {
+                "6b3083a2e38e4b63a983fe6295ad6359": [
+                    "output@input:$b"
+                ]
+            }
+        },
+        {
             "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 983,
-                "y": -54
+                "x": 1196,
+                "y": 71
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 976,
-                "y": 283
+                "x": 634,
+                "y": 362
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:$a",
+                    "output@input:count"
+                ],
+                "e390cff9731845198154702fe20d75b4": [
+                    "event:beforeCalculate@input:$a",
+                    "event:afterCalculate@input:$b"
+                ]
             }
         },
         {
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 972,
-                "y": 101
+                "x": 439,
+                "y": 86
+            },
+            "links": {
+                "3193e1eb5b90404ba40933dd5537bd6f": [
+                    "event:beforeCalculate@input:$a"
+                ],
+                "8c6def242cb149a2b2f12d1be1a1e8ac": [
+                    "output@input:$a"
+                ],
+                "036c837a0bee431089a7c25725d66be9": [
+                    "event:afterCalculate@input:$c"
+                ]
+            }
+        },
+        {
+            "uuid": "7a73ad186d2448d2b3c7f3ad8f5e29c1",
+            "type": "Module",
+            "point": {
+                "x": 570,
+                "y": 580
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:$b"
+                ]
+            }
+        },
+        {
+            "uuid": "10db085c1e364719a7a7be845f30b288",
+            "type": "Module",
+            "point": {
+                "x": 107,
+                "y": 410
+            },
+            "links": {
+                "063791eb5acd4c7b921f2d84ca4cedb0": [
+                    "output@input:$a"
+                ]
+            }
+        },
+        {
+            "uuid": "12f1e51457c24e93a5013a348067c8b9",
+            "type": "Module",
+            "point": {
+                "x": 121,
+                "y": 652
+            },
+            "links": {
+                "063791eb5acd4c7b921f2d84ca4cedb0": [
+                    "output@input:$b"
+                ],
+                "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
+                    "event:beforeCalculate@input:$a",
+                    "event:afterCalculate@input:$b"
+                ]
+            }
+        },
+        {
+            "uuid": "3193e1eb5b90404ba40933dd5537bd6f",
+            "type": "Module",
+            "point": {
+                "x": 780,
+                "y": 17
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:$user_id"
+                ]
+            }
+        },
+        {
+            "uuid": "e390cff9731845198154702fe20d75b4",
+            "type": "Module",
+            "point": {
+                "x": 1180,
+                "y": 591
             }
         }
     ]

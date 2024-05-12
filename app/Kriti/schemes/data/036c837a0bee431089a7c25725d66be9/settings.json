@@ -18,6 +18,30 @@
             "var_type": "int",
             "var_require": true,
             "var_default": "0"
+        },
+        {
+            "var_key": "$c",
+            "var_title": "C",
+            "var_desc": null,
+            "var_type": "int",
+            "var_require": true,
+            "var_default": null
+        },
+        {
+            "var_key": "count",
+            "var_title": "Счётчик",
+            "var_desc": null,
+            "var_type": "int",
+            "var_require": true,
+            "var_default": null
+        },
+        {
+            "var_key": "$user_id",
+            "var_title": "id Пользователя",
+            "var_desc": null,
+            "var_type": "int",
+            "var_require": true,
+            "var_default": null
         }
     ],
     "output": {
@@ -36,5 +60,5 @@
             "event_type": "string"
         }
     ],
-    "name": "Умножение А на Б (тестирую)"
+    "name": "Первичная обработка данных"
 }

@@ -1,18 +1,18 @@
 {
     "module": {
-        "min-height": "115px",
-        "min-width": "400px",
-        "background-color": "blue",
+        "height": "145px",
+        "width": "263px",
+        "background-color": "#50606f",
         "border-radius": "5px",
         "padding": "7px 10px",
-        "color": "#666666",
-        "border": "3px solid #000"
+        "text-align": "center"
     },
     "module_title": {
         "font-weight": "bold",
         "font-size": "14px",
-        "color": "#fff",
-        "padding-bottom": "2px",
-        "border-bottom": "1px solid #72bd8f"
+        "color": "#ffffff",
+        "padding-bottom": "10px",
+        "margin-bottom": "5px",
+        "border-bottom": "1px solid #ffffff"
     }
 }
