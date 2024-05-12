@@ -356,7 +356,6 @@ export default {
                     scheme_code: this.active_scheme_code
                 },
                 then: response => {
-
                     if (fn) {
                         fn()
                     }

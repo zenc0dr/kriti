@@ -107,5 +107,7 @@ class Node
                 }
             }
         }
+
+        kriti()->scheme()->setScheme($scheme_code, $scheme);
     }
 }

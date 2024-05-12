@@ -173,6 +173,10 @@ window.Kriti = {
             this.Workspace.makeLink(link, () => {
                 jQuery('.module__io__item').removeClass('marked')
                 this.link = []
+                this.Workspace.removeAllLinks()
+                this.Workspace.getScheme(()=> {
+                    this.Workspace.addLinks()
+                })
             })
         }
     },

@@ -43,6 +43,11 @@
             "point": {
                 "x": 535,
                 "y": 10
+            },
+            "links": {
+                "6b3083a2e38e4b63a983fe6295ad6359": [
+                    "output@input:$a"
+                ]
             }
         },
         {
