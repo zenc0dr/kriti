@@ -86,19 +86,21 @@ export default {
         }
     },
     mounted() {
+        Kriti.Workspace = this
         this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
         this.getScheme(() => {
-            jQuery('body').css({
-                marginLeft: this.plato_x,
-                marginTop: this.plato_y,
-            })
+            // jQuery('body').css({
+            //     marginLeft: this.plato_x,
+            //     marginTop: this.plato_y,
+            // })
             this.plato_x_start = this.plato_x
             this.plato_y_start = this.plato_y
             this.addLinks()
         })
     },
     beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
+        Kriti.Workspace = null
         window.removeEventListener('resize', this.defineWorkspaceSize)
     },
     methods: {
@@ -319,12 +321,6 @@ export default {
 
         // Добавить сцепку
         addLink(link) {
-            /*
-            let plato = this.$refs['plato'] // Получить .workspace__plato DOM элемент
-            let element_a = this.$refs[link[0]][0].$el
-            let element_b = this.$refs[link[1]][0].$el
-            */
-
             let plato = document.getElementById('plato')
             let element_a = document.getElementById(link.of)
             let element_b = document.getElementById(link.to)
@@ -345,31 +341,31 @@ export default {
             }
 
             let line = new LinkerLine(options)
+            this.lines_objects.push(line)
+        },
 
-            this.lines_objects.push({
-                link,
-                line: line.element
+        removeAllLinks() {
+            LinkerLine.removeAllLines()
+        },
+
+        makeLink(link, fn) {
+            Kriti.api({
+                url: 'kriti.api.Node:makeLink',
+                data: {
+                    link,
+                    scheme_code: this.active_scheme_code
+                },
+                then: response => {
+
+                    if (fn) {
+                        fn()
+                    }
+                }
             })
         },
 
         correctLines() {
-            // this.body_x_factor = this.plato_x_start - this.plato_x
-            // this.body_y_factor = this.plato_y_start - this.plato_y
-
-            // console.log('plato_x_start', this.plato_x_start)
-            // console.log('plato_x', this.plato_x)
-            // console.log('plato_x_start', this.plato_x_start)
-
-            // jQuery('body').css({
-            //     marginLeft: this.plato_x + this.plato_x_start - this.plato_x,
-            //     marginTop: this.plato_y + this.plato_y_start - this.plato_y
-            // })
-
             LinkerLine.positionAll()
-
-            // this.lines_objects.map(item => {
-            //     item.object.position()
-            // })
         },
 
         createLink(){},

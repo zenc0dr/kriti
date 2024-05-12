@@ -19,6 +19,9 @@ window.Kriti = {
     requests_register: {}, // Объект фиксации запросов
     events: [], // Массив событий
 
+    Workspace: null,
+    link: [], // Хранение точек, для механизма сцепок
+
     global: {
         workspace_width: null,
         workspace_height: null
@@ -121,31 +124,37 @@ window.Kriti = {
     },
 
     /**** begin: Kriti Event Bus ****/
-    /* Добавить событие */
-    eventPush(name, fn) {
-        this.events.push({name, fn})
-    }, // Добавить событие
-    eventUniquePush(name, fn) {
+
+    // Добавить событие
+    eventPush(event_code, fn) {
+        this.events.push({event_code, fn})
+    },
+
+    // Добавить уникальное событие
+    eventUniquePush(event_code, fn) {
         let fn_exists = false
         this.events.forEach(event => {
-            if (event.name === name) {
+            if (event.name === event_code) {
                 event.fn = fn
                 fn_exists = true
             }
         })
         if (!fn_exists) {
-            this.addEvent(name, fn)
+            this.eventPush(event_code, fn)
         }
-    }, // Добавить уникальное событие
-    eventExec(event_name) {
+    },
+
+    // Выполнить событие по его коду
+    eventExec(event_code) {
         this.events.forEach(event => {
-            if (event.name === event_name) {
+            if (event.name === event_code) {
                 event.fn()
             }
         })
-    }, // Выполнить событие
-    eventExecOnce(event_name) {
-        const eventIndex = this.events.findIndex(event => event.name === event_name)
+    },
+    // Выполнить событие один раз
+    eventExecOnce(event_code) {
+        const eventIndex = this.events.findIndex(event => event.event_code === event_code)
         if (eventIndex !== -1) {
             this.events[eventIndex].fn()
             this.events.splice(eventIndex, 1)
@@ -153,10 +162,28 @@ window.Kriti = {
     }, // Выполнить событие единожды
     /**** end: Kriti Event Bus ****/
 
-    createLink(link_code) {
+    makeLink(link_code) {
+        link_code = this.escapeSelector(link_code)
+        jQuery('#' + link_code).addClass('marked')
+        this.link.push(link_code)
+        if (this.link.length > 1) {
+            let link = this.link.map((item) => {
+                return this.unescapeSelector(item)
+            })
+            this.Workspace.makeLink(link, () => {
+                jQuery('.module__io__item').removeClass('marked')
+                this.link = []
+            })
+        }
+    },
 
+    escapeSelector(selector) {
+        return selector.replace(/([^\w\s])/g, '\\$1');
+    },
+
+    unescapeSelector(selector) {
+        return selector.replace(/\\([^\w\s])/g, '$1');
     }
-
 }
 
 Kriti.bootstrap()

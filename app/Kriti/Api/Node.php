@@ -43,4 +43,16 @@ class Node
             )
         ]);
     }
+
+    # http://kriti.mog/kriti.api.Node:makeLink
+    public function makeLink()
+    {
+        //kriti()->saveRequest('link');
+        kriti()->loadRequest('link');
+
+        kriti()->node()->makeLink(
+            request('link'),
+            request('scheme_code')
+        );
+    }
 }

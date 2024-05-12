@@ -69,4 +69,43 @@ class Node
         }
         return $node;
     }
+
+    # создать или удалить сцепку
+    public function makeLink(array $link, string $scheme_code)
+    {
+        $link_start = explode(':', $link[0]);
+        $link_end = explode(':', $link[1]);
+
+        $uuid_a = $link_start[0];
+        $io_a = $link_start[1];
+        $var_a = $link_start[2] ?? null;
+
+        $uuid_b = $link_end[0];
+        $io_b = $link_end[1];
+        $var_b = $link_end[2] ?? null;
+
+        if ($var_a) {
+            $io_a .= ":$var_a";
+        }
+
+        if ($var_b) {
+            $io_b .= ":$var_b";
+        }
+
+        $link = "$io_a@$io_b";
+
+        $scheme = kriti()->scheme()->getScheme($scheme_code);
+
+        foreach ($scheme['nodes'] as &$node) {
+            if ($node['uuid'] === $uuid_a) {
+                if (!isset($node['links'][$uuid_b])) {
+                    $node['links'][$uuid_b] = [$link];
+                } else {
+                    if (!in_array($link, $node['links'])) {
+                        $node['links'][$uuid_b][] = $link;
+                    }
+                }
+            }
+        }
+    }
 }
