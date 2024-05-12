@@ -19,8 +19,13 @@
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 1305,
-                "y": 269
+                "x": 1161,
+                "y": 258
+            },
+            "links": {
+                "10db085c1e364719a7a7be845f30b288": [
+                    "input:$a@event:afterCalculate"
+                ]
             }
         },
         {
@@ -48,8 +53,8 @@
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 634,
-                "y": 362
+                "x": 520,
+                "y": 305
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [
@@ -66,8 +71,8 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 439,
-                "y": 86
+                "x": 415,
+                "y": 64
             },
             "links": {
                 "3193e1eb5b90404ba40933dd5537bd6f": [
@@ -85,8 +90,8 @@
             "uuid": "7a73ad186d2448d2b3c7f3ad8f5e29c1",
             "type": "Module",
             "point": {
-                "x": 570,
-                "y": 580
+                "x": 586,
+                "y": 526
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [
@@ -98,8 +103,8 @@
             "uuid": "10db085c1e364719a7a7be845f30b288",
             "type": "Module",
             "point": {
-                "x": 107,
-                "y": 410
+                "x": 11,
+                "y": 434
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -128,8 +133,8 @@
             "uuid": "3193e1eb5b90404ba40933dd5537bd6f",
             "type": "Module",
             "point": {
-                "x": 780,
-                "y": 17
+                "x": 775,
+                "y": 54
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [

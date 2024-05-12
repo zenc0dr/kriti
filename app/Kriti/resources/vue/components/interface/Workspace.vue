@@ -8,7 +8,6 @@
      @dblclick.self="workspaceContextMenu"
 >
     <div class="workspace__preloader"></div>
-
     <div id="plato" class="workspace__plato" :style="platoStyle">
         <Node v-for="node in nodes" :node="node"
              :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
@@ -28,7 +27,7 @@
         @close="closeContextMenu"
         @click_item="clickContextMenuItem"
     />
-
+    <KritiMenu />
 </div>
 </template>
 
@@ -38,13 +37,15 @@ import LinkerLine from 'linkerline' // https://github.com/AhmedAyachi/LinkerLine
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
+import KritiMenu from "./KritiMenu";
 
 export default {
     name: "Workspace",
     components: {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
-        ContextMenu // Контекстное меню
+        ContextMenu, // Контекстное меню
+        KritiMenu
     },
     props: {
 
@@ -396,7 +397,7 @@ export default {
     background: $bg-dark;
     color: $f-dark;
     background-color: #D9D9D9;
-    background-image: url(/kriti/images/gridcube.png);
+    background-image: url(/kriti/images/gridcube.png); // https://www.figma.com/file/68Bxea6uIkMR5KpExVlquG/kriti-links?type=design&node-id=12-4&mode=design&t=QtqPulOKMqBvDyFA-0
 
     &__plato {
         width: 0;

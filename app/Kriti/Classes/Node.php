@@ -60,12 +60,12 @@ class Node
         $old_uuid = $node['uuid'];
         $new_uuid = kriti()->createUUID();
         $node['uuid'] = $new_uuid;
+        unset($node['links']);
 
         $data_batches = kriti()->files()->filesList(kriti()->schemes_path("data/$old_uuid"));
         foreach ($data_batches as $data_batch) {
             $batch_code = \Str::beforeLast($data_batch['name'], '.json');
             $batch = kriti()->node($old_uuid)->getDataBatch($batch_code);
-            unset($batch['links']);
             kriti()->node($new_uuid)->setDataBatch($batch_code, $batch);
         }
         return $node;

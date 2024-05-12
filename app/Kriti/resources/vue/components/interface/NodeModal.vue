@@ -147,6 +147,7 @@ export default {
     bottom: 0;
     background: #0000009c;
     overflow-y: auto;
+    z-index: 1;
 
     &__body {
         background: #fff;
