@@ -38,4 +38,13 @@ class Scheme
             'schemes_list' => kriti()->scheme()->getSchemesList()
         ]);
     }
+
+    # Очистить все ссылки на схеме
+    # http://kriti.mog/kriti.api.Scheme:clearLinks
+    public function clearLinks()
+    {
+        kriti()->scheme()->clearLinks(
+            request('scheme')
+        );
+    }
 }

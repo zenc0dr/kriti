@@ -52,4 +52,15 @@ class Scheme
         }
         return $output;
     }
+
+    # Очистить схему от сцепок
+    public function clearLinks(string $scheme_code)
+    {
+        $scheme = $this->getScheme($scheme_code);
+        foreach ($scheme['nodes'] as &$node) {
+            unset($node['links']);
+        }
+
+        $this->setScheme($scheme_code, $scheme);
+    }
 }

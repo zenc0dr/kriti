@@ -23,8 +23,8 @@
                 "y": 258
             },
             "links": {
-                "10db085c1e364719a7a7be845f30b288": [
-                    "input:$a@event:afterCalculate"
+                "e390cff9731845198154702fe20d75b4": [
+                    "output@input:$b"
                 ]
             }
         },
@@ -46,22 +46,26 @@
             "type": "Module",
             "point": {
                 "x": 1196,
-                "y": 71
+                "y": 70
+            },
+            "links": {
+                "e390cff9731845198154702fe20d75b4": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 520,
-                "y": 305
+                "x": 467,
+                "y": 445
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$a",
-                    "output@input:count"
+                    "output@input:$a"
                 ],
-                "e390cff9731845198154702fe20d75b4": [
+                "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
                     "event:beforeCalculate@input:$a",
                     "event:afterCalculate@input:$b"
                 ]
@@ -71,18 +75,16 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 415,
-                "y": 64
+                "x": 516,
+                "y": 237
             },
             "links": {
                 "3193e1eb5b90404ba40933dd5537bd6f": [
-                    "event:beforeCalculate@input:$a"
+                    "output@input:$a",
+                    "event:beforeCalculate@input:$b"
                 ],
                 "8c6def242cb149a2b2f12d1be1a1e8ac": [
-                    "output@input:$a"
-                ],
-                "036c837a0bee431089a7c25725d66be9": [
-                    "event:afterCalculate@input:$c"
+                    "event:afterCalculate@input:$a"
                 ]
             }
         },
@@ -90,12 +92,14 @@
             "uuid": "7a73ad186d2448d2b3c7f3ad8f5e29c1",
             "type": "Module",
             "point": {
-                "x": 586,
-                "y": 526
+                "x": 832,
+                "y": 610
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$b"
+                    "output@input:$b",
+                    "event:beforeCalculate@input:$c",
+                    "event:afterCalculate@input:$user_id"
                 ]
             }
         },
@@ -103,8 +107,8 @@
             "uuid": "10db085c1e364719a7a7be845f30b288",
             "type": "Module",
             "point": {
-                "x": 11,
-                "y": 434
+                "x": 94,
+                "y": 418
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -122,10 +126,6 @@
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
                     "output@input:$b"
-                ],
-                "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
-                    "event:beforeCalculate@input:$a",
-                    "event:afterCalculate@input:$b"
                 ]
             }
         },
@@ -133,12 +133,12 @@
             "uuid": "3193e1eb5b90404ba40933dd5537bd6f",
             "type": "Module",
             "point": {
-                "x": 775,
-                "y": 54
+                "x": 850,
+                "y": 28
             },
             "links": {
-                "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$user_id"
+                "8c6def242cb149a2b2f12d1be1a1e8ac": [
+                    "output@input:$b"
                 ]
             }
         },
@@ -146,8 +146,8 @@
             "uuid": "e390cff9731845198154702fe20d75b4",
             "type": "Module",
             "point": {
-                "x": 1180,
-                "y": 591
+                "x": 1647,
+                "y": 182
             }
         }
     ]

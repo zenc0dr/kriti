@@ -162,6 +162,7 @@ window.Kriti = {
     }, // Выполнить событие единожды
     /**** end: Kriti Event Bus ****/
 
+    /* Создать сцепку */
     makeLink(link_code) {
         link_code = this.escapeSelector(link_code)
         jQuery('#' + link_code).addClass('marked')
@@ -171,8 +172,7 @@ window.Kriti = {
                 return this.unescapeSelector(item)
             })
             this.Workspace.makeLink(link, () => {
-                jQuery('.module__io__item').removeClass('marked')
-                this.link = []
+                this.cleanLink()
                 this.Workspace.removeAllLinks()
                 this.Workspace.getScheme(()=> {
                     this.Workspace.addLinks()
@@ -181,10 +181,18 @@ window.Kriti = {
         }
     },
 
+    /* Очистить сцепку */
+    cleanLink() {
+        jQuery('.module__io__item').removeClass('marked')
+        this.link = []
+    },
+
+    /* Экранировать селектор */
     escapeSelector(selector) {
         return selector.replace(/([^\w\s])/g, '\\$1');
     },
 
+    /* Деэкранировать селектор */
     unescapeSelector(selector) {
         return selector.replace(/\\([^\w\s])/g, '$1');
     }

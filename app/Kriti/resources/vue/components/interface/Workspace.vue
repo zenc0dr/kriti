@@ -186,6 +186,7 @@ export default {
 
         // Оставить карту
         dropPlato() {
+            Kriti.cleanLink()
             this.hold_plato = false
             this.setScheme() // Сохранить состояние
         },

@@ -1,6 +1,7 @@
 {
     "/js/kriti.js": "/js/kriti.js",
     "/css/kriti.css": "/css/kriti.css",
+    "/images/gridcube.png": "/images/gridcube.png",
     "/images/icons/favicon.ico": "/images/icons/favicon.ico",
     "/images/icons/kriti-16.png": "/images/icons/kriti-16.png",
     "/images/icons/kriti-180.png": "/images/icons/kriti-180.png",
@@ -9,6 +10,5 @@
     "/images/icons/kriti-512.png": "/images/icons/kriti-512.png",
     "/images/icons/kriti-96.png": "/images/icons/kriti-96.png",
     "/images/icons/kriti-icon.png": "/images/icons/kriti-icon.png",
-    "/images/icons/kriti-icon.svg": "/images/icons/kriti-icon.svg",
-    "/images/gridcube.png": "/images/gridcube.png"
+    "/images/icons/kriti-icon.svg": "/images/icons/kriti-icon.svg"
 }
