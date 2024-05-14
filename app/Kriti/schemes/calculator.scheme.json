@@ -6,26 +6,16 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 77,
-                "y": 79
-            },
-            "links": {
-                "6b3083a2e38e4b63a983fe6295ad6359": [
-                    "output@input:$a"
-                ]
+                "x": 113,
+                "y": 84
             }
         },
         {
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 1161,
-                "y": 258
-            },
-            "links": {
-                "e390cff9731845198154702fe20d75b4": [
-                    "output@input:$b"
-                ]
+                "x": 1331,
+                "y": 318
             }
         },
         {
@@ -34,11 +24,6 @@
             "point": {
                 "x": 81,
                 "y": 253
-            },
-            "links": {
-                "6b3083a2e38e4b63a983fe6295ad6359": [
-                    "output@input:$b"
-                ]
             }
         },
         {
@@ -47,11 +32,6 @@
             "point": {
                 "x": 1196,
                 "y": 70
-            },
-            "links": {
-                "e390cff9731845198154702fe20d75b4": [
-                    "output@input:$a"
-                ]
             }
         },
         {
@@ -59,33 +39,15 @@
             "type": "Module",
             "point": {
                 "x": 467,
-                "y": 445
-            },
-            "links": {
-                "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$a"
-                ],
-                "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
-                    "event:beforeCalculate@input:$a",
-                    "event:afterCalculate@input:$b"
-                ]
+                "y": 444
             }
         },
         {
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 516,
-                "y": 237
-            },
-            "links": {
-                "3193e1eb5b90404ba40933dd5537bd6f": [
-                    "output@input:$a",
-                    "event:beforeCalculate@input:$b"
-                ],
-                "8c6def242cb149a2b2f12d1be1a1e8ac": [
-                    "event:afterCalculate@input:$a"
-                ]
+                "x": 521,
+                "y": 144
             }
         },
         {
@@ -94,13 +56,6 @@
             "point": {
                 "x": 832,
                 "y": 610
-            },
-            "links": {
-                "036c837a0bee431089a7c25725d66be9": [
-                    "output@input:$b",
-                    "event:beforeCalculate@input:$c",
-                    "event:afterCalculate@input:$user_id"
-                ]
             }
         },
         {
@@ -108,12 +63,7 @@
             "type": "Module",
             "point": {
                 "x": 94,
-                "y": 418
-            },
-            "links": {
-                "063791eb5acd4c7b921f2d84ca4cedb0": [
-                    "output@input:$a"
-                ]
+                "y": 417
             }
         },
         {
@@ -122,11 +72,6 @@
             "point": {
                 "x": 121,
                 "y": 652
-            },
-            "links": {
-                "063791eb5acd4c7b921f2d84ca4cedb0": [
-                    "output@input:$b"
-                ]
             }
         },
         {
@@ -135,11 +80,6 @@
             "point": {
                 "x": 850,
                 "y": 28
-            },
-            "links": {
-                "8c6def242cb149a2b2f12d1be1a1e8ac": [
-                    "output@input:$b"
-                ]
             }
         },
         {

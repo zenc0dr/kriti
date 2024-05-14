@@ -106,10 +106,22 @@ class Node
                 if (!isset($node['links'][$uuid_b])) {
                     $node['links'][$uuid_b] = [$link];
                 } else {
-                    if (!in_array($link, $node['links'])) {
+                    if (!in_array($link, $node['links'][$uuid_b])) {
                         $node['links'][$uuid_b][] = $link;
+                    } else {
+                        $key = array_search($link, $node['links'][$uuid_b]);
+                        if ($key !== false) {
+                            unset($node['links'][$uuid_b][$key]);
+                            if (!count($node['links'][$uuid_b])) {
+                                unset($node['links'][$uuid_b]);
+                                if (!count($node['links'])) {
+                                    unset($node['links']);
+                                }
+                            }
+                        }
                     }
                 }
+                break;
             }
         }
 

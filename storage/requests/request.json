@@ -1,23 +1,7 @@
 {
-    "uuid": "8c6def24-2cb1-49a2-b2f1-2d1be1a1e8ac",
-    "method": "setStyle",
-    "values": {
-        "style": {
-            "module": {
-                "height": "115px",
-                "width": "252px",
-                "background-color": "#000",
-                "border-radius": "5px",
-                "padding": "7px 10px",
-                "color": "#666666"
-            },
-            "module_title": {
-                "font-weight": "bold",
-                "font-size": "14px",
-                "color": "red",
-                "padding-bottom": "2px",
-                "border-bottom": "1px solid #72bd8f"
-            }
-        }
-    }
+    "link": [
+        "6b3083a2e38e4b63a983fe6295ad6359:input:$a",
+        "067ddc2985964a82b8168359b4f9b633:output"
+    ],
+    "scheme_code": "calculator"
 }
