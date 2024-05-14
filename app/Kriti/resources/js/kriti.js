@@ -36,6 +36,9 @@ window.Kriti = {
         this.auth_token = localStorage.getItem('kriti-token')
     },
 
+
+
+
     /* Загрузка начальных данных */
     loadBootstrapData() {
         this.api({
@@ -173,8 +176,8 @@ window.Kriti = {
             })
             this.Workspace.makeLink(link, () => {
                 this.cleanLink()
-                this.Workspace.removeAllLinks()
                 this.Workspace.getScheme(()=> {
+                    this.Workspace.removeAllLinks()
                     this.Workspace.addLinks()
                 })
             })

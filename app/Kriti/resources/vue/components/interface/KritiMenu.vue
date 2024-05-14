@@ -1,6 +1,14 @@
 <template>
+    <div class="kriti-start">
+        <div class="kriti-start__btn"></div>
+    </div>
     <div class="kriti-menu">
-
+        <div class="kriti-menu__btn">
+            Репозиторий
+        </div>
+        <div class="kriti-menu__btn">
+            Репозиторий
+        </div>
     </div>
 </template>
 
@@ -16,13 +24,28 @@ export default {
 </script>
 
 <style lang="scss">
-.kriti-menu {
+.kriti-start {
     position: fixed;
-    top: 5px;
-    left: 5px;
-    border-radius: 5px;
-    width: 210px;
+    top: 10px;
+    left: 10px;
     background: #fff;
-    padding: 15px;
+    padding: 9px;
+    cursor: pointer;
+    transition: 200ms;
+    border-radius: 10px;
+
+    &__btn {
+        width: 30px;
+        height: 30px;
+        background-image: url(/kriti/images/icons/kriti-icon.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.kriti-menu {
+    &__btn {
+
+    }
 }
 </style>

@@ -1,0 +1,40 @@
+{
+    "call": "App.Kriti.Nodes.Zen.Calculator.V1.Calculator.calculate",
+    "type": "Module",
+    "version": 1,
+    "inputs": [
+        {
+            "var_key": "$a",
+            "var_title": "A",
+            "var_desc": null,
+            "var_type": "int",
+            "var_require": true,
+            "var_default": "0"
+        },
+        {
+            "var_key": "$b",
+            "var_title": "B",
+            "var_desc": null,
+            "var_type": "int",
+            "var_require": true,
+            "var_default": "0"
+        }
+    ],
+    "output": {
+        "var_desc": null,
+        "var_type": "int"
+    },
+    "events": [
+        {
+            "event_name": "Перед умножением",
+            "event_code": "beforeCalculate",
+            "event_type": "string"
+        },
+        {
+            "event_name": "После умножения",
+            "event_code": "afterCalculate",
+            "event_type": "string"
+        }
+    ],
+    "name": "Система событий (тестирую)"
+}

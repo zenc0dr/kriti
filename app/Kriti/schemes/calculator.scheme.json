@@ -6,88 +6,184 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 113,
-                "y": 84
+                "x": 262,
+                "y": 21
+            },
+            "links": {
+                "6b3083a2e38e4b63a983fe6295ad6359": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 1331,
-                "y": 318
+                "x": 1614,
+                "y": 301
+            },
+            "links": {
+                "e390cff9731845198154702fe20d75b4": [
+                    "event:beforeCalculate@input:$b"
+                ],
+                "d9aaabbceeed4ae3aa64576c357e224c": [
+                    "event:afterCalculate@input:$a"
+                ]
             }
         },
         {
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 81,
-                "y": 253
+                "x": 272,
+                "y": 215
+            },
+            "links": {
+                "6b3083a2e38e4b63a983fe6295ad6359": [
+                    "output@input:$b"
+                ]
             }
         },
         {
             "uuid": "8c6def242cb149a2b2f12d1be1a1e8ac",
             "type": "Module",
             "point": {
-                "x": 1196,
-                "y": 70
+                "x": 1327,
+                "y": 57
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "event:beforeCalculate@input:$b"
+                ],
+                "e390cff9731845198154702fe20d75b4": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 467,
-                "y": 444
+                "x": 934,
+                "y": 258
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 521,
-                "y": 144
+                "x": 633,
+                "y": 60
+            },
+            "links": {
+                "3193e1eb5b90404ba40933dd5537bd6f": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "7a73ad186d2448d2b3c7f3ad8f5e29c1",
             "type": "Module",
             "point": {
-                "x": 832,
-                "y": 610
+                "x": 731,
+                "y": 494
+            },
+            "links": {
+                "036c837a0bee431089a7c25725d66be9": [
+                    "output@input:count"
+                ]
             }
         },
         {
             "uuid": "10db085c1e364719a7a7be845f30b288",
             "type": "Module",
             "point": {
-                "x": 94,
-                "y": 417
+                "x": 268,
+                "y": 394
+            },
+            "links": {
+                "063791eb5acd4c7b921f2d84ca4cedb0": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "12f1e51457c24e93a5013a348067c8b9",
             "type": "Module",
             "point": {
-                "x": 121,
-                "y": 652
+                "x": 278,
+                "y": 570
+            },
+            "links": {
+                "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "3193e1eb5b90404ba40933dd5537bd6f",
             "type": "Module",
             "point": {
-                "x": 850,
-                "y": 28
+                "x": 1003,
+                "y": 48
+            },
+            "links": {
+                "8c6def242cb149a2b2f12d1be1a1e8ac": [
+                    "output@input:$a"
+                ]
             }
         },
         {
             "uuid": "e390cff9731845198154702fe20d75b4",
             "type": "Module",
             "point": {
-                "x": 1647,
-                "y": 182
+                "x": 2171,
+                "y": 259
+            },
+            "links": {
+                "766d13e540294201acb7597ca840897c": [
+                    "output@input:$a"
+                ]
+            }
+        },
+        {
+            "uuid": "d9aaabbceeed4ae3aa64576c357e224c",
+            "type": "Module",
+            "point": {
+                "x": 2175,
+                "y": 508
+            },
+            "links": {
+                "766d13e540294201acb7597ca840897c": [
+                    "output@input:$b"
+                ]
+            }
+        },
+        {
+            "uuid": "766d13e540294201acb7597ca840897c",
+            "type": "Module",
+            "point": {
+                "x": 2513,
+                "y": 340
+            },
+            "links": {
+                "a067bc663ba342488e3351714e6b8e02": [
+                    "event:beforeCalculate@input:$a",
+                    "event:afterCalculate@input:$b"
+                ]
+            }
+        },
+        {
+            "uuid": "a067bc663ba342488e3351714e6b8e02",
+            "type": "Module",
+            "point": {
+                "x": 3030,
+                "y": 194
             }
         }
     ]

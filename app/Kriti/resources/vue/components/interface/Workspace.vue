@@ -1,34 +1,33 @@
 <template>
-<div v-if="workspace_size_is_defined"
-     class="workspace"
-     :style="workspaceStyle"
-     @mousedown.ctrl.self="movePlato"
-     @mouseup.self="dropPlato"
-     @mousemove="mousemove"
-     @dblclick.self="workspaceContextMenu"
->
-    <div class="workspace__preloader"></div>
-    <div id="plato" class="workspace__plato" :style="platoStyle">
-        <Node v-for="node in nodes" :node="node"
-             :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
-             @mousedown="nodeHold(node, $event)"
-             @mouseup="nodeDrop"
-             @click.ctrl="createLink(node)"
-             @contextmenu.prevent="openContextMenu(node)"
+    <div v-if="workspace_size_is_defined"
+         class="workspace"
+         :style="workspaceStyle"
+         @mousedown.ctrl.self="movePlato"
+         @mouseup.self="dropPlato"
+         @mousemove="mousemove"
+         @dblclick.self="workspaceContextMenu"
+    >
+        <div class="workspace__preloader"></div>
+        <div id="plato" class="workspace__plato" :style="platoStyle">
+            <Node v-for="node in nodes" :node="node"
+                  :ref="node.uuid" :id="node.uuid" :class="{ focus:node === active_node }"
+                  @mousedown="nodeHold(node, $event)"
+                  @mouseup="nodeDrop"
+                  @contextmenu.prevent="openContextMenu(node)"
+            />
+        </div>
+        <NodeModal :node="node" @close="node = null" @update="getScheme"/>
+        <ContextMenu
+            :context="context_menu_object"
+            context_type="node"
+            :scheme_code="active_scheme_code"
+            :mouse_x="mouse_x"
+            :mouse_y="mouse_y"
+            @close="closeContextMenu"
+            @click_item="clickContextMenuItem"
         />
+        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" />
     </div>
-    <NodeModal :node="node" @close="node = null" @update="getScheme"/>
-    <ContextMenu
-        :context="context_menu_object"
-        context_type="node"
-        :scheme_code="active_scheme_code"
-        :mouse_x="mouse_x"
-        :mouse_y="mouse_y"
-        @close="closeContextMenu"
-        @click_item="clickContextMenuItem"
-    />
-    <KritiMenu />
-</div>
 </template>
 
 <script>
@@ -37,7 +36,7 @@ import LinkerLine from 'linkerline' // https://github.com/AhmedAyachi/LinkerLine
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
-import KritiMenu from "./KritiMenu";
+import KritiPanel from "./KritiPanel";
 
 export default {
     name: "Workspace",
@@ -45,14 +44,12 @@ export default {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
-        KritiMenu
+        KritiPanel
     },
-    props: {
-
-    },
+    props: {},
     data() {
         return {
-            active_scheme_code: 'calculator', // Имя активной темы
+            active_scheme_code: null, // Имя активной темы
             scheme: {}, // Активная схема
             context_menu_object: null, // Объект контекстного меню
 
@@ -66,11 +63,8 @@ export default {
 
             plato_x: 0, // Смещение карты по оси Х
             plato_y: 0, // Смещение карты по оси Y
-            plato_x_start: 0, // Фиксация начальных координат по оси Х
-            plato_y_start: 0, // Фиксация начальных координат по оси Y
-
-            //body_x_factor: 0, // Коэффициент
-            //body_y_factor: 0,
+            plato_x_fix: 0, // Фиксация начальных координат по оси Х
+            plato_y_fix: 0, // Фиксация начальных координат по оси Y
 
             node: null, // Данные нода
             active_node: null, // Выделенный нод
@@ -106,15 +100,6 @@ export default {
         Kriti.Workspace = this
         this.defineWorkspaceSize() // Установить размеры окна
         window.addEventListener('resize', this.defineWorkspaceSize)
-        this.getScheme(() => {
-            // jQuery('body').css({
-            //     marginLeft: this.plato_x,
-            //     marginTop: this.plato_y,
-            // })
-            this.plato_x_start = this.plato_x
-            this.plato_y_start = this.plato_y
-            this.addLinks()
-        })
     },
     beforeUnmount() { // Перед размонтированием удалить слушатель размеров рабочей области
         Kriti.Workspace = null
@@ -134,8 +119,14 @@ export default {
             });
         },
 
+        selectScheme(scheme_code) {
+            this.active_scheme_code = scheme_code
+            this.getScheme()
+        },
+
         // Загрузить схему
-        getScheme(fn) {
+        getScheme() {
+            this.removeAllLinks()
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
@@ -143,9 +134,9 @@ export default {
                 },
                 then: response => {
                     this.scheme = response.scheme
-                    if (fn) {
-                        fn()
-                    }
+                    this.plato_x_fix = this.plato_x
+                    this.plato_y_fix = this.plato_y
+                    this.addLinks()
                 }
             })
         },
@@ -188,7 +179,9 @@ export default {
         dropPlato() {
             Kriti.cleanLink()
             this.hold_plato = false
-            this.setScheme() // Сохранить состояние
+            if (this.plato_x !== this.plato_x_fix || this.plato_y !== this.plato_x_fix) {
+                this.setScheme() // Сохранить состояние
+            }
         },
 
         // Фиксировать движение мыши
@@ -210,13 +203,7 @@ export default {
             if (this.hold_plato) {
                 this.plato_x = this.mouse_x - this.hold_x_factor
                 this.plato_y = this.mouse_y - this.hold_y_factor
-
-                // jQuery('body').css({
-                //     marginLeft: this.plato_x + this.body_x_factor,
-                //     marginTop: this.plato_y + this.body_y_factor
-                // })
             }
-            //this.quantizeObjects()
         },
 
         // Захват нода
@@ -266,8 +253,7 @@ export default {
         },
 
         // Закрыть контекстное меню
-        closeContextMenu()
-        {
+        closeContextMenu() {
             this.context_menu_object = null
         },
 
@@ -277,12 +263,6 @@ export default {
                 this.node = context
             }
             if (code === 'cloneNode') {
-                // this.createUUID((uuid) => {
-                //     context.uuid = uuid
-                //     context.point.x += 100
-                //     context.point.y += 100
-                //     this.scheme.nodes.push(context)
-                // })
                 Kriti.api({
                     data: {
                         node: context
@@ -311,10 +291,6 @@ export default {
         // Отобразить сцепки
         addLinks() {
             this.$nextTick(() => {
-                // this.scheme.links.map(link => {
-                //     this.addLink(link)
-                // })
-
                 let links = []
                 this.scheme.nodes.forEach(node => {
                     if (node.links) {
@@ -385,7 +361,9 @@ export default {
             LinkerLine.positionAll()
         },
 
-        createLink(){},
+        addNode() {
+            console.log('Добавить нод')
+        },
     }
 }
 </script>

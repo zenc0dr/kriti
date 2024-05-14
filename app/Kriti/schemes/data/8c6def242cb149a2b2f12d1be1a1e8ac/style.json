@@ -5,8 +5,7 @@
         "background-color": "blue",
         "border-radius": "5px",
         "padding": "7px 10px",
-        "color": "#666666",
-        "border": "3px solid #000"
+        "color": "#666666"
     },
     "module_title": {
         "font-weight": "bold",
