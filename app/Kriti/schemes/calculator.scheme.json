@@ -6,8 +6,8 @@
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 348,
-                "y": -14
+                "x": 440,
+                "y": 21
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -35,8 +35,8 @@
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 350,
-                "y": 187
+                "x": 433,
+                "y": 190
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -75,8 +75,8 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 714,
-                "y": 61
+                "x": 807,
+                "y": 75
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -91,8 +91,8 @@
             "uuid": "7a73ad186d2448d2b3c7f3ad8f5e29c1",
             "type": "Module",
             "point": {
-                "x": 749,
-                "y": 460
+                "x": 740,
+                "y": 412
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -130,8 +130,8 @@
             "uuid": "3193e1eb5b90404ba40933dd5537bd6f",
             "type": "Module",
             "point": {
-                "x": 1030,
-                "y": -26
+                "x": 1102,
+                "y": -65
             },
             "links": {
                 "8c6def242cb149a2b2f12d1be1a1e8ac": [
