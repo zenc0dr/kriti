@@ -77,6 +77,7 @@ export default {
             padding-top: 4px;
             background: #ffffff;
             border-radius: 5px;
+            border: 1px solid #b1b1b1;
             color: #265c78;
             font-size: 11px;
             margin-bottom: 5px;

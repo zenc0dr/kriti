@@ -26,7 +26,7 @@
             @close="closeContextMenu"
             @click_item="clickContextMenuItem"
         />
-        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" />
+        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" @update="panelUpdate" />
     </div>
 </template>
 
@@ -295,14 +295,17 @@ export default {
                 this.scheme.nodes.forEach(node => {
                     if (node.links) {
                         for (let target_uuid in node.links) {
-                            let codes = node.links[target_uuid]
-                            codes.forEach(code => {
-                                code = code.split('@')
-                                links.push({
-                                    of: `${node.uuid}:${code[0]}`,
-                                    to: `${target_uuid}:${code[1]}`
+                            let codes = node.links[target_uuid] ?? null
+                            if (codes) {
+                                console.log('codes', codes)
+                                codes.forEach(code => {
+                                    code = code.split('@')
+                                    links.push({
+                                        of: `${node.uuid}:${code[0]}`,
+                                        to: `${target_uuid}:${code[1]}`
+                                    })
                                 })
-                            })
+                            }
                         }
                     }
                 })
@@ -359,6 +362,21 @@ export default {
 
         correctLines() {
             LinkerLine.positionAll()
+        },
+
+        panelUpdate(event) {
+            if (event === 'clear_links') {
+
+            }
+            Kriti.api({
+                url: 'kriti.api.Scheme:clearLinks',
+                data: {
+                    scheme: this.active_scheme_code
+                },
+                then: response => {
+                    this.getScheme()
+                }
+            })
         },
 
         addNode() {

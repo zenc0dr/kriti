@@ -4,40 +4,24 @@
     "version": 1,
     "inputs": [
         {
-            "var_key": "$a",
-            "var_title": "A",
+            "var_key": "$route_a",
+            "var_title": "russia-river-cruises",
             "var_desc": null,
-            "var_type": "int",
+            "var_type": "string",
             "var_require": true,
             "var_default": "0"
         },
         {
-            "var_key": "$b",
-            "var_title": "B",
+            "var_key": "$route_b",
+            "var_title": "russia-river-cruises\/motorship\/{id}",
             "var_desc": null,
-            "var_type": "int",
+            "var_type": "string",
             "var_require": true,
             "var_default": "0"
         },
         {
-            "var_key": "$c",
-            "var_title": "C",
-            "var_desc": null,
-            "var_type": "int",
-            "var_require": true,
-            "var_default": null
-        },
-        {
-            "var_key": "count",
-            "var_title": "Счётчик",
-            "var_desc": null,
-            "var_type": "int",
-            "var_require": true,
-            "var_default": null
-        },
-        {
-            "var_key": "$user_id",
-            "var_title": "id Пользователя",
+            "var_key": "$route_c",
+            "var_title": "russia-river-cruises\/cruise\/{cruise_id}",
             "var_desc": null,
             "var_type": "int",
             "var_require": true,
@@ -46,19 +30,29 @@
     ],
     "output": {
         "var_desc": null,
-        "var_type": "int"
+        "var_type": "html"
     },
     "events": [
         {
-            "event_name": "Перед умножением",
-            "event_code": "beforeCalculate",
+            "event_name": "Перед запросом",
+            "event_code": "beforeRequest",
             "event_type": "string"
         },
         {
-            "event_name": "После умножения",
-            "event_code": "afterCalculate",
+            "event_name": "После запроса",
+            "event_code": "afterRequest",
             "event_type": "string"
+        },
+        {
+            "event_name": "Запрос теплохода (ship_id)",
+            "event_code": "shipQuery",
+            "event_type": "int"
+        },
+        {
+            "event_name": "Запрос заезда (cruise_id)",
+            "event_code": "cruiseQuery",
+            "event_type": "int"
         }
     ],
-    "name": "Первичная обработка данных"
+    "name": "Данные маршрутов"
 }
