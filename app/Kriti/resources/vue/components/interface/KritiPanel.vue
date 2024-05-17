@@ -1,9 +1,14 @@
 <template>
-<div class="kriti-panel">
-    <div class="kriti-panel__title">
-        Схемы
+<div class="kriti-panel" v-click-outside-element="closeSchemeSettings">
+    <div class="kriti-panel__tabs">
+        <div class="kriti-panel__tabs__tab">
+            Схемы
+        </div>
+        <div class="kriti-panel__tabs__tab">
+            Блоки
+        </div>
     </div>
-    <div v-if="items" class="kriti-panel__body" v-click-outside-element="closeSchemeSettings">
+    <div v-if="items" class="kriti-panel__body">
         <div v-for="item in items"
              class="kriti-panel__item"
              :class="{active:isActive(item)}"
@@ -64,8 +69,6 @@ export default {
             })
         },
         selectItem(item) {
-
-
             const coordinates = {
                 x: event.clientX,
                 y: event.clientY
@@ -105,10 +108,13 @@ export default {
     padding: 9px;
     border-radius: 10px;
 
-    &__title {
-        font-size: 20px;
-        color: #1e7c13;
-        margin-bottom: 10px;
+    &__tabs {
+        display: flex;
+        &__tab {
+            font-size: 20px;
+            color: #1e7c13;
+            margin-bottom: 10px;
+        }
     }
     &__body {
         color: #000

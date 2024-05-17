@@ -12,6 +12,10 @@
             "links": {
                 "4b033f86e4074570a60cf957e6861f18": [
                     "input:$route_a@input:$cruise"
+                ],
+                "45918659765542f59ccd78d3d7e0b38f": [
+                    "output@input:$items_cruises",
+                    "event:beforeRequest@input:$items_info"
                 ]
             }
         },
@@ -27,8 +31,8 @@
             "uuid": "4b033f86e4074570a60cf957e6861f18",
             "type": "Module",
             "point": {
-                "x": 781,
-                "y": -39
+                "x": 773,
+                "y": 86
             },
             "links": {
                 "45918659765542f59ccd78d3d7e0b38f": [
