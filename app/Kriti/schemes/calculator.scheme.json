@@ -1,13 +1,13 @@
 {
-    "name": "Схема калькулятора",
+    "name": "Тест связей",
     "description": "Всякие вызовы которые реализуют калькулятор",
     "nodes": [
         {
             "uuid": "067ddc2985964a82b8168359b4f9b633",
             "type": "Module",
             "point": {
-                "x": 440,
-                "y": 21
+                "x": 358,
+                "y": -17
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -35,8 +35,8 @@
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 433,
-                "y": 190
+                "x": 364,
+                "y": 207
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -75,8 +75,8 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 807,
-                "y": 75
+                "x": 793,
+                "y": 53
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -149,6 +149,9 @@
             "links": {
                 "766d13e540294201acb7597ca840897c": [
                     "output@input:$a"
+                ],
+                "678c6cd903414a238e54670fcdf00c40": [
+                    "event:beforeCalculate@input:$a"
                 ]
             }
         },
@@ -166,6 +169,14 @@
             "point": {
                 "x": 2846,
                 "y": 255
+            }
+        },
+        {
+            "uuid": "678c6cd903414a238e54670fcdf00c40",
+            "type": "Module",
+            "point": {
+                "x": 2934,
+                "y": -85
             }
         }
     ]

@@ -8,4 +8,9 @@ class Calculator
     {
         return $a * $b;
     }
+
+    public function subtraction(int $a, int $b): int
+    {
+        return $a - $b;
+    }
 }

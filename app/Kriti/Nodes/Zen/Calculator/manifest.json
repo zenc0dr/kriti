@@ -1,5 +1,7 @@
 {
     "author": "Alex Blaze",
-    "node_type": "Module",
-    "description": "Это простой скрипт калькулятора который умножает A*B"
+    "name": "Калькулятор",
+    "icon": "bi bi-calculator",
+    "description": "Набор методов для математических операций",
+    "node": "Module"
 }

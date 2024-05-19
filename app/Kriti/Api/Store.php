@@ -2,10 +2,10 @@
 
 namespace App\Kriti\Api;
 
-class Panel
+class Store
 {
-    # http://kriti.mog/kriti.api.Panel:getItems
-    public function getItems()
+    # http://kriti.mog/kriti.api.Store:getSchemes
+    public function getSchemes(): string
     {
         return kriti()->response([
             'items' => kriti()->scheme()->getSchemesList()

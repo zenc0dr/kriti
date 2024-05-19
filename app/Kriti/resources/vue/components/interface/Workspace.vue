@@ -26,7 +26,7 @@
             @close="closeContextMenu"
             @click_item="clickContextMenuItem"
         />
-        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" @update="panelUpdate" />
+<!--        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" @update="panelUpdate" />-->
     </div>
 </template>
 
@@ -36,7 +36,7 @@ import LinkerLine from 'linkerline' // https://github.com/AhmedAyachi/LinkerLine
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
-import KritiPanel from "./KritiPanel";
+//import KritiPanel from "./KritiPanel";
 
 export default {
     name: "Workspace",
@@ -44,7 +44,8 @@ export default {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
-        KritiPanel
+        //KritiPanel,
+
     },
     props: {},
     data() {
