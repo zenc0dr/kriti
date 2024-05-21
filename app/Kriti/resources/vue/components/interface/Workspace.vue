@@ -26,13 +26,14 @@
             @close="closeContextMenu"
             @click_item="clickContextMenuItem"
         />
-<!--        <KritiPanel :active_code="active_scheme_code" @select="selectScheme" @update="panelUpdate" />-->
+        <KritiMenu :active_code="active_scheme_code" @selectScheme="selectScheme"/>
     </div>
 </template>
 
 <script>
 //import LeaderLine from "leader-line-vue" // https://github.com/anseki/leader-line
 import LinkerLine from 'linkerline' // https://github.com/AhmedAyachi/LinkerLine
+import KritiMenu from "./KritiMenu";
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
@@ -41,11 +42,11 @@ import ContextMenu from "./ContextMenu";
 export default {
     name: "Workspace",
     components: {
+
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
-        //KritiPanel,
-
+        KritiMenu
     },
     props: {},
     data() {

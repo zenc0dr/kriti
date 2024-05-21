@@ -23,7 +23,7 @@ class Scheme
         return $scheme;
     }
 
-    # Сохранить ноды
+    # Сохранить схему
     public function setScheme(string $scheme_code, array $scheme_data)
     {
         kriti()->files()->arrayToFile(

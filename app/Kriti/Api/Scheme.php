@@ -47,4 +47,11 @@ class Scheme
             request('scheme')
         );
     }
+
+    # Получить модули схемы (для меню)
+    # http://kriti.mog/kriti.api.Scheme:getSchemeModules
+    public function getSchemeModules()
+    {
+        dd('ok');
+    }
 }
