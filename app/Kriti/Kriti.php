@@ -7,6 +7,7 @@ use App\Kriti\Classes\Node;
 use App\Kriti\Classes\Scheme;
 use App\Kriti\Classes\Services\Files;
 use App\Kriti\Classes\Context;
+use App\Kriti\Classes\Store;
 
 /*
  * Особенность этого класса в том что он является точкой вхождения в внутренний интерфейс kriti
@@ -37,6 +38,11 @@ class Kriti
     public function context(): Context
     {
         return Context::getInstance();
+    }
+
+    public function store(): Store
+    {
+        return Store::getInstance();
     }
 
     ### Хелперы

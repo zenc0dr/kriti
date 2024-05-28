@@ -3,13 +3,15 @@
 namespace App\Kriti\Api;
 use App\Kriti\Nodes\Zen\Calculator\V1\Calculator;
 
+
 class Debug
 {
     # http://kriti.mog/kriti.api.Debug:test
     public function test()
     {
-        $node = new Node();
-        $node->setData();
+        dd(
+            kriti()->store()->getLocalNodes()
+        );
     }
 
     # Получить схему по коду схемы
