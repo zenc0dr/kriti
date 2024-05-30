@@ -1,0 +1,16 @@
+{
+    "module": {
+        "height": "115px",
+        "width": "252px",
+        "background-color": "#4b716b",
+        "border-radius": "5px",
+        "padding": "7px 10px"
+    },
+    "module_title": {
+        "font-weight": "bold",
+        "font-size": "14px",
+        "color": "#ffffff",
+        "padding-bottom": "2px",
+        "border-bottom": "1px solid #ffffff"
+    }
+}

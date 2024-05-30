@@ -10,8 +10,15 @@
                 </template>
             </div>
             <div class="kriti-menu__select-scheme__add">
-                <i class="bi bi-plus-circle-fill" title="Добавить новую схему"></i>
+                <i class="bi bi-plus-circle-fill"
+                   title="Добавить новую схему"
+                   @click="createNewScheme"
+                >
+                </i>
             </div>
+            <KritiModal title="" :show="scheme_new !== null">
+                чё?
+            </KritiModal>
         </div>
     </div>
 
@@ -37,7 +44,8 @@ export default {
     data() {
         return {
             schemes_list: [],
-            scheme_blocks: null, //
+            scheme_blocks: null,
+            scheme_new: null,
         }
     },
     watch: {
@@ -70,9 +78,12 @@ export default {
             })
         },
 
-        getSchemeModules()
+        createNewScheme()
         {
-
+            this.scheme_new = {
+                name: null,
+                description: null,
+            }
         },
 
         selectScheme(scheme)

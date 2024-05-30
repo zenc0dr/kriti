@@ -8,10 +8,10 @@
     <div v-else class="kriti-modal__body">
         <div class="kriti-modal__header">
             <div class="kriti-modal__header__title">
-                {{ title }}
+                {{ heading }}
             </div>
             <div @click="close" class="kriti-modal__header__close">
-                X
+                <i class="bi bi-x"></i>
             </div>
         </div>
         <div class="kriti-modal__content">
@@ -33,7 +33,7 @@ export default {
             type: Boolean,
             default: false
         },
-        title: {
+        heading: {
             type: String,
             default: null,
         },
@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss">
 .kriti-modal {
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -65,7 +65,11 @@ export default {
     z-index: 1;
 
     &__body {
-
+        margin-top: 50px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #fff;
+        min-width: 300px;
     }
 
     &__loading {
@@ -73,9 +77,30 @@ export default {
     }
 
     &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         &__title {
+            color: #000;
+        }
 
+        &__close {
+            color: #000;
+            i {
+                cursor: pointer;
+                border-radius: 50%;
+                padding: 0px 3px;
+                padding-top: 2px;
+                font-size: 24px;
+                transition: 200ms;
+                color: #7b7b7b;
+
+                &:hover {
+                    background: #ebebeb;
+                    color: #636363;
+                }
+            }
         }
     }
 

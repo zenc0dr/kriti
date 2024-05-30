@@ -1,0 +1,44 @@
+{
+    "name": "Playground схема",
+    "description": "Тестовая схема реализующая различные логические схемы",
+    "nodes": [
+        {
+            "uuid": "a067bc663ba342488e3351714e6b8e02",
+            "type": "Module",
+            "point": {
+                "x": 368,
+                "y": 239
+            },
+            "links": {
+                "4b033f86e4074570a60cf957e6861f18": [
+                    "input:$route_a@input:$cruise"
+                ],
+                "45918659765542f59ccd78d3d7e0b38f": [
+                    "output@input:$items_cruises",
+                    "event:beforeRequest@input:$items_info"
+                ]
+            }
+        },
+        {
+            "uuid": "45918659765542f59ccd78d3d7e0b38f",
+            "type": "Module",
+            "point": {
+                "x": 1246,
+                "y": 152
+            }
+        },
+        {
+            "uuid": "4b033f86e4074570a60cf957e6861f18",
+            "type": "Module",
+            "point": {
+                "x": 643,
+                "y": 0
+            },
+            "links": {
+                "45918659765542f59ccd78d3d7e0b38f": [
+                    "output@input:$items_cruises"
+                ]
+            }
+        }
+    ]
+}
