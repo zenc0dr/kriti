@@ -26,6 +26,10 @@ class Scheme
     # Сохранить схему
     public function setScheme(string $scheme_code, array $scheme_data)
     {
+        if (!isset($scheme_data['nodes'])) {
+            $scheme_data['nodes'] = [];
+        }
+
         kriti()->files()->arrayToFile(
             $scheme_data,
             kriti()->schemes_path("$scheme_code.scheme.json")

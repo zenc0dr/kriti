@@ -26,7 +26,10 @@
             @close="closeContextMenu"
             @click_item="clickContextMenuItem"
         />
-        <KritiMenu :active_code="active_scheme_code" @selectScheme="selectScheme"/>
+        <KritiMenu
+            :active_scheme_code="active_scheme_code"
+            @update_scheme="reloadScheme"
+        />
     </div>
 </template>
 
@@ -121,8 +124,11 @@ export default {
             });
         },
 
-        selectScheme(scheme_code) {
-            this.active_scheme_code = scheme_code
+        // Обновить схему (или переключить на другую)
+        reloadScheme(scheme_code) {
+            if (scheme_code) {
+                this.active_scheme_code = scheme_code
+            }
             this.getScheme()
         },
 
@@ -299,7 +305,6 @@ export default {
                         for (let target_uuid in node.links) {
                             let codes = node.links[target_uuid] ?? null
                             if (codes) {
-                                console.log('codes', codes)
                                 codes.forEach(code => {
                                     code = code.split('@')
                                     links.push({

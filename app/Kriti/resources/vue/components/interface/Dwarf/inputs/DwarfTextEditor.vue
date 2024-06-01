@@ -189,7 +189,7 @@ export default {
         color: #1a1a1a;
         line-height: 23px;
         font-family: var(--bs-font-sans-serif);
-        padding: 40px 50px;
+        //padding: 40px 50px;
         padding-bottom: 60px;
         margin-bottom: 30px;
     }
@@ -225,7 +225,7 @@ export default {
         line-height: 23px;
         font-family: var(--bs-font-sans-serif);
         background: #fff;
-        padding: 40px 50px;
+        //padding: 40px 50px;
         padding-bottom: 60px;
         margin-bottom: 30px;
         border-radius: 0 0 5px 5px;

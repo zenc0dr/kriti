@@ -1,27 +1,27 @@
 <template>
-<div v-if="show" class="kriti-modal">
-    <div v-if="loading" class="kriti-modal__body">
-        <div class="kriti-modal__loading">
-            Загрузка...
+    <div v-if="show" class="kriti-modal" @keydown.esc="close" @click="close">
+        <div :style="style" class="kriti-modal__body" ref="modalBody" @click.stop>
+            <div v-if="loading" class="kriti-modal__loading">
+                Загрузка...
+            </div>
+            <div v-else>
+                <div class="kriti-modal__header">
+                    <div class="kriti-modal__header__title">
+                        {{ heading }}
+                    </div>
+                    <div @click="close" class="kriti-modal__header__close">
+                        <i class="bi bi-x"></i>
+                    </div>
+                </div>
+                <div class="kriti-modal__content">
+                    <slot></slot>
+                </div>
+                <div class="kriti-modal__footer">
+                    <slot name="footer"></slot>
+                </div>
+            </div>
         </div>
     </div>
-    <div v-else class="kriti-modal__body">
-        <div class="kriti-modal__header">
-            <div class="kriti-modal__header__title">
-                {{ heading }}
-            </div>
-            <div @click="close" class="kriti-modal__header__close">
-                <i class="bi bi-x"></i>
-            </div>
-        </div>
-        <div class="kriti-modal__content">
-            <slot></slot>
-        </div>
-        <div class="kriti-modal__footer">
-            <slot name="footer"></slot>
-        </div>
-    </div>
-</div>
 </template>
 
 <script>
@@ -37,16 +37,39 @@ export default {
             type: String,
             default: null,
         },
+        maxWidth: {
+            type: String,
+            default: '90%'
+        },
         loading: {
             type: Boolean,
             default: false
         }
     },
+    computed: {
+        style() {
+            return {
+                maxWidth: this.maxWidth
+            }
+        }
+    },
+    mounted() {
+        document.addEventListener('keydown', this.handleEscapeKey);
+    },
+    beforeUnmount() {
+        document.removeEventListener('keydown', this.handleEscapeKey);
+    },
     methods: {
         close() {
-            this.$emit('close')
+            console.log('close')
+            this.$emit('close');
+        },
+        handleEscapeKey(event) {
+            if (event.key === 'Escape') {
+                this.close();
+            }
         }
-    }
+    },
 }
 </script>
 
@@ -69,20 +92,25 @@ export default {
         padding: 15px;
         border-radius: 10px;
         background-color: #fff;
-        min-width: 300px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     &__loading {
-
+        text-align: center;
     }
 
     &__header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
 
         &__title {
-            color: #000;
+            color: #424242;
+            font-size: 19px;
+            margin-right: 10px;
         }
 
         &__close {
@@ -105,11 +133,11 @@ export default {
     }
 
     &__content {
-
+        margin-top: 10px;
     }
 
     &__footer {
-
+        margin-top: 20px;
     }
 }
 </style>
