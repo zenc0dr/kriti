@@ -191,7 +191,7 @@ export default {
                 },
                 then: response => {
                     this.getSchemes(() => {
-                        this.$emit('update_scheme', this.active_scheme_code)
+                        this.$emit('update_scheme', this.scheme.code)
                         this.scheme = null
                     })
                 }

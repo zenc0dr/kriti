@@ -61,8 +61,8 @@
             "uuid": "063791eb5acd4c7b921f2d84ca4cedb0",
             "type": "Module",
             "point": {
-                "x": 1200,
-                "y": 288
+                "x": 1239,
+                "y": 218
             },
             "links": {
                 "036c837a0bee431089a7c25725d66be9": [
@@ -75,8 +75,8 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 793,
-                "y": 53
+                "x": 855,
+                "y": 83
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -143,12 +143,13 @@
             "uuid": "e390cff9731845198154702fe20d75b4",
             "type": "Module",
             "point": {
-                "x": 2483,
-                "y": 45
+                "x": 2368,
+                "y": -2
             },
             "links": {
                 "766d13e540294201acb7597ca840897c": [
-                    "output@input:$a"
+                    "output@input:$a",
+                    "event:afterCalculate@input:$b"
                 ],
                 "678c6cd903414a238e54670fcdf00c40": [
                     "event:beforeCalculate@input:$a"
