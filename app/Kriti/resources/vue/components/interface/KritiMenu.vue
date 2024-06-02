@@ -202,14 +202,13 @@ export default {
             Kriti.api({
                 url: 'kriti.api.Scheme:removeScheme',
                 data: {
-                    scheme_code: this.scheme.code,
+                    scheme_code: scheme.code,
                 },
                 then: response => {
                     this.getSchemes(() => {
-                        if (this.scheme.code === this.active_scheme_code) {
+                        if (scheme.code === this.active_scheme_code) {
                             this.$emit('update_scheme', null)
                         }
-                        this.scheme = null
                     })
                 }
             })
