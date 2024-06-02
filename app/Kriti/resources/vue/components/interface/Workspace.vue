@@ -127,7 +127,13 @@ export default {
         // Обновить схему (или переключить на другую)
         reloadScheme(scheme_code) {
             this.active_scheme_code = scheme_code
-            this.getScheme()
+
+            if (this.active_scheme_code) {
+                this.getScheme()
+            } else {
+                this.removeAllLinks()
+                this.scheme = {}
+            }
         },
 
         // Загрузить схему
