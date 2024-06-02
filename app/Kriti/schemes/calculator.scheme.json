@@ -19,8 +19,8 @@
             "uuid": "036c837a0bee431089a7c25725d66be9",
             "type": "Module",
             "point": {
-                "x": 1767,
-                "y": 226
+                "x": 1848,
+                "y": 191
             },
             "links": {
                 "d9aaabbceeed4ae3aa64576c357e224c": [
@@ -35,8 +35,8 @@
             "uuid": "5aa1a78ddbca41bbbb64df565e910edd",
             "type": "Module",
             "point": {
-                "x": 364,
-                "y": 207
+                "x": 336,
+                "y": 168
             },
             "links": {
                 "6b3083a2e38e4b63a983fe6295ad6359": [
@@ -75,8 +75,8 @@
             "uuid": "6b3083a2e38e4b63a983fe6295ad6359",
             "type": "Module",
             "point": {
-                "x": 793,
-                "y": 53
+                "x": 790,
+                "y": 95
             },
             "links": {
                 "063791eb5acd4c7b921f2d84ca4cedb0": [
@@ -104,8 +104,8 @@
             "uuid": "10db085c1e364719a7a7be845f30b288",
             "type": "Module",
             "point": {
-                "x": 402,
-                "y": 404
+                "x": 346,
+                "y": 370
             },
             "links": {
                 "7a73ad186d2448d2b3c7f3ad8f5e29c1": [
@@ -143,8 +143,8 @@
             "uuid": "e390cff9731845198154702fe20d75b4",
             "type": "Module",
             "point": {
-                "x": 2483,
-                "y": 45
+                "x": 2348,
+                "y": 50
             },
             "links": {
                 "766d13e540294201acb7597ca840897c": [
@@ -167,16 +167,16 @@
             "uuid": "766d13e540294201acb7597ca840897c",
             "type": "Module",
             "point": {
-                "x": 2846,
-                "y": 255
+                "x": 2694,
+                "y": 212
             }
         },
         {
             "uuid": "678c6cd903414a238e54670fcdf00c40",
             "type": "Module",
             "point": {
-                "x": 2934,
-                "y": -85
+                "x": 2720,
+                "y": -124
             }
         }
     ]

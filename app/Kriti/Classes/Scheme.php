@@ -7,9 +7,13 @@ class Scheme
     # Получить схему без статических данных
     public function getScheme(string $scheme_code): ?array
     {
-        return kriti()->files()->arrayFromFile(
+        $scheme = kriti()->files()->arrayFromFile(
             kriti()->schemes_path("$scheme_code.scheme.json")
         );
+        if (!$scheme) {
+            return null;
+        }
+        return $scheme;
     }
 
     # Получить схему с статическими данными определяемые типом нода
@@ -17,6 +21,9 @@ class Scheme
     public function getSaturatedScheme(string $scheme_code): ?array
     {
         $scheme = $this->getScheme($scheme_code);
+        if (!$scheme) {
+            return null;
+        }
         if (isset($scheme['nodes'])) {
             foreach ($scheme['nodes'] as &$node) {
                 kriti()->node()->attachStatic($node);

@@ -30,6 +30,9 @@
             :active_scheme_code="active_scheme_code"
             @update_scheme="reloadScheme"
         />
+        <KritiBlocks
+            ref="KritiBlocks"
+        />
     </div>
 </template>
 
@@ -40,6 +43,7 @@ import KritiMenu from "./KritiMenu";
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
+import KritiBlocks from "./KritiBlocks";
 //import KritiPanel from "./KritiPanel";
 
 export default {
@@ -49,13 +53,14 @@ export default {
         Node, // Компонент реализующий ноду
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
-        KritiMenu
+        KritiMenu,
+        KritiBlocks
     },
     props: {},
     data() {
         return {
             active_scheme_code: null, // Имя активной темы
-            scheme: {}, // Активная схема
+            scheme: null, // Активная схема
             context_menu_object: null, // Объект контекстного меню
 
             mouse_x: 0,
@@ -82,7 +87,7 @@ export default {
     },
     computed: {
         nodes() { // Ноды схемы
-            return this.scheme?.nodes
+            return this?.scheme?.nodes
         },
         platoStyle() {
             return {
@@ -132,7 +137,7 @@ export default {
                 this.getScheme()
             } else {
                 this.removeAllLinks()
-                this.scheme = {}
+                this.scheme = null
             }
         },
 
@@ -140,7 +145,7 @@ export default {
         getScheme() {
             this.removeAllLinks()
             if (!this.active_scheme_code) {
-                this.scheme = {}
+                this.scheme = null
                 return
             }
             Kriti.api({
@@ -153,6 +158,7 @@ export default {
                     this.plato_x_fix = this.plato_x
                     this.plato_y_fix = this.plato_y
                     this.addLinks()
+                    this.reloadBlocks()
                 }
             })
         },
@@ -196,7 +202,7 @@ export default {
             Kriti.cleanLink()
             this.hold_plato = false
             if (this.plato_x !== this.plato_x_fix || this.plato_y !== this.plato_x_fix) {
-                this.setScheme() // Сохранить состояние
+                //this.setScheme() // Сохранить состояние
             }
         },
 
@@ -289,6 +295,7 @@ export default {
                         node.point.x += 100
                         node.point.y += 100
                         this.scheme.nodes.push(node)
+                        this.reloadBlocks()
                     }
                 })
             }
@@ -392,6 +399,10 @@ export default {
                     this.getScheme()
                 }
             })
+        },
+
+        reloadBlocks() {
+            this.$refs.KritiBlocks.reload()
         },
 
         addNode() {

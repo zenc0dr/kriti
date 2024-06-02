@@ -8,11 +8,13 @@ class Scheme
     # http://kriti.mog/kriti.api.Scheme:getScheme?scheme_code=calculator
     public function getScheme(): ?string
     {
+        $scheme = kriti()->scheme()->getSaturatedScheme(
+            request('scheme_code')
+        );
         return kriti()->response(
             [
-                'scheme' => kriti()->scheme()->getSaturatedScheme(
-                    request('scheme_code')
-                )
+                'scheme' => $scheme,
+                'success' => boolval($scheme)
             ]
         );
     }
