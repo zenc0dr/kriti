@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="kriti-menu__modal-select__item__control">
-                            <i @click="removeScheme(item)" class="bi bi-trash"></i>
+                            <i @click="removeScheme(item)" class="bi bi-trash" title="Удалить схему"></i>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@ export default {
     padding: 15px;
     border-radius: 4px;
     background: #fff;
-    width: 250px;
+    width: 300px;
 
     &__select-scheme {
         display: flex;
@@ -241,9 +241,9 @@ export default {
 
         &__selected {
             display: flex;
-
+            flex: 1 0 0;
             &__item {
-
+                flex: 1 0 0;
                 .scheme-name {
                     font-size: 16px;
                     color: #3f607c;
@@ -261,6 +261,7 @@ export default {
                 color: #565656;
                 margin: 0 3px;
                 cursor: pointer;
+                margin-right: 5px;
             }
         }
         &__add {
@@ -300,6 +301,8 @@ export default {
             &__control {
                 display: flex;
                 width: 100px;
+                align-items: center;
+                justify-content: flex-end;
             }
         }
     }
