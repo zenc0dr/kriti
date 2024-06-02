@@ -36,6 +36,13 @@ class Scheme
         );
     }
 
+    # Удалить схему
+    public function removeScheme(string $scheme_code)
+    {
+        $scheme = $this->getScheme($scheme_code);
+        dd($scheme);
+    }
+
     # Получить список схем
     public function getSchemesList(): array
     {

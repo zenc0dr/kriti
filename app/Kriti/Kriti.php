@@ -58,10 +58,20 @@ class Kriti
     }
 
     # Обработка ответа
-    public function response(string|array $response): ?string
+    public function response(string|array $response = null): ?string
     {
         if (is_string($response)) {
             return $response;
+        } else {
+            if ($response === null) {
+                $response = [
+                    'success' => true
+                ];
+            } else {
+                if (!isset($response['success'])) {
+                    $response['success'] = true;
+                }
+            }
         }
         return $this->toJson($response);
     }

@@ -25,9 +25,17 @@ class Scheme
             request('scheme_code'),
             request('scheme_data'),
         );
-        return kriti()->response([
-            'success' => true
-        ]);
+        return kriti()->response();
+    }
+
+    # Сохранить схему
+    # http://kriti.mog/kriti.api.Scheme:removeScheme?scheme_code=second_scheme
+    public function removeScheme()
+    {
+        kriti()->scheme()->removeScheme(
+            request('scheme_code')
+        );
+        return kriti()->response();
     }
 
     # Получить список схем

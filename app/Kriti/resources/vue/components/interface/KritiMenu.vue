@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="kriti-menu__modal-select__item__control">
-                            OX
+                            <i @click="removeScheme(item)" class="bi bi-trash"></i>
                         </div>
                     </div>
                 </div>
@@ -192,6 +192,23 @@ export default {
                 then: response => {
                     this.getSchemes(() => {
                         this.$emit('update_scheme', this.scheme.code)
+                        this.scheme = null
+                    })
+                }
+            })
+        },
+
+        removeScheme(scheme) {
+            Kriti.api({
+                url: 'kriti.api.Scheme:removeScheme',
+                data: {
+                    scheme_code: this.scheme.code,
+                },
+                then: response => {
+                    this.getSchemes(() => {
+                        if (this.scheme.code === this.active_scheme_code) {
+                            this.$emit('update_scheme', null)
+                        }
                         this.scheme = null
                     })
                 }
