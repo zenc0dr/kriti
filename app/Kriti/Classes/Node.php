@@ -71,6 +71,26 @@ class Node
         return $node;
     }
 
+    public function removeNode(string $uuid = null): bool
+    {
+        if (!$uuid) {
+            $uuid = $this->uuid;
+        }
+        if (!$uuid) {
+            throw new \Exception('Не указан uuid');
+        }
+        $node_path = kriti()->schemes_path("data/$uuid");
+        if (!file_exists($node_path)) {
+            return false;
+        }
+
+        kriti()->files()->removeDir($node_path);
+        if (file_exists($node_path)) {
+            return false;
+        }
+        return true;
+    }
+
     # создать или удалить сцепку
     public function makeLink(array $link, string $scheme_code)
     {

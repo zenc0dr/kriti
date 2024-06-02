@@ -40,7 +40,12 @@ class Scheme
     public function removeScheme(string $scheme_code)
     {
         $scheme = $this->getScheme($scheme_code);
-        dd($scheme);
+        if (isset($scheme['nodes'])) {
+            foreach ($scheme['nodes'] as $node) {
+                kriti()->node()->removeNode($node['uuid']);
+            }
+        }
+        unlink(kriti()->schemes_path("$scheme_code.scheme.json"));
     }
 
     # Получить список схем

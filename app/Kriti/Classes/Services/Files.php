@@ -20,6 +20,14 @@ class Files
         return $dir_path;
     }
 
+    # Удалить папку рекурсивно
+    public function removeDir($folder_path)
+    {
+        if (File::isDirectory($folder_path)) {
+            File::deleteDirectory($folder_path);
+        }
+    }
+
     public function filesList(string $dir_path, bool $recursive = false): Collection
     {
         $files = $recursive ? File::allFiles($dir_path) : File::files($dir_path);
