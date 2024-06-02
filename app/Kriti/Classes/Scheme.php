@@ -54,9 +54,6 @@ class Scheme
     public function removeNode(string $node_uuid, string $scheme_code)
     {
         $scheme = $this->getScheme($scheme_code);
-
-        //dd($scheme);
-
         foreach ($scheme['nodes'] as $key => &$node) {
             if ($node['uuid'] === $node_uuid) {
                 unset($scheme['nodes'][$key]);
@@ -70,9 +67,7 @@ class Scheme
                 }
             }
         }
-
-        //dd($scheme);
-
+        $scheme['nodes'] = array_values($scheme['nodes']);
         $this->setScheme($scheme_code, $scheme);
     }
 

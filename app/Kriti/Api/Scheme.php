@@ -45,7 +45,7 @@ class Scheme
     public function removeNode()
     {
         //kriti()->saveRequest('remove_node');
-        kriti()->loadRequest('remove_node');
+        //kriti()->loadRequest('remove_node');
         $node_uuid = request('node_uuid');
         $scheme_code = request('scheme_code');
         kriti()->scheme()->removeNode(

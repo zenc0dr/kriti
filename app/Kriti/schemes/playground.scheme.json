@@ -44,40 +44,8 @@
             "uuid": "01964ce277ad4242a41bd1e0f14139bb",
             "type": "Module",
             "point": {
-                "x": 76,
-                "y": 452
-            }
-        },
-        {
-            "uuid": "35692c372394473dab54c232bafe91a0",
-            "type": "Module",
-            "point": {
-                "x": 499,
-                "y": 458
-            }
-        },
-        {
-            "uuid": "81e7895edb8d40c998deeef99260524a",
-            "type": "Module",
-            "point": {
-                "x": 683,
-                "y": 404
-            }
-        },
-        {
-            "uuid": "a973415cdcec4242bcd84a787c1de718",
-            "type": "Module",
-            "point": {
-                "x": 863,
-                "y": 437
-            }
-        },
-        {
-            "uuid": "26511aa8feca4b5fb77120d99aa07523",
-            "type": "Module",
-            "point": {
-                "x": 303,
-                "y": 402
+                "x": 360,
+                "y": 461
             }
         }
     ]
