@@ -1,16 +1,11 @@
 <template>
-    <div v-if="node_menu" class="node-modal">
-        <div class="node-modal__body">
-            <div class="node-modal__header">
-                <div class="node-modal__title">
-                    Настройки нода uuid:<div class="node-modal__uuid">
-                    {{ node_uuid }}
-                </div>
-                </div>
-                <div class="node-modal__close">
-                    <i class="bi bi-x-square-fill" @click="$emit('close')"></i>
-                </div>
+    <KritiModal class="node-modal" :show="!!node_menu" @close="$emit('close')">
+        <template #heading>
+            <div class="node-modal__title">
+                Настройки нода uuid:<div class="node-modal__uuid">{{ node_uuid }}</div>
             </div>
+        </template>
+        <template #default>
             <div class="node-modal__content">
                 <div class="node-modal__menu">
                     <div v-for="item in node_menu"
@@ -29,19 +24,20 @@
                     </FormFitter>
                 </div>
             </div>
-            <div class="node-modal__control">
-                <ControlPanel :buttons="buttons" />
-            </div>
-        </div>
-    </div>
+        </template>
+        <template #footer>
+            <ControlPanel :buttons="buttons" />
+        </template>
+    </KritiModal>
 </template>
 
 <script>
 import ControlPanel from "./Dwarf/forms/ControlPanel";
+import KritiModal from "./KritiModal";
 export default {
     name: "NodeModal",
     components: {
-        ControlPanel
+        ControlPanel, KritiModal
     },
     emits: ['close', 'update'],
     props: {
@@ -137,56 +133,14 @@ export default {
 
 <style lang="scss">
 .node-modal {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #0000009c;
-    overflow-y: auto;
-    z-index: 1;
-
-    &__body {
-        background: #fff;
-        width: 80%;
-        min-height: 300px;
-        margin-top: 30px;
-        padding: 30px;
-        border-radius: 10px;
-        padding-top: 20px;
-        margin-bottom: 100px;
-    }
-
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-    }
-
     &__title {
         display: flex;
+        flex-direction: row;
     }
 
     &__uuid {
         color: #777;
         margin-left: 5px;
-    }
-
-    &__close {
-        i {
-            color: #a0a0a0;
-            cursor: pointer;
-            transition: 200ms;
-            font-size: 25px;
-
-            &:hover {
-                color: #ff4f4f;
-            }
-        }
     }
 
     &__content {

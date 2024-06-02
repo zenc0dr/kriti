@@ -7,7 +7,12 @@
             <div v-else>
                 <div class="kriti-modal__header">
                     <div class="kriti-modal__header__title">
-                        {{ heading }}
+                        <template v-if="heading">
+                            {{ heading }}
+                        </template>
+                        <template v-else>
+                            <slot name="heading"></slot>
+                        </template>
                     </div>
                     <div @click="close" class="kriti-modal__header__close">
                         <i class="bi bi-x"></i>
