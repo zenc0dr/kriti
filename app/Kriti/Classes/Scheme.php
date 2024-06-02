@@ -17,8 +17,10 @@ class Scheme
     public function getSaturatedScheme(string $scheme_code): ?array
     {
         $scheme = $this->getScheme($scheme_code);
-        foreach ($scheme['nodes'] as &$node) {
-            kriti()->node()->attachStatic($node);
+        if (isset($scheme['nodes'])) {
+            foreach ($scheme['nodes'] as &$node) {
+                kriti()->node()->attachStatic($node);
+            }
         }
         return $scheme;
     }
