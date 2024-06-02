@@ -61,11 +61,6 @@ class Module
     {
         return [
             [
-                'text' => 'Создать сцепку',
-                'icon' => 'bi bi-link',
-                'code' => 'createLink'
-            ],
-            [
                 'text' => 'Настройки модуля',
                 'icon' => 'bi bi-sliders',
                 'code' => 'openNodeSettings'
@@ -74,6 +69,11 @@ class Module
                 'text' => 'Клонировать модуль',
                 'icon' => 'bi bi-copy',
                 'code' => 'cloneNode'
+            ],
+            [
+                'text' => 'Удалить модуль',
+                'icon' => 'bi bi-trash',
+                'code' => 'removeNode'
             ],
             [
                 'text' => 'На передний план',

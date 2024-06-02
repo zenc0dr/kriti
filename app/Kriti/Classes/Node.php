@@ -71,6 +71,7 @@ class Node
         return $node;
     }
 
+    # Удалить нод из хранилища нодов
     public function removeNode(string $uuid = null): bool
     {
         if (!$uuid) {
@@ -88,8 +89,12 @@ class Node
         if (file_exists($node_path)) {
             return false;
         }
+
+        #TODO(zenc0rd): Чекнуть все схемы и удалить этот нод оттуда
+
         return true;
     }
+
 
     # создать или удалить сцепку
     public function makeLink(array $link, string $scheme_code)

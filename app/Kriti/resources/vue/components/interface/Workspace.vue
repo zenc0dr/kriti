@@ -299,6 +299,19 @@ export default {
                     }
                 })
             }
+
+            if (code === 'removeNode') {
+                Kriti.api({
+                    data: {
+                        node_uuid: context.uuid,
+                        scheme_code: this.active_scheme_code
+                    },
+                    url: 'kriti.api.Scheme:removeNode',
+                    then: (response) => {
+                        this.getScheme()
+                    }
+                })
+            }
         },
 
         // Запросить генерацию uuid todo: Зачем???

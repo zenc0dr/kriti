@@ -40,6 +40,20 @@ class Scheme
         return kriti()->response();
     }
 
+    # Удалить нод из схемы
+    # http://kriti.mog/kriti.api.Scheme:removeNode
+    public function removeNode()
+    {
+        //kriti()->saveRequest('remove_node');
+        kriti()->loadRequest('remove_node');
+        $node_uuid = request('node_uuid');
+        $scheme_code = request('scheme_code');
+        kriti()->scheme()->removeNode(
+            $node_uuid,
+            $scheme_code
+        );
+    }
+
     # Получить список схем
     # http://kriti.mog/kriti.api.Scheme:getSchemesList
     public function getSchemesList()

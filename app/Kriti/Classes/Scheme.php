@@ -48,13 +48,23 @@ class Scheme
     # Удалить схему
     public function removeScheme(string $scheme_code)
     {
+        unlink(kriti()->schemes_path("$scheme_code.scheme.json"));
+    }
+
+    public function removeNode(string $node_uuid, string $scheme_code)
+    {
         $scheme = $this->getScheme($scheme_code);
-        if (isset($scheme['nodes'])) {
-            foreach ($scheme['nodes'] as $node) {
-                kriti()->node()->removeNode($node['uuid']);
+        foreach ($scheme['nodes'] as &$node) {
+            if ($node['uuid'] === $node_uuid) {
+                unset($node);
+            } else {
+                foreach ($node['links'] as $link_uuid => &$link) {
+                    if ($link_uuid === $node_uuid) {
+                        unset($link);
+                    }
+                }
             }
         }
-        unlink(kriti()->schemes_path("$scheme_code.scheme.json"));
     }
 
     # Получить список схем

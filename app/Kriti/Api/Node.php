@@ -35,13 +35,22 @@ class Node
 
     # Клонировать нод
     # http://kriti.mog/kriti.api.Node:cloneNode
-    public function cloneNode()
+    public function cloneNode(): ?string
     {
         return kriti()->response([
             'node' => kriti()->node()->cloneNode(
                 request('node')
             )
         ]);
+    }
+
+    # Удалить нод из хранилища нодов
+    # http://kriti.mog/kriti.api.Node:removeNode
+    public function removeNode(): ?string
+    {
+        $node = request('node');
+        kriti()->node()->removeNode($node['uuid']);
+        return kriti()->response();
     }
 
     # http://kriti.mog/kriti.api.Node:makeLink
