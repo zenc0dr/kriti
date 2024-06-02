@@ -133,6 +133,10 @@ export default {
         // Загрузить схему
         getScheme() {
             this.removeAllLinks()
+            if (!this.active_scheme_code) {
+                this.scheme = {}
+                return
+            }
             Kriti.api({
                 url: 'kriti.api.Scheme:getScheme',
                 data: {
