@@ -135,9 +135,6 @@ export default {
             if (!this.schemes_list || !this.schemes_list.length) {
                 return null;
             }
-            console.log('Схемы есть', this.schemes_list, this.active_scheme_code)
-            // Возвращает либо выбранный либо первый элемент в массиве схем
-            //return this.schemes_list.find(scheme => scheme.code === this.active_scheme_code) || this.schemes_list[0]
             return this.schemes_list.find(scheme => scheme.code === this.active_scheme_code) || {
                 name: 'Схема не выбрана',
                 description: null
