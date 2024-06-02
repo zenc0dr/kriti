@@ -54,17 +54,26 @@ class Scheme
     public function removeNode(string $node_uuid, string $scheme_code)
     {
         $scheme = $this->getScheme($scheme_code);
-        foreach ($scheme['nodes'] as &$node) {
+
+        //dd($scheme);
+
+        foreach ($scheme['nodes'] as $key => &$node) {
             if ($node['uuid'] === $node_uuid) {
-                unset($node);
+                unset($scheme['nodes'][$key]);
             } else {
-                foreach ($node['links'] as $link_uuid => &$link) {
-                    if ($link_uuid === $node_uuid) {
-                        unset($link);
+                if (isset($node['links'])) {
+                    foreach ($node['links'] as $link_uuid => $link) {
+                        if ($link_uuid === $node_uuid) {
+                            unset($node['links'][$link_uuid]);
+                        }
                     }
                 }
             }
         }
+
+        //dd($scheme);
+
+        $this->setScheme($scheme_code, $scheme);
     }
 
     # Получить список схем
