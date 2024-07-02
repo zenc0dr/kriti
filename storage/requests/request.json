@@ -1,7 +1,4 @@
 {
-    "link": [
-        "6b3083a2e38e4b63a983fe6295ad6359:input:$a",
-        "067ddc2985964a82b8168359b4f9b633:output"
-    ],
-    "scheme_code": "calculator"
+    "type": "node",
+    "uuid": "c22ec1d73ea3421a8b05eb08f8c555d3"
 }

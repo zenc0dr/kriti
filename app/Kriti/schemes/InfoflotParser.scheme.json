@@ -1,4 +1,5 @@
 {
     "name": "InfoflotParser",
-    "description": "Парсер инфофлота"
+    "description": "Парсер инфофлота",
+    "nodes": []
 }
