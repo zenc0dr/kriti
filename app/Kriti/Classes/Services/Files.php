@@ -65,4 +65,20 @@ class Files
         }
         return kriti()->fromJson(file_get_contents($file_path));
     }
+
+    function copyFiles(string $source_directory, string $destination_directory)
+    {
+        if (!file_exists($destination_directory)) {
+            mkdir($destination_directory, 0777, true);
+        }
+
+        $files = File::files($source_directory);
+        foreach ($files as $file) {
+            $file_name = $file->getFilename();
+            $new_file_path = $destination_directory . '/' . $file_name;
+            if (!File::copy($file->getPathname(), $new_file_path)) {
+                throw new \Exception("Failed to copy file: " . $file->getPathname());
+            }
+        }
+    }
 }

@@ -6,11 +6,16 @@
         <div class="kriti-browser__body">
             <div v-if="nodes !== null" class="kriti-browser__nodes">
                 <div v-for="(node, node_code) in nodes" class="kriti-browser__node">
-                    <div class="kriti-browser__node__name">
-                        {{ node.info.name }} {{ node_code }}
+                    <div class="kriti-browser__node__header">
+                        <div class="kriti-browser__node__name">
+                            {{ node.info.name }} <div class="kriti-browser__node__code">({{ node_code }})</div>
+                        </div>
+                        <div class="kriti-browser__node__desc">
+                            {{ node.info.desc }}
+                        </div>
                     </div>
                     <div class="kriti-browser__node__methods">
-                        <div v-for="(method, method_code) in node.methods" class="kriti-browser__node__method">
+                        <div @click="addBlock" v-for="(method, method_code) in node.methods" class="kriti-browser__node__method">
                             <i :class="method.icon" /> {{ method.name }}
                         </div>
                     </div>
@@ -23,6 +28,16 @@
 <script>
 export default {
     name: "KritiBrowser",
+    props: {
+        plato_x: {
+            type: Number,
+            default: 0,
+        },
+        plato_y: {
+            type: Number,
+            default: 0,
+        }
+    },
     data() {
         return {
             nodes: null
@@ -39,6 +54,9 @@ export default {
                     this.nodes = response.nodes
                 }
             })
+        },
+        addBlock() {
+            console.log(this.plato_x, this.plato_y)
         }
     }
 }
@@ -54,9 +72,13 @@ export default {
     position: fixed;
     left: 5px;
     bottom: 5px;
+    max-width: 250px;
 
     &__header {
-
+        color: #3f607c;
+        padding: 3px 5px;
+        border-radius: 4px;
+        margin-bottom: 5px;
     }
     &__body {
 
@@ -65,16 +87,52 @@ export default {
 
     }
     &__node {
+        border: 1px solid #c0c0c0;
+        padding: 7px 11px;
+        border-radius: 5px;
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+
+        &__header {
+            margin-bottom: 10px;
+        }
 
         &__name {
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+        }
 
+        &__desc {
+            font-size: 12px;
+            color: #5b5b5b;
+        }
+
+        &__code {
+            font-size: 13px;
+            color: #3f607c;
+            margin-left: 5px;
         }
 
         &__methods {
 
         }
         &__method {
-
+            padding: 5px 10px;
+            background: #ededed;
+            border-radius: 4px;
+            margin-bottom: 7px;
+            i {
+                margin-right: 3px;
+            }
+            cursor: pointer;
+            transition: 200ms;
+            &:hover {
+                background: #dcffcc;
+                color: #204b0c;
+            }
         }
     }
 }

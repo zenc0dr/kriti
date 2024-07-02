@@ -71,6 +71,33 @@ class Node
         return $node;
     }
 
+    # Создать модуль
+    public function createNode(
+        string $node_code,
+        string $method_code,
+        string $version,
+        string $scheme_code
+    ) {
+        $method_files_dir_path = kriti()->store()->getLocalNodeMethodFilesDirPath($node_code, $method_code, $version);
+        $uuid = kriti()->createUUID();
+
+        $node_data_path = kriti()->schemes_path("data/$uuid");
+        kriti()->files()->copyFiles($method_files_dir_path, $node_data_path);
+        $scheme = kriti()->scheme()->getScheme($scheme_code);
+        if (isset($scheme['nodes'])) {
+            $scheme['nodes'] = [];
+        }
+        $scheme['nodes'][] = [
+            'uuid' => $uuid,
+            'type' => 'Module',
+            'point' => [
+                'x' => 500,
+                'y' => 200
+            ]
+        ];
+        kriti()->scheme()->setScheme($scheme_code, $scheme);
+    }
+
     # Удалить нод из хранилища нодов
     public function removeNode(string $uuid = null): bool
     {

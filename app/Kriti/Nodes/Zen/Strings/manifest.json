@@ -1,0 +1,7 @@
+{
+    "author": "Alex Blaze",
+    "name": "Строки",
+    "icon": "bi bi-input-cursor-text",
+    "description": "Набор методов строковых операций",
+    "node": "Module"
+}

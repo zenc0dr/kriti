@@ -42,6 +42,16 @@ class Store
         return $output;
     }
 
+    # Получить локальный нод (метод нода)
+    public function getLocalNodeMethodFilesDirPath(
+        string $node_code,
+        string $method_code,
+        string $version
+    ): string {
+        $node_code = str_replace('.', '/', $node_code);
+        return "$this->store_path/$node_code/$version/modules/$method_code";
+    }
+
     /**
      * Обработка манифестов
      * @param string $path

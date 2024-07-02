@@ -44,6 +44,19 @@ class Node
         ]);
     }
 
+    # Создать нод
+    # http://kriti.mog/kriti.api.Node:createNode
+    public function createNode()
+    {
+        kriti()->node()->createNode(
+            request('node_code', 'Zen.Calculator'),
+            request('method_code', 'calculate'),
+            request('version', 'V1'),
+            request('scheme_code', 'playground')
+        );
+        return kriti()->response();
+    }
+
     # Удалить нод из хранилища нодов
     # http://kriti.mog/kriti.api.Node:removeNode
     public function removeNode(): ?string

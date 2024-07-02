@@ -1,0 +1,15 @@
+{
+    "module": {
+        "height": "100px",
+        "width": "200px",
+        "background-color": "#000",
+        "border-radius": "5px",
+        "padding": "15px",
+        "color": "#666"
+    },
+    "module_title": {
+        "font-weight": "bold",
+        "font-size": "22px",
+        "color": "#000"
+    }
+}
