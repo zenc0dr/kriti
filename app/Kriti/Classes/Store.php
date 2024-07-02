@@ -32,7 +32,7 @@ class Store
             if ($file['name'] === 'settings.json') {
                 $settings_path = $file['path'];
                 $node = $this->handleSettings($settings_path);
-                $output[$node['namespace']]['nodes'][$node['method']] = [
+                $output[$node['namespace']]['methods'][$node['method']] = [
                     'version' => $node['version'],
                     'name' => $node['name'],
                     'icon' => $node['icon']

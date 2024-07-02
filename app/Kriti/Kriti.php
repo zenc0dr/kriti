@@ -60,6 +60,7 @@ class Kriti
     # Обработка ответа
     public function response(string|array $response = null): ?string
     {
+        $dd = boolval(request('dd', false));
         if (is_string($response)) {
             return $response;
         } else {
@@ -72,6 +73,9 @@ class Kriti
                     $response['success'] = true;
                 }
             }
+        }
+        if ($dd) {
+            dd($response);
         }
         return $this->toJson($response);
     }

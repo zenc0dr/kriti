@@ -30,9 +30,7 @@
             :active_scheme_code="active_scheme_code"
             @update_scheme="reloadScheme"
         />
-        <KritiBlocks
-            ref="KritiBlocks"
-        />
+        <KritiBrowser />
     </div>
 </template>
 
@@ -43,8 +41,8 @@ import KritiMenu from "./KritiMenu";
 import Node from "./Node";
 import NodeModal from "./NodeModal";
 import ContextMenu from "./ContextMenu";
-import KritiBlocks from "./KritiBlocks";
 //import KritiPanel from "./KritiPanel";
+import KritiBrowser from "./KritiBrowser";
 
 export default {
     name: "Workspace",
@@ -54,7 +52,7 @@ export default {
         NodeModal, // Компонент рабочее окно нода
         ContextMenu, // Контекстное меню
         KritiMenu,
-        KritiBlocks
+        KritiBrowser
     },
     props: {},
     data() {
@@ -414,8 +412,9 @@ export default {
             })
         },
 
+        // Перезагрузка блоков (нужна ли...)
         reloadBlocks() {
-            this.$refs.KritiBlocks.reload()
+            //this.$refs.KritiBlocks.reload()
         },
 
         addNode() {

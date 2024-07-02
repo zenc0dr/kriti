@@ -6,8 +6,47 @@
             "uuid": "d44693a8803041aeb821050cf42ee5d6",
             "type": "Module",
             "point": {
-                "x": 537,
-                "y": 131
+                "x": 164,
+                "y": 213
+            },
+            "links": {
+                "6cda16461cb84e9dbca25c0f4ca7d13e": [
+                    "output@input:$cruise"
+                ]
+            }
+        },
+        {
+            "uuid": "6cda16461cb84e9dbca25c0f4ca7d13e",
+            "type": "Module",
+            "point": {
+                "x": 582,
+                "y": 52
+            },
+            "links": {
+                "93cfc90bff3344b4b35ae1ce0a3af6dd": [
+                    "output@input:$cruise"
+                ]
+            }
+        },
+        {
+            "uuid": "93cfc90bff3344b4b35ae1ce0a3af6dd",
+            "type": "Module",
+            "point": {
+                "x": 738,
+                "y": 389
+            },
+            "links": {
+                "d01361676dec47e0a509795917f63daa": [
+                    "output@input:$cruise"
+                ]
+            }
+        },
+        {
+            "uuid": "d01361676dec47e0a509795917f63daa",
+            "type": "Module",
+            "point": {
+                "x": 1261,
+                "y": 413
             }
         }
     ]

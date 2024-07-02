@@ -74,27 +74,7 @@ class Module
                 'text' => 'Удалить модуль',
                 'icon' => 'bi bi-trash',
                 'code' => 'removeNode'
-            ],
-            [
-                'text' => 'На передний план',
-                'icon' => 'bi bi-chevron-double-up',
-                'code' => 'moveNodeFullUp'
-            ],
-            [
-                'text' => 'На уровень вверх',
-                'icon' => 'bi bi-chevron-up',
-                'code' => 'moveNodeUp'
-            ],
-            [
-                'text' => 'На уровень вниз',
-                'icon' => 'bi bi-chevron-down',
-                'code' => 'moveNodeDown'
-            ],
-            [
-                'text' => 'На задний план',
-                'icon' => 'bi bi-chevron-double-down',
-                'code' => 'moveNodeFullDown'
-            ],
+            ]
         ];
     }
 

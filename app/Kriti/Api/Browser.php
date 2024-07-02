@@ -2,9 +2,9 @@
 
 namespace App\Kriti\Api;
 
-class Store
+class Browser
 {
-    # http://kriti.mog/kriti.api.Store:getLocalNodes
+    # http://kriti.mog/kriti.api.Browser:getLocalNodes
     public function getLocalNodes()
     {
         return kriti()->response([
