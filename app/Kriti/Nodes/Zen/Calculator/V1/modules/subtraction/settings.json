@@ -2,6 +2,7 @@
     "name": "Вычитание А из Б",
     "call": "App.Kriti.Nodes.Zen.Calculator.Calculator.subtraction",
     "icon": "bi bi-calculator",
+    "type": "Module",
     "inputs": [
         {
             "var_key": "a",

@@ -1,15 +1,15 @@
 {
     "module": {
-        "height": "100px",
-        "width": "200px",
-        "background-color": "#000",
+        "height": "120px",
+        "width": "270px",
+        "background-color": "#fff",
         "border-radius": "5px",
         "padding": "15px",
         "color": "#666"
     },
     "module_title": {
         "font-weight": "bold",
-        "font-size": "22px",
-        "color": "#000"
+        "font-size": "14px",
+        "color": "#325a3c"
     }
 }

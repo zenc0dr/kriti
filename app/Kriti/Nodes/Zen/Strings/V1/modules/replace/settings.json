@@ -2,6 +2,7 @@
     "name": "Умножение А на Б",
     "call": "App.Kriti.Nodes.Zen.Calculator.Strings.replace",
     "icon": "bi bi-input-cursor-text",
+    "type": "Module",
     "inputs": [
         {
             "var_key": "search",

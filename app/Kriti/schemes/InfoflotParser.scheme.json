@@ -1,5 +1,14 @@
 {
     "name": "InfoflotParser",
     "description": "Парсер инфофлота",
-    "nodes": []
+    "nodes": [
+        {
+            "uuid": "8ef760e8957549a2b3a7e5c2386016c5",
+            "type": "Module",
+            "point": {
+                "x": 413,
+                "y": 142
+            }
+        }
+    ]
 }
