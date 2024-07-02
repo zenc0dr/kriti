@@ -30,7 +30,12 @@
             :active_scheme_code="active_scheme_code"
             @update_scheme="reloadScheme"
         />
-        <KritiBrowser :plato_x="plato_x" :plato_y="plato_y" />
+        <KritiBrowser
+            :plato_x="plato_x"
+            :plato_y="plato_y"
+            :scheme_code="active_scheme_code"
+            @update="getScheme"
+        />
     </div>
 </template>
 

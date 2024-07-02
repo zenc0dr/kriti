@@ -49,10 +49,10 @@ class Node
     public function createNode()
     {
         kriti()->node()->createNode(
-            request('node_code', 'Zen.Calculator'),
-            request('method_code', 'calculate'),
-            request('version', 'V1'),
-            request('scheme_code', 'playground')
+            request('node_code'),
+            request('method_code'),
+            request('version'),
+            request('scheme_code')
         );
         return kriti()->response();
     }

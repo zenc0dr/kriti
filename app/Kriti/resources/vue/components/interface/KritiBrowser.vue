@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="kriti-browser__node__methods">
-                        <div @click="addBlock" v-for="(method, method_code) in node.methods" class="kriti-browser__node__method">
+                        <div @click="createNode(node_code, method_code, method)" v-for="(method, method_code) in node.methods" class="kriti-browser__node__method">
                             <i :class="method.icon" /> {{ method.name }}
                         </div>
                     </div>
@@ -28,6 +28,7 @@
 <script>
 export default {
     name: "KritiBrowser",
+    emits: ['update'],
     props: {
         plato_x: {
             type: Number,
@@ -36,7 +37,8 @@ export default {
         plato_y: {
             type: Number,
             default: 0,
-        }
+        },
+        scheme_code: null,
     },
     data() {
         return {
@@ -55,8 +57,25 @@ export default {
                 }
             })
         },
-        addBlock() {
-            console.log(this.plato_x, this.plato_y)
+        createNode(node_code, method_code, method) {
+            // this.plato_x, this.plato_y
+
+            if (!this.scheme_code) {
+                return
+            }
+
+            Kriti.api({
+                url: 'kriti.api.Node:createNode',
+                data: {
+                    node_code,
+                    method_code,
+                    version: method.version,
+                    scheme_code: this.scheme_code,
+                },
+                then: response => {
+                    this.$emit('update')
+                }
+            })
         }
     }
 }
