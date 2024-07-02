@@ -82,7 +82,7 @@ class Node
         $uuid = kriti()->createUUID();
 
         $node_data_path = kriti()->schemes_path("data/$uuid");
-        //kriti()->files()->copyFiles($method_files_dir_path, $node_data_path);
+        kriti()->files()->copyFiles($method_files_dir_path, $node_data_path);
         $scheme = kriti()->scheme()->getScheme($scheme_code);
         if (!isset($scheme['nodes'])) {
             $scheme['nodes'] = [];
