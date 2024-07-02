@@ -7,7 +7,72 @@
             "type": "Module",
             "point": {
                 "x": 413,
-                "y": 142
+                "y": 87
+            },
+            "links": {
+                "ff357ff8fcc54dc4883e54c9bc23f394": [
+                    "output@input:a"
+                ]
+            }
+        },
+        {
+            "uuid": "ff357ff8fcc54dc4883e54c9bc23f394",
+            "type": "Module",
+            "point": {
+                "x": 897,
+                "y": 170
+            },
+            "links": {
+                "9fbc2e9fafb24ee5924289ddd0da41c4": [
+                    "output@input:search"
+                ]
+            }
+        },
+        {
+            "uuid": "ddf2d21704954e5c8018044661c06b1e",
+            "type": "Module",
+            "point": {
+                "x": 417,
+                "y": 224
+            },
+            "links": {
+                "ff357ff8fcc54dc4883e54c9bc23f394": [
+                    "output@input:b"
+                ]
+            }
+        },
+        {
+            "uuid": "9fbc2e9fafb24ee5924289ddd0da41c4",
+            "type": "Module",
+            "point": {
+                "x": 1305,
+                "y": 366
+            }
+        },
+        {
+            "uuid": "5696075572544f2eb0c37ff57751a118",
+            "type": "Module",
+            "point": {
+                "x": 709,
+                "y": 405
+            },
+            "links": {
+                "9fbc2e9fafb24ee5924289ddd0da41c4": [
+                    "output@input:replace"
+                ]
+            }
+        },
+        {
+            "uuid": "e515904b29564f9a86d6ebffd0a020ba",
+            "type": "Module",
+            "point": {
+                "x": 726,
+                "y": 599
+            },
+            "links": {
+                "9fbc2e9fafb24ee5924289ddd0da41c4": [
+                    "output@input:subject"
+                ]
             }
         }
     ]
