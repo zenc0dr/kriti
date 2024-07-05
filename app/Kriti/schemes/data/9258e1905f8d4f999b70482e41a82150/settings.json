@@ -1,0 +1,36 @@
+{
+    "name": "Найти и заменить",
+    "call": "App.Kriti.Nodes.Zen.Calculator.Strings.replace",
+    "icon": "bi bi-input-cursor-text",
+    "type": "Module",
+    "inputs": [
+        {
+            "var_key": "search",
+            "var_title": "Найти",
+            "var_desc": null,
+            "var_type": "string",
+            "var_require": true,
+            "var_default": ""
+        },
+        {
+            "var_key": "replace",
+            "var_title": "Заменить",
+            "var_desc": null,
+            "var_type": "string",
+            "var_require": true,
+            "var_default": ""
+        },
+        {
+            "var_key": "subject",
+            "var_title": "Строка",
+            "var_desc": null,
+            "var_type": "string",
+            "var_require": true,
+            "var_default": ""
+        }
+    ],
+    "output": {
+        "var_desc": null,
+        "var_type": "string"
+    }
+}

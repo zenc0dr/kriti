@@ -1,5 +1,5 @@
 <template>
-    <div class="kriti-browser">
+    <div ref="kriti_browser" class="kriti-browser">
         <div class="kriti-browser__header">
             Браузер модулей
         </div>
@@ -64,18 +64,26 @@ export default {
                 return
             }
 
-            Kriti.api({
-                url: 'kriti.api.Node:createNode',
-                data: {
-                    node_code,
-                    method_code,
-                    version: method.version,
-                    scheme_code: this.scheme_code,
-                },
-                then: response => {
-                    this.$emit('update')
-                }
-            })
+            const rect = this.$refs.kriti_browser.getBoundingClientRect()
+            let create_x = rect.right
+            let create_y = rect.top
+
+            console.log(create_x, create_y, this.plato_x, this.plato_y)
+
+            // Kriti.api({
+            //     url: 'kriti.api.Node:createNode',
+            //     data: {
+            //         node_code,
+            //         method_code,
+            //         version: method.version,
+            //         scheme_code: this.scheme_code,
+            //     },
+            //     then: response => {
+            //         if (response.success) {
+            //             this.$emit('update')
+            //         }
+            //     }
+            // })
         }
     }
 }
